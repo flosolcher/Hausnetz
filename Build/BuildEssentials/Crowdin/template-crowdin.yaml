@@ -1,0 +1,6 @@
+project_identifier: '%s'
+api_key: '%s'
+base_path: '.'
+
+files:
+%s
