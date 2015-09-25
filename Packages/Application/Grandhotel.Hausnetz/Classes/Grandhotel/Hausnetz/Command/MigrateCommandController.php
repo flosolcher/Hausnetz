@@ -3,6 +3,7 @@ namespace Grandhotel\Hausnetz\Command;
 
 use Grandhotel\Hausnetz\Domain\Model\Announcement;
 use Grandhotel\Hausnetz\Domain\Model\Container;
+use Grandhotel\Hausnetz\Domain\Model\Group;
 use Grandhotel\Hausnetz\Domain\Model\User;
 use TYPO3\Flow\Annotations as Flow;
 
@@ -27,6 +28,13 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
      * @var \Grandhotel\Hausnetz\Domain\Repository\AnnouncementRepository
      */
     protected $announcementRepository;
+
+    /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\GroupRepository
+     */
+    protected $groupRepository;
+
     /**
      * @var string
      * @Flow\Inject(setting="Migrate.Database")
@@ -67,8 +75,6 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
             $user->setPassword($row['md5pass']);
-            $role = $row['is_admin'] ? 'admin' : 'user';
-            $user->setRole($role);
             $user->setPhone($row['phone']);
             if ($create) {
                 $this->userRepository->add($user);
@@ -164,9 +170,69 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         }
     }
 
+    protected function migrateGroup()  {
+        $sql = 'SELECT * FROM groups ORDER BY id';
+        $result = $this->getConnection()->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['id'];
+            $group = $this->groupRepository->findByReferenceId($id);
+            if ($group->count() === 0) {
+                $group = new Group();
+                $create = TRUE;
+            } else {
+                $create = FALSE;
+                $group = $group->getFirst();
+            }
+            $group->setActive(TRUE);
+            $group->setName($row['name']);
+            $group->setDeny($row['deny']);
+            $group->setPermissions($row['permissions']);
+            $group->setReferenceId($id);
+            if ($create) {
+                $this->groupRepository->add($group);
+            } else {
+                $this->groupRepository->update($group);
+            }
+        }
+        $this->persistenceManager->persistAll();
+    }
+
+    public function migrateGroupUser() {
+        $sql = 'SELECT * FROM usergroups';
+        $result = $this->getConnection()->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $groupId = $row['group_id'];
+            $group = $this->groupRepository->findByReferenceId($groupId);
+            if ($group->count() === 0) {
+                //skip
+            } else {
+                $group = $group->getFirst();
+                $userId = $row['user_id'];
+                $user = $this->userRepository->findByReferenceId($userId);
+                if ($user->count() === 0) {
+                    //skip
+                } else {
+                    $user = $user->getFirst();
+                    $group->addUser($user);
+                    $this->groupRepository->update($group);
+                }
+            }
+        }
+        $this->persistenceManager->persistAll();
+    }
+
     public function databaseCommand() {
         $this->migrateUser();
+        $this->migrateGroup();
+        $this->migrateGroupUser();
         $this->migrateContainer();
-        $this->migrateAnnouncement();
+        //$this->migrateAnnouncement();
+
     }
+
+
+
+
+
+
 }

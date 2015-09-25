@@ -56,18 +56,17 @@ class User extends AbstractModel {
 
 
     /**
-     * @var string
-     * @ORM\Column(nullable=true)
-     */
-    protected $role;
-
-
-    /**
      * @var int
      * @ORM\Column(nullable=true)
      */
     protected $referenceId;
 
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection<\Grandhotel\Hausnetz\Domain\Model\Group>
+     * @ORM\ManyToMany(mappedBy="users",cascade={"persist"})
+     */
+    protected $groups;
 
     /**
      * @return string
@@ -185,23 +184,6 @@ class User extends AbstractModel {
 
 
     /**
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param string $role
-     * @return void
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-    }
-
-    /**
      * @return int
      */
     public function getReferenceId()
@@ -218,5 +200,37 @@ class User extends AbstractModel {
         $this->referenceId = $referenceId;
     }
 
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection<\Grandhotel\Hausnetz\Domain\Model\Group>
+     */
+    public function getGroups() {
+        return $this->groups;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection<\Grandhotel\Hausnetz\Domain\Model\Group> $groups
+     */
+    public function setGroups(\Doctrine\Common\Collections\Collection $groups) {
+        $this->groups = $groups;
+    }
+
+    /**
+     * @param Group $group
+     */
+    public function addUser(Group $group) {
+        if (!$this->groups->contains($group)) {
+            $this->groups->add($group);
+        }
+    }
+
+    /**
+     * @param Group $group
+     */
+    public function removeUser(Group $group) {
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
+        }
+    }
 
 }
