@@ -35,6 +35,9 @@ class AnnouncementController extends AbstractController {
         $this->view->assign('container', $container);
     }
 
+    /**
+     * @param Announcement $announcement
+     */
     public function createAction(Announcement $announcement) {
         $announcement->setActive = TRUE;
         if (trim($announcement->getMessage())!= '') {
