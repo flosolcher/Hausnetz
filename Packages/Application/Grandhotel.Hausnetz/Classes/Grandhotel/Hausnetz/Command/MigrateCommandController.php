@@ -133,7 +133,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
             $createDate = new \DateTime();
             $createDate->setTimestamp($row['dc']);
             $announcement->setCreateDate($createDate);
-
+            $announcement->setSortDate($createDate);
             if ($row['container_id'] != 0) {
                 $container = $this->containerRepository->findByReferenceId($row['container_id']);
                 if ($container->count() !== 0) {
@@ -156,6 +156,11 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
                 if ($_announcement->count() !== 0) {
                     $_announcement = $_announcement->getFirst();
                     $announcement->setAnnouncement($_announcement);
+                    if ($_announcement->getSortDate() < $announcement->getSortDate()) {
+                        $_announcement->setSortDate($announcement->getSortDate());
+                        $this->announcementRepository->update($_announcement, FALSE);
+                    }
+
                 }
             }
 
@@ -226,7 +231,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->migrateGroup();
         $this->migrateGroupUser();
         $this->migrateContainer();
-        //$this->migrateAnnouncement();
+        $this->migrateAnnouncement();
 
     }
 

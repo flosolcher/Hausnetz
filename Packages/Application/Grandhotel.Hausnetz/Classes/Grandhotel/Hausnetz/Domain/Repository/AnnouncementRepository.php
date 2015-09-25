@@ -24,6 +24,6 @@ class AnnouncementRepository extends AbstractRepository {
         if ($container != NULL) {
             $constraints[] = $query->equals('container', $container);
         }
-        return $this->listItems('createDate', \TYPO3\Flow\Persistence\QueryInterface::ORDER_DESCENDING, $query, $constraints, FALSE, FALSE, $limit);
+        return $this->listItems('sortDate', \TYPO3\Flow\Persistence\QueryInterface::ORDER_DESCENDING, $query, $constraints, FALSE, FALSE, $limit);
     }
 }

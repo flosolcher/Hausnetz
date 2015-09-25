@@ -3,7 +3,38 @@
 <f:section name="Content">
     <div class="row">
         <div class="col-md-12">
-            <h1>Neuigkeiten</h1>
+            <div class="page-header">
+                <h1>Neuigkeiten</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    Filter:
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default">
+                            <f:if condition="{container}">
+                                <f:then>{container.title}</f:then>
+                                <f:else>Ganzes Haus</f:else>
+                            </f:if>
+                        </button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><f:link.action action="index">Ganzes Haus</f:link.action></li>
+                            <li role="separator" class="divider"></li>
+                            <f:for each="{containers}" as="_container">
+                                <li><f:link.action action="index" arguments="{container: '{_container}'}">{_container.title}</f:link.action></li>
+                            </f:for>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -22,14 +53,14 @@
                                 </f:if>
                             </span>
 
-                            <span class="time pull-right">
+                            <small class="time pull-right">
                                 am <f:format.date format="d.m.Y">{announcement.createDate}</f:format.date>
                                 um <f:format.date format="H:i">{announcement.createDate}</f:format.date> Uhr
                                 &nbsp;
-                            </span>
+                            </small>
                     </div>
                     <div class="panel-body">
-                        {announcement.message}
+                        <p><f:format.nl2br>{announcement.message}</f:format.nl2br></p>
                     </div>
 
                     <f:if condition="{announcement.announcements}">
@@ -39,12 +70,12 @@
                             <div class="well well-sm">
                                 <p>
                                     <small>
-                                        <strong>{announcement.createUser.userName}</strong>
+                                        <strong>{subAnnouncement.createUser.userName}</strong>
                                         am <f:format.date format="d.m.Y">{subAnnouncement.createDate}</f:format.date>
                                         um <f:format.date format="H:i">{subAnnouncement.createDate}</f:format.date> Uhr
                                     </small>
                                     <br />
-                                    {subAnnouncement.message}
+                                    <f:format.nl2br>{subAnnouncement.message}</f:format.nl2br>
                                 </p>
                             </div>
                         </f:for>

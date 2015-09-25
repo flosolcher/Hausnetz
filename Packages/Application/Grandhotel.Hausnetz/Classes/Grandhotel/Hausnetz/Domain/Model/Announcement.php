@@ -35,6 +35,12 @@ class Announcement extends AbstractModel {
     protected $container;
 
 
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $sortDate;
+
 
     /**
      * @var \Grandhotel\Hausnetz\Domain\Model\Announcement
@@ -97,6 +103,23 @@ class Announcement extends AbstractModel {
      */
     public function setContainer(Container $container = NULL) {
         $this->container = $container;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getSortDate()
+    {
+        return $this->sortDate;
+    }
+
+    /**
+     * @param \DateTime $sortDate
+     * @return void
+     */
+    public function setSortDate($sortDate)
+    {
+        $this->sortDate = $sortDate;
     }
 
     /**
