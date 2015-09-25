@@ -38,12 +38,18 @@
                 <div class="panel-body">
                     <h2>Neuer Eintrag</h2>
                     <f:form action="create" objectName="announcement">
-                        <f:form.select property="container" options="{containers}" optionLabelField="title" prependOptionLabel="Ganzes Haus" class="form-control" />
-                        <div class="input-group">
+                        <div class="row">
+                        <div class="col-md-4">
+                            <f:form.select property="container" options="{containers}" optionLabelField="title" prependOptionLabel="Ganzes Haus" class="form-control" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="input-group">
 
-                                <f:form.textarea class="form-control autogrow" property="message" rows="1" />
-                                    <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
-                                     btn-default">Neuer Eintrag</span>
+                                    <f:form.textarea class="form-control autogrow" property="message" rows="1" />
+                                        <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
+                                         btn-default">Neuer Eintrag</span>
+                            </div>
+                        </div>
                         </div>
                     </f:form>
                 </div>
