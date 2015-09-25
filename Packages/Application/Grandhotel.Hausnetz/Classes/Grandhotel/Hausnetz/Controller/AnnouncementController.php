@@ -39,7 +39,8 @@ class AnnouncementController extends AbstractController {
      * @param Announcement $announcement
      */
     public function createAction(Announcement $announcement) {
-        $announcement->setActive = TRUE;
+        $announcement->setActive(TRUE);
+        $announcement->setSortDate(new \DateTime());
         if (trim($announcement->getMessage())!= '') {
             if ($announcement->getAnnouncement() != NULL) {
                 $_announcement = $announcement->getAnnouncement();
