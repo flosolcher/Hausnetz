@@ -1,0 +1,50 @@
+<?php
+namespace Grandhotel\Hausnetz\Domain\Repository;
+
+/*                                                                        *
+ * This script belongs to the TYPO3 Flow package "Monacofriends.SDL".       *
+ *                                                                        *
+ *                                                                        */
+
+use Grandhotel\Hausnetz\Domain\Repository\Super\AbstractRepository;
+use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Persistence\QueryInterface;
+use TYPO3\Flow\Persistence\Repository;
+
+/**
+ * @Flow\Scope("singleton")
+ */
+class NoteRepository extends AbstractRepository {
+
+
+    /**
+     *
+     * @param $user
+     * @return \Grandhotel\Hausnetz\Domain\Model\Note
+     */
+    public function findByCreateUser($userName) {
+        $query = $this->createQuery();
+        $constraints = array();
+        $constraints[] = $query->equals('userName', $userName);
+
+        $result = $query->matching($query->logicalAnd($constraints))
+            ->execute();
+        if ($result->count() > 0) {
+            return $result->getFirst();
+        } else {
+            return null;
+        }
+    }
+
+
+    /**
+     * @return TYPO3\Flow\Persistence\QueryResultInterface
+     */
+    public function listNotes(){
+        return $this->listItems(
+            'content',
+            QueryInterface::ORDER_ASCENDING
+        );
+    }
+
+}

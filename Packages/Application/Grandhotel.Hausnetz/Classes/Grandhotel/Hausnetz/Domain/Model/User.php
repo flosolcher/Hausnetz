@@ -69,6 +69,12 @@ class User extends AbstractModel {
     protected $groups;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection<\Grandhotel\Hausnetz\Domain\Model\Note>
+     * @ORM\OneToMany(mappedBy="notes",cascade={"persist"})
+     */
+    protected $notes;
+
+    /**
      * @return string
      */
     public function getEmail()
