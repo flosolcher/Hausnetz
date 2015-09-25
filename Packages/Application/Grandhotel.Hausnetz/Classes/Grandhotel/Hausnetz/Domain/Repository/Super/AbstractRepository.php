@@ -36,10 +36,10 @@ abstract class AbstractRepository extends Repository {
      * @param object $object
      */
     public function add($object) {
-        $object->setChangeUser($this->authService->getCurrentUser());
-        $object->setCreateUser($this->authService->getCurrentUser());
-        $object->setChangeDate(new \DateTime());
-        $object->setCreateDate(new \DateTime());
+        if ($this->authService->getCurrentUser()) $object->setChangeUser($this->authService->getCurrentUser());
+        if ($this->authService->getCurrentUser()) $object->setCreateUser($this->authService->getCurrentUser());
+        if (!$object->getChangeDate()) $object->setChangeDate(new \DateTime());
+        if (!$object->getCreateDate()) $object->setCreateDate(new \DateTime());
         $object->setDeleted(false);
         if (!$object->getActive()) $object->setActive(false);
         parent::add($object);
@@ -47,10 +47,12 @@ abstract class AbstractRepository extends Repository {
 
     /**
      * @param object $object
+     * @param bool $setDate
+     * @throws \TYPO3\Flow\Persistence\Exception\IllegalObjectTypeException
      */
-    public function update($object) {
-        $object->setChangeUser($this->authService->getCurrentUser());
-        $object->setChangeDate(new \DateTime());
+    public function update($object, $setDate = TRUE) {
+        if ($this->authService->getCurrentUser()) $object->setChangeUser($this->authService->getCurrentUser());
+        if ($setDate) $object->setChangeDate(new \DateTime());
         parent::update($object);
     }
 

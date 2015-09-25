@@ -1,6 +1,7 @@
 <?php
 namespace Grandhotel\Hausnetz\Command;
 
+use Grandhotel\Hausnetz\Domain\Model\Announcement;
 use Grandhotel\Hausnetz\Domain\Model\Container;
 use Grandhotel\Hausnetz\Domain\Model\User;
 use TYPO3\Flow\Annotations as Flow;
@@ -22,6 +23,11 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
      */
     protected $containerRepository;
     /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\AnnouncementRepository
+     */
+    protected $announcementRepository;
+    /**
      * @var string
      * @Flow\Inject(setting="Migrate.Database")
      */
@@ -38,7 +44,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 
     protected function migrateUser() {
-        $sql = 'SELECT * FROM users';
+        $sql = 'SELECT * FROM users ORDER BY id';
         $result = $this->getConnection()->query($sql);
         while ($row = $result->fetch_assoc()) {
             $id = $row['id'];
@@ -74,7 +80,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
     }
 
     protected function migrateContainer() {
-        $sql = 'SELECT * FROM containers';
+        $sql = 'SELECT * FROM containers ORDER BY id';
         $result = $this->getConnection()->query($sql);
         while ($row = $result->fetch_assoc()) {
             $id = $row['id'];
@@ -100,8 +106,67 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->persistenceManager->persistAll();
     }
 
+    protected function migrateAnnouncement() {
+        $sql = 'SELECT * FROM news ORDER BY id';
+        $result = $this->getConnection()->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['id'];
+            $announcement = $this->announcementRepository->findByReferenceId($id);
+            if ($announcement->count() === 0) {
+                $announcement = new Announcement();
+                $create = TRUE;
+            } else {
+                $create = FALSE;
+                $announcement = $announcement->getFirst();
+            }
+            $announcement->setReferenceId($id);
+            $announcement->setMessage($row['message']);
+            $changeDate = new \DateTime();
+            $changeDate->setTimestamp($row['du']);
+            $announcement->setChangeDate($changeDate);
+            $createDate = new \DateTime();
+            $createDate->setTimestamp($row['dc']);
+            $announcement->setCreateDate($createDate);
+
+            if ($row['container_id'] != 0) {
+                $container = $this->containerRepository->findByReferenceId($row['container_id']);
+                if ($container->count() !== 0) {
+                    $container = $container->getFirst();
+                    $announcement->setContainer($container);
+                }
+            }
+
+            if ($row['user_id'] != 0) {
+                $user = $this->userRepository->findByReferenceId($row['user_id']);
+                if ($user->count() !== 0) {
+                    $user = $user->getFirst();
+                    $announcement->setChangeUser($user);
+                    $announcement->setCreateUser($user);
+                }
+            }
+
+            if ($row['replyto'] != 0) {
+                $_announcement = $this->announcementRepository->findByReferenceId($row['replyto']);
+                if ($_announcement->count() !== 0) {
+                    $_announcement = $_announcement->getFirst();
+                    $announcement->setAnnouncement($_announcement);
+                }
+            }
+
+            $announcement->setActive(TRUE);
+
+            if ($create) {
+                $this->announcementRepository->add($announcement);
+            } else {
+                $this->announcementRepository->update($announcement, FALSE);
+            }
+            $this->persistenceManager->persistAll();
+        }
+    }
+
     public function databaseCommand() {
         $this->migrateUser();
         $this->migrateContainer();
+        $this->migrateAnnouncement();
     }
 }
