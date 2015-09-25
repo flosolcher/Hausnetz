@@ -9,21 +9,19 @@ namespace Grandhotel\Hausnetz\Controller;
 use Grandhotel\Hausnetz\Controller\Super\AbstractController;
 use TYPO3\Flow\Annotations as Flow;
 
-class UserController extends AbstractController {
+class AnnouncementController extends AbstractController {
+    /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\AnnouncementRepository
+     */
+    protected $announcementRepository;
 
     /**
-     * @param array $loginObject
-     * @Flow\Validate(argumentName="loginObject", type="Grandhotel.Hausnetz:Login")
      * @return void
      */
-    public function loginAction($loginObject = null) {
-        $this->flashMessageContainer->flush();
-        if($this->authService->isLoggedIn()) {
-            $this->redirect('index', 'Announcement');
-        } else {
-            // Login Fail -> do nothing
-
-        }
+    public function indexAction(Container $container = NULL) {
+        $announcements = $this->announcementRepository->listAnnouncements(30, $container);
+        $this->view->assign('announcements', $announcements);
     }
 
 }

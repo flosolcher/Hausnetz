@@ -124,7 +124,7 @@ class AuthService {
     public function login($userName, $password) {
         $saltedPassword = $this->saltIt($password);
         $user = $this->userRepository->findLoginUser($userName, $saltedPassword);
-        if(!empty($user) && $user->getRole() != 'none') {
+        if(!empty($user)) {
             $loggedIn = ($this->saltIt($password) == $user->getPassword());
             $this->setLoggedIn($loggedIn);
             if($loggedIn) {
@@ -132,7 +132,7 @@ class AuthService {
             }
         } else { /* MD5 FALLBACK! */
             $user = $this->userRepository->findLoginUser($userName, md5($password));
-            if (!empty($user) && $user->getRole() != 'none') {
+            if (!empty($user)) {
                 $loggedIn = (md5($password) == $user->getPassword());
                 $this->setLoggedIn($loggedIn);
                 if ($loggedIn) {

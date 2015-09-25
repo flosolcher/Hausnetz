@@ -1,0 +1,65 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Neuigkeiten</h1>
+        </div>
+    </div>
+    <div class="row">
+        <f:for each="{announcements}" as="announcement">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{announcement.createUser.userName}
+                            <span class="label label-default pull-right">
+                                <f:if condition="{announcement.container}">
+                                    <f:then>
+                                        {announcement.container.title}
+                                    </f:then>
+                                    <f:else>
+                                        Ganzes Haus
+                                    </f:else>
+                                </f:if>
+                            </span>
+
+                            <span class="time pull-right">
+                                am <f:format.date format="d.m.Y">{announcement.createDate}</f:format.date>
+                                um <f:format.date format="H:i">{announcement.createDate}</f:format.date> Uhr
+                                &nbsp;
+                            </span>
+                    </div>
+                    <div class="panel-body">
+                        {announcement.message}
+                    </div>
+
+                    <f:if condition="{announcement.announcements}">
+                        <hr />
+                        <div class="panel-body">
+                        <f:for each="{announcement.announcements}" as="subAnnouncement">
+                            <div class="well well-sm">
+                                <p>
+                                    <small>
+                                        <strong>{announcement.createUser.userName}</strong>
+                                        am <f:format.date format="d.m.Y">{subAnnouncement.createDate}</f:format.date>
+                                        um <f:format.date format="H:i">{subAnnouncement.createDate}</f:format.date> Uhr
+                                    </small>
+                                    <br />
+                                    {subAnnouncement.message}
+                                </p>
+                            </div>
+                        </f:for>
+                        </div>
+                    </f:if>
+                    <hr />
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <textarea class="form-control" rows="1"></textarea>
+                            <span class="input-group-addon btn
+                             btn-default">Antworten</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:for>
+    </div>
+</f:section>
