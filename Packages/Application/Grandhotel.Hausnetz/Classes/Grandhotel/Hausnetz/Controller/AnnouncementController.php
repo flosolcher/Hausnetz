@@ -38,6 +38,11 @@ class AnnouncementController extends AbstractController {
     public function createAction(Announcement $announcement) {
         $announcement->setActive = TRUE;
         if (trim($announcement->getMessage())!= '') {
+            if ($announcement->getAnnouncement() != NULL) {
+                $_announcement = $announcement->getAnnouncement();
+                $_announcement->setSortDate(new \DateTime());
+                $this->announcementRepository->update($_announcement);
+            }
             $this->announcementRepository->add($announcement);
         }
         $this->redirect('index');
