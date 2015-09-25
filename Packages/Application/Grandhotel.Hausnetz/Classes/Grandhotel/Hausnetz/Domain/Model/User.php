@@ -70,16 +70,6 @@ class User extends AbstractModel {
 
 
     /**
-     * Constructs this Category
-     *
-     */
-    public function __construct()
-    {
-        $this->groups  = new \Doctrine\Common\Collections\ArrayCollection();
-
-    }
-
-    /**
      * @return string
      */
     public function getEmail()
