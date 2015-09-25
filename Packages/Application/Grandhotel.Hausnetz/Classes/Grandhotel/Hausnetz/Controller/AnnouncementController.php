@@ -51,5 +51,4 @@ class AnnouncementController extends AbstractController {
         }
         $this->redirect('index');
     }
-
 }
