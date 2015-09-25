@@ -13,6 +13,6 @@
   uriPattern: ''
   defaults:
     '@package':    'Grandhotel.Hausnetz'
-    '@controller': 'Announcements'
+    '@controller': 'Announcement'
     '@action':     'index'
     '@format':     'html'
