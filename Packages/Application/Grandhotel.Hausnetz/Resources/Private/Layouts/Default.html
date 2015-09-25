@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title><f:render section="Title" /></title>
-		<f:base />
-	</head>
+    <f:render partial="Head" />
 	<body>
 		<f:flashMessages class="flashmessages" />
 
-		<h1><f:render section="Title" /></h1>
-		<f:render section="Content" />
+
+
+        <div id="wrapper" class="active">
+            <!-- Sidebar -->
+            <f:render partial="Sidebar" />
+
+            <!-- Page content -->
+            <div id="page-content-wrapper">
+                <!-- Keep all page content within the page-content inset div! -->
+                <div class="page-content inset">
+                    <f:render section="Content" />
+                </div>
+            </div>
+
+        </div>
 	</body>
 </html>

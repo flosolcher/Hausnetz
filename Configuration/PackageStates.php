@@ -268,12 +268,12 @@ return array (
       'packagePath' => 'Libraries/symfony/dom-crawler/',
       'classesPath' => '',
     ),
-    'TYPO3.Eel' => 
+    'TYPO3.Fluid' => 
     array (
       'manifestPath' => '',
-      'composerName' => 'typo3/eel',
+      'composerName' => 'typo3/fluid',
       'state' => 'active',
-      'packagePath' => 'Framework/TYPO3.Eel/',
+      'packagePath' => 'Framework/TYPO3.Fluid/',
       'classesPath' => 'Classes/',
     ),
     'TYPO3.Flow' => 
@@ -284,12 +284,12 @@ return array (
       'packagePath' => 'Framework/TYPO3.Flow/',
       'classesPath' => 'Classes/',
     ),
-    'TYPO3.Fluid' => 
+    'TYPO3.Eel' => 
     array (
       'manifestPath' => '',
-      'composerName' => 'typo3/fluid',
+      'composerName' => 'typo3/eel',
       'state' => 'active',
-      'packagePath' => 'Framework/TYPO3.Fluid/',
+      'packagePath' => 'Framework/TYPO3.Eel/',
       'classesPath' => 'Classes/',
     ),
     'TYPO3.SwiftMailer' => 
@@ -345,6 +345,8 @@ return array (
       'state' => 'active',
       'packagePath' => 'Application/Grandhotel.Hausnetz/',
       'classesPath' => 'Classes/',
+      'manifestPath' => '',
+      'composerName' => 'grandhotel/hausnetz',
     ),
   ),
   'version' => 5,

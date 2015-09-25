@@ -6,17 +6,16 @@ namespace Grandhotel\Hausnetz\Controller;
  *                                                                        *
  *                                                                        */
 
+use Grandhotel\Hausnetz\Controller\Super\AbstractController;
 use TYPO3\Flow\Annotations as Flow;
 
-class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
+class StandardController extends AbstractController {
 
 	/**
 	 * @return void
 	 */
 	public function indexAction() {
-		$this->view->assign('foos', array(
-			'bar', 'baz'
-		));
+        echo 'X';
 	}
 
 }

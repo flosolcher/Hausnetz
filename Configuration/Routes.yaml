@@ -14,11 +14,11 @@
 # informative welcome screen.
 
 -
-  name: 'Welcome'
-  uriPattern: '<WelcomeSubroutes>'
+  name: 'Grandhotel'
+  uriPattern: '<GrandhotelSubroutes>'
   subRoutes:
-    WelcomeSubroutes:
-      package: TYPO3.Welcome
+    GrandhotelSubroutes:
+      package: Grandhotel.Hausnetz
 
 ##
 # Flow subroutes
