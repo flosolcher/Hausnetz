@@ -7,6 +7,7 @@ namespace Grandhotel\Hausnetz\Controller;
  *                                                                        */
 
 use Grandhotel\Hausnetz\Controller\Super\AbstractController;
+use Grandhotel\Hausnetz\Domain\Model\Announcement;
 use Grandhotel\Hausnetz\Domain\Model\Container;
 use TYPO3\Flow\Annotations as Flow;
 
@@ -32,6 +33,14 @@ class AnnouncementController extends AbstractController {
         $containers = $this->containerRepository->listItems('title');
         $this->view->assign('containers', $containers);
         $this->view->assign('container', $container);
+    }
+
+    public function createAction(Announcement $announcement) {
+        $announcement->setActive = TRUE;
+        if (trim($announcement->getMessage())!= '') {
+            $this->announcementRepository->add($announcement);
+        }
+        $this->redirect('index');
     }
 
 }

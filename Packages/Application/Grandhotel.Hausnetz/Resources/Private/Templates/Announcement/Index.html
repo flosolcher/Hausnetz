@@ -83,11 +83,14 @@
                     </f:if>
                     <hr />
                     <div class="panel-body">
+                        <f:form action="create" objectName="announcement">
                         <div class="input-group">
-                            <textarea class="form-control autogrow" rows="1"></textarea>
-                            <span class="input-group-addon btn
+                            <f:form.hidden property="announcement" value="{announcement}" />
+                            <f:form.textarea class="form-control autogrow" property="message" rows="1" />
+                            <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
                              btn-default">Antworten</span>
                         </div>
+                        </f:form>
                     </div>
                 </div>
             </div>
