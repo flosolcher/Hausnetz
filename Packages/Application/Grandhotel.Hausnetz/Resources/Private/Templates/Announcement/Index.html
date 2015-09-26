@@ -61,7 +61,8 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">{announcement.createUser.userName}
-                            <span class="label label-default pull-right">
+                            <f:link.action action="index" arguments="{container: '{announcement.container}'}">
+                            <span class="label label-default pull-right" style="{f:if(condition: '{announcement.container.color}', then: 'background-color: #{announcement.container.color}', else: '')}">
                                 <f:if condition="{announcement.container}">
                                     <f:then>
                                         {announcement.container.title}
@@ -71,6 +72,7 @@
                                     </f:else>
                                 </f:if>
                             </span>
+                            </f:link.action>
 
                             <small class="time pull-right">
                                 am <f:format.date format="d.m.Y">{announcement.createDate}</f:format.date>
