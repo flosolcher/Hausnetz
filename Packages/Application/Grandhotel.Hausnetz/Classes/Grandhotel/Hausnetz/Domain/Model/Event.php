@@ -52,7 +52,21 @@ class Event extends AbstractModel {
      * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
+    protected $recurringStartDate;
+
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
     protected $endDate;
+
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $recurringEndDate;
 
     /**
      * @var string
@@ -153,6 +167,23 @@ class Event extends AbstractModel {
     /**
      * @return \DateTime
      */
+    public function getRecurringStartDate()
+    {
+        return $this->recurringStartDate;
+    }
+
+    /**
+     * @param \DateTime $recurringStartDate
+     * @return void
+     */
+    public function setRecurringStartDate($recurringStartDate)
+    {
+        $this->recurringStartDate = $recurringStartDate;
+    }
+
+    /**
+     * @return \DateTime
+     */
     public function getEndDate()
     {
         return $this->endDate;
@@ -165,6 +196,24 @@ class Event extends AbstractModel {
     public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
+    }
+
+
+    /**
+     * @return \DateTime
+     */
+    public function getRecurringEndDate()
+    {
+        return $this->recurringEndDate;
+    }
+
+    /**
+     * @param \DateTime $recurringEndDate
+     * @return void
+     */
+    public function setRecurringEndDate($recurringEndDate)
+    {
+        $this->recurringEndDate = $recurringEndDate;
     }
 
     /**

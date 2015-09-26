@@ -2,7 +2,7 @@ $(function() {
     $(".autogrow").autoGrow();
     $('#navigation').affix({
         offset: {
-            top: 100
+            top: 85
         }
     })
 });

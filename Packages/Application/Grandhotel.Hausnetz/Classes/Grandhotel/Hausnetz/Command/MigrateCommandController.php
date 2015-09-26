@@ -263,6 +263,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
                     $event->setWholeDay((bool)$row['whole_day']);
                     $event->setReferenceId($id);
                     $format = 'Y-m-d H:i:s';
+                    $recurringFormat = 'Y-m-d';
                     //$startDate = \DateTime::createFromFormat($format, $row['start_date'] . ' ' . $row['start_time']);
                     $startDate = \DateTime::createFromFormat($format, $row['date'] . ' ' . $row['start_time']);
                     $event->setStartDate($startDate);
@@ -271,6 +272,19 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
                     $endDate = \DateTime::createFromFormat($format, $row['end_date'] . ' ' . $row['end_time']);
                     $endDate = clone $startDate; //fix weil nicht gepflegt
                     $event->setEndDate($endDate);
+
+                    //$startDate = \DateTime::createFromFormat($format, $row['start_date'] . ' ' . $row['start_time']);
+
+
+                    if ($row['start_date'] != '0000-00-00') {
+                        $recurringStartDate = \DateTime::createFromFormat($recurringFormat, $row['start_date']);
+                        $event->setRecurringStartDate($recurringStartDate);
+                    }
+
+                    if ($row['end_date'] != '0000-00-00') {
+                        $recurringEndDate = \DateTime::createFromFormat($recurringFormat, $row['end_date']);
+                        $event->setRecurringEndDate($recurringEndDate);
+                    }
 
                     $changeDate = new \DateTime();
                     $changeDate->setTimestamp($row['du']);
