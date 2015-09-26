@@ -24,8 +24,17 @@ class EventController extends AbstractController {
         if ($date === NULL) $date = new \DateTime();
         $this->view->assign('date', $date);
 
-        $events = $this->eventRepository->listMonthEvents($date);
+    }
 
+    /**
+     * @param string $start
+     * @param string $end
+     */
+    public function feedAction($start = '', $end = '') {
+        $format = 'Y-m-d';
+        $startDate = \DateTime::createFromFormat($format, $start);
+        $endDate = \DateTime::createFromFormat($format, $end);
+        $events = $this->eventRepository->listTimeRangeEvents($startDate, $endDate);
         $eventArray = array();
         /** @var  $event \Grandhotel\Hausnetz\Domain\Model\Event  */
         foreach ($events as $event) {
@@ -50,9 +59,8 @@ class EventController extends AbstractController {
             }
             $eventArray[] = $item;
         }
-
-        $this->view->assign('events', $eventArray);
-
+        echo json_encode($eventArray);
+        exit;
     }
 
 }

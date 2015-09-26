@@ -17,18 +17,11 @@ use TYPO3\Flow\Persistence\Repository;
 class EventRepository extends AbstractRepository {
 
     /**
-     * @param \DateTime $date
+     * @param \DateTime $startDate
+     * @param \DateTime $endDate
      * @return \TYPO3\Flow\Persistence\QueryResultInterface
      */
-    public function listMonthEvents(\DateTime $date) {
-
-
-        $startDate = clone $date;
-        $endDate = clone $date;
-
-        $startDate->modify('first day of this month');
-        $endDate->modify('last day of this month');
-
+    public function listTimeRangeEvents(\DateTime $startDate, \DateTime $endDate) {
 
         return $this->listItems(
             'startDate',
