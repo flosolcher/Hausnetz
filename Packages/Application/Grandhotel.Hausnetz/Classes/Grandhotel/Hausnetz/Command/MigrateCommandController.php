@@ -236,61 +236,71 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
     public function migrateEvents() {
         $sql = 'SELECT * FROM calendar';
         $result = $this->getConnection()->query($sql);
+        $md5Array = array();
         while ($row = $result->fetch_assoc()) {
-            if ($row['title']) {
-                $id = $row['id'];
-                $event = $this->eventRepository->findByReferenceId($id);
-                if ($event->count() === 0) {
-                    $event = new Event();
-                    $create = TRUE;
-                } else {
-                    $create = FALSE;
-                    $event = $event->getFirst();
-                }
-                $event->setActive(TRUE);
-                $event->setTitle($row['title']);
-                $event->setDescription($row['descr']);
-                $event->setLocation($row['location']);
-                $event->setWholeDay((bool)$row['whole_day']);
-                $event->setReferenceId($id);
-                $format = 'Y-m-d H:i:s';
-                $startDate = \DateTime::createFromFormat($format, $row['start_date'] . ' ' . $row['start_time']);
-                $event->setStartDate($startDate);
+            if ($row['title'] && $row['date'] != '0000-00-00') {
+                $check = $row;
+                unset($check['id']);
+                unset($check['du']);
+                unset($check['ic']);
+                $md5 = md5(serialize($check));
 
-
-
-                $endDate = \DateTime::createFromFormat($format, $row['end_date'] . ' ' . $row['end_time']);
-                $endDate = clone $startDate; //fix weil nicht gepflegt
-                $event->setEndDate($endDate);
-
-                $changeDate = new \DateTime();
-                $changeDate->setTimestamp($row['du']);
-                $event->setChangeDate($changeDate);
-                $createDate = new \DateTime();
-                $createDate->setTimestamp($row['dc']);
-                $event->setCreateDate($createDate);
-
-                if ($row['user_id'] != 0) {
-                    $user = $this->userRepository->findByReferenceId($row['user_id']);
-                    if ($user->count() !== 0) {
-                        $user = $user->getFirst();
-                        $event->setChangeUser($user);
-                        $event->setCreateUser($user);
+                if (!in_array($md5, $md5Array)) { //dup handling
+                    $md5Array[] = $md5;
+                    $id = $row['id'];
+                    $event = $this->eventRepository->findByReferenceId($id);
+                    if ($event->count() === 0) {
+                        $event = new Event();
+                        $create = TRUE;
+                    } else {
+                        $create = FALSE;
+                        $event = $event->getFirst();
                     }
-                }
+                    $event->setActive(TRUE);
+                    $event->setTitle($row['title']);
+                    $event->setDescription($row['descr']);
+                    $event->setLocation($row['location']);
+                    $event->setWholeDay((bool)$row['whole_day']);
+                    $event->setReferenceId($id);
+                    $format = 'Y-m-d H:i:s';
+                    //$startDate = \DateTime::createFromFormat($format, $row['start_date'] . ' ' . $row['start_time']);
+                    $startDate = \DateTime::createFromFormat($format, $row['date'] . ' ' . $row['start_time']);
+                    $event->setStartDate($startDate);
 
-                if ($row['container_id'] != 0) {
-                    $container = $this->containerRepository->findByReferenceId($row['container_id']);
-                    if ($container->count() !== 0) {
-                        $container = $container->getFirst();
-                        $event->setContainer($container);
+
+                    $endDate = \DateTime::createFromFormat($format, $row['end_date'] . ' ' . $row['end_time']);
+                    $endDate = clone $startDate; //fix weil nicht gepflegt
+                    $event->setEndDate($endDate);
+
+                    $changeDate = new \DateTime();
+                    $changeDate->setTimestamp($row['du']);
+                    $event->setChangeDate($changeDate);
+                    $createDate = new \DateTime();
+                    $createDate->setTimestamp($row['dc']);
+                    $event->setCreateDate($createDate);
+
+                    if ($row['user_id'] != 0) {
+                        $user = $this->userRepository->findByReferenceId($row['user_id']);
+                        if ($user->count() !== 0) {
+                            $user = $user->getFirst();
+                            $event->setChangeUser($user);
+                            $event->setCreateUser($user);
+                        }
                     }
-                }
 
-                if ($create) {
-                    $this->eventRepository->add($event);
-                } else {
-                    $this->eventRepository->update($event);
+                    if ($row['container_id'] != 0) {
+                        $container = $this->containerRepository->findByReferenceId($row['container_id']);
+                        if ($container->count() !== 0) {
+                            $container = $container->getFirst();
+                            $event->setContainer($container);
+                        }
+                    }
+
+                    if ($create) {
+                        $this->eventRepository->add($event);
+                    } else {
+                        $this->eventRepository->update($event);
+                    }
                 }
             }
         }
