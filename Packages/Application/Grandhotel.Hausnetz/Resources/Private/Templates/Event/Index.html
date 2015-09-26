@@ -1,0 +1,49 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+
+    <link rel="stylesheet" href="{f:uri.resource(path:'libraries/fullcalendar-2.4.0/fullcalendar.min.css')}">
+    <script src="{f:uri.resource(path:'libraries/fullcalendar-2.4.0/lib/moment.min.js')}"></script>
+    <script src="{f:uri.resource(path:'libraries/fullcalendar-2.4.0/fullcalendar.min.js')}"></script>
+
+    <script src="{f:uri.resource(path:'libraries/fullcalendar-2.4.0/lang/de.js')}"></script>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Kalender</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="calendar">
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var date="<f:format.date format="Y-m-d">{date}</f:format.date>";
+        var events = <f:format.raw><f:format.json>{events}</f:format.json></f:format.raw>;
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay'
+                },
+                lang: 'de',
+                defaultDate: date,
+                editable: false,
+                eventLimit: false, // allow "more" link when too many events
+                events: events
+            });
+
+        });
+
+    </script>
+
+</f:section>

@@ -3,6 +3,7 @@ namespace Grandhotel\Hausnetz\Command;
 
 use Grandhotel\Hausnetz\Domain\Model\Announcement;
 use Grandhotel\Hausnetz\Domain\Model\Container;
+use Grandhotel\Hausnetz\Domain\Model\Event;
 use Grandhotel\Hausnetz\Domain\Model\Group;
 use Grandhotel\Hausnetz\Domain\Model\User;
 use TYPO3\Flow\Annotations as Flow;
@@ -36,6 +37,12 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
     protected $groupRepository;
 
     /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\EventRepository
+     */
+    protected $eventRepository;
+
+    /**
      * @var string
      * @Flow\Inject(setting="Migrate.Database")
      */
@@ -51,7 +58,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
     }
 
 
-    protected function migrateUser() {
+    protected function migrateUsers() {
         $sql = 'SELECT * FROM users ORDER BY id';
         $result = $this->getConnection()->query($sql);
         while ($row = $result->fetch_assoc()) {
@@ -85,7 +92,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->persistenceManager->persistAll();
     }
 
-    protected function migrateContainer() {
+    protected function migrateContainers() {
         $sql = 'SELECT * FROM containers ORDER BY id';
         $result = $this->getConnection()->query($sql);
         while ($row = $result->fetch_assoc()) {
@@ -112,7 +119,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->persistenceManager->persistAll();
     }
 
-    protected function migrateAnnouncement() {
+    protected function migrateAnnouncements() {
         $sql = 'SELECT * FROM news ORDER BY id';
         $result = $this->getConnection()->query($sql);
         while ($row = $result->fetch_assoc()) {
@@ -175,7 +182,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         }
     }
 
-    protected function migrateGroup()  {
+    protected function migrateGroups()  {
         $sql = 'SELECT * FROM groups ORDER BY id';
         $result = $this->getConnection()->query($sql);
         while ($row = $result->fetch_assoc()) {
@@ -202,7 +209,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->persistenceManager->persistAll();
     }
 
-    public function migrateGroupUser() {
+    public function migrateGroupUsers() {
         $sql = 'SELECT * FROM usergroups';
         $result = $this->getConnection()->query($sql);
         while ($row = $result->fetch_assoc()) {
@@ -226,12 +233,77 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->persistenceManager->persistAll();
     }
 
+    public function migrateEvents() {
+        $sql = 'SELECT * FROM calendar';
+        $result = $this->getConnection()->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            if ($row['title']) {
+                $id = $row['id'];
+                $event = $this->eventRepository->findByReferenceId($id);
+                if ($event->count() === 0) {
+                    $event = new Event();
+                    $create = TRUE;
+                } else {
+                    $create = FALSE;
+                    $event = $event->getFirst();
+                }
+                $event->setActive(TRUE);
+                $event->setTitle($row['title']);
+                $event->setDescription($row['descr']);
+                $event->setLocation($row['location']);
+                $event->setWholeDay((bool)$row['whole_day']);
+                $event->setReferenceId($id);
+                $format = 'Y-m-d H:i:s';
+                $startDate = \DateTime::createFromFormat($format, $row['start_date'] . ' ' . $row['start_time']);
+                $event->setStartDate($startDate);
+
+
+
+                $endDate = \DateTime::createFromFormat($format, $row['end_date'] . ' ' . $row['end_time']);
+                $endDate = clone $startDate; //fix weil nicht gepflegt
+                $event->setEndDate($endDate);
+
+                $changeDate = new \DateTime();
+                $changeDate->setTimestamp($row['du']);
+                $event->setChangeDate($changeDate);
+                $createDate = new \DateTime();
+                $createDate->setTimestamp($row['dc']);
+                $event->setCreateDate($createDate);
+
+                if ($row['user_id'] != 0) {
+                    $user = $this->userRepository->findByReferenceId($row['user_id']);
+                    if ($user->count() !== 0) {
+                        $user = $user->getFirst();
+                        $event->setChangeUser($user);
+                        $event->setCreateUser($user);
+                    }
+                }
+
+                if ($row['container_id'] != 0) {
+                    $container = $this->containerRepository->findByReferenceId($row['container_id']);
+                    if ($container->count() !== 0) {
+                        $container = $container->getFirst();
+                        $event->setContainer($container);
+                    }
+                }
+
+                if ($create) {
+                    $this->eventRepository->add($event);
+                } else {
+                    $this->eventRepository->update($event);
+                }
+            }
+        }
+        $this->persistenceManager->persistAll();
+    }
+
     public function databaseCommand() {
-        $this->migrateUser();
-        $this->migrateGroup();
-        $this->migrateGroupUser();
-        $this->migrateContainer();
-        $this->migrateAnnouncement();
+        $this->migrateUsers();
+        $this->migrateGroups();
+        $this->migrateGroupUsers();
+        $this->migrateContainers();
+        //$this->migrateAnnouncements();
+        $this->migrateEvents();
 
     }
 
