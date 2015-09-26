@@ -2,6 +2,7 @@ body.default {
     background-image: url(../images/blume.png);
     background-repeat: no-repeat;
     background-position: bottom left;
+    padding-bottom: 100px;
 }
 
 * {
