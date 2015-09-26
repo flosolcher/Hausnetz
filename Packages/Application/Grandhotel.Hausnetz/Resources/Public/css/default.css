@@ -40,3 +40,6 @@ body.default {
         background: none;
     }
 }
+.panel > hr {
+    margin: 0px;
+}
