@@ -7,6 +7,7 @@ namespace Grandhotel\Hausnetz\Domain\Model;
  *                                                                        */
 
 use Grandhotel\Hausnetz\Domain\Model\Super\AbstractModel;
+//use Grandhotel\Hausnetz\Domain\Model\User;
 use TYPO3\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,11 +24,12 @@ class Note extends AbstractModel {
 
 
     /**
-     * //@var \Doctrine\Common\Collections\Collection<\Grandhotel\Hausnetz\Domain\Model\User>
-     * //@ORM\ManyToOne(mappedBy="notes",cascade={"persist"})
+     * @var \Grandhotel\Hausnetz\Domain\Model\User
+     * @ORM\ManyToOne(cascade={"persist"})
      */
-    //protected $user;
+    protected $user;
 
+    
     /**
      * @return string
      */
@@ -36,5 +38,31 @@ class Note extends AbstractModel {
         return $this->content;
     }
 
+    
+    /**
+     * @return void
+     */
+    public function setContent(Content $content = NULL)
+    {
+        $this->content = $content;
+    }
 
+     /**
+     * @return \Grandhotel\Hausnetz\Domain\Model\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+     /**
+     * @param \Grandhotel\Hausnetz\Domain\Model\User
+     * @return void
+     */
+    public function setUser($user)
+    {
+        $this->user = $user; 
+    }
+
+    
 }

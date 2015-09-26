@@ -70,7 +70,7 @@ class User extends AbstractModel {
 
     /**
      * @var \Doctrine\Common\Collections\Collection<\Grandhotel\Hausnetz\Domain\Model\Note>
-     * @ORM\OneToMany(mappedBy="notes",cascade={"persist"})
+     * @ORM\OneToMany(mappedBy="user",cascade={"persist"})
      */
     protected $notes;
 

@@ -1,0 +1,13 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+            <f:form action="create" objectName="note">
+            <div class="input-group">
+                <f:form.hidden property="note" value="{note}" />
+                <f:form.textarea class="form-control autogrow" property="message" rows="10" />
+                <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
+                 btn-default">Antworten</span>
+            </div>
+            </f:form>
+   
+</f:section>

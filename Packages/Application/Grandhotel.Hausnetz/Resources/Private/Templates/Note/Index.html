@@ -1,0 +1,23 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Notizen</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <f:for each="{notes}" as="note">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p><f:format.nl2br>{note.content}</f:format.nl2br></p>
+                    </div>
+
+                </div>
+            </div>
+        </f:for>
+    </div>
+</f:section>
