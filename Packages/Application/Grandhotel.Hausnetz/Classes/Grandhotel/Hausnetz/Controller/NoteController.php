@@ -20,9 +20,10 @@ class NoteController extends AbstractController {
     /**
      */
     public function indexAction() {
-//        $notes = $this->notesRepository->listNotes();
-      $notes = $this->noteRepository->findByCreateUser('florian.konnertz');
-      $this->view->assign('notes', $notes);
+      $user = $this->authService->getCurrentUser();
+//      $notes = $this->noteRepository->findByCreateUser($user);
+      $this->view->assign('user', $user);
+      $this->view->assign('notes', $user->getNotes());
     }
     
     /**
@@ -36,7 +37,7 @@ class NoteController extends AbstractController {
      */
     public function createAction(Note $note) {
         $note->setActive = TRUE;
-        if (trim($announcement->getContent())!= '') {
+        if (trim($note->getContent())!= '') {
             $this->noteRepository->update($note);
         }
         $this->noteRepository->add($note);

@@ -77,6 +77,23 @@ class User extends AbstractModel {
     /**
      * @return string
      */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @param string $email
+     * @return void
+     */
+    public function setNotes($notes = array())
+    {
+        $this->notes = $notes;
+    }
+
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;

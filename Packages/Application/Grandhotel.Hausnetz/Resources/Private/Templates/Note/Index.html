@@ -7,12 +7,21 @@
                 <h1>Notizen</h1>
             </div>
         </div>
+       Deine Notizen - Benutzer: {user.username}
     </div>
+<f:link.action action="add">Notiz hinzufügen</f:link.action>
+
+<!-- 
+   <f:debug>{notes}</f:debug>
+-->
+
     <div class="row">
         <f:for each="{notes}" as="note">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
+                    
+                     <f:debug>{note}</f:debug>
                         <p><f:format.nl2br>{note.content}</f:format.nl2br></p>
                     </div>
 
