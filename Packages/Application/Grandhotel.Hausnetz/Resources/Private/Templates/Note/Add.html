@@ -1,16 +1,66 @@
 <f:layout name="Default" />
 
 <f:section name="Content">
-   <f:form action="create" objectName="note">
-   <div class="input-group">
-       <f:form.textarea class="form-control autogrow" property="content" rows="10" />
-       <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
-        btn-default">Speichern</span>
-<!--
-<f:form.submit value="Send Mail" />
--->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h3>Neue Notiz anlegen</h3>
+            </div>
+        </div>
+    </div>
+   
+   <div class="row">
+        <div class="col-md-12">
 
-
-   </div>
+   <f:form action="create" objectName="note" class="form-horizontal">
+      
+      <div class="form-group">
+         <label class="col-sm-2 control-label" for="title">Überschrift</label>
+         <div class="col-sm-10">
+            <p class="form-control-static"><f:form.textfield class="form-control" property="title" /></p>
+         </div>
+      </div>
+      
+      <div class="form-group">
+         <label class="col-sm-2 control-label" for="content">Notizen</label>
+         <div class="col-sm-10">
+            <f:form.textarea class="form-control autogrow" property="content" rows="10" />
+         </div>
+      </div>
+       
+      <div class="form-group">
+         <div class="col-sm-2">
+            
+         </div>
+         <div class="col-sm-10">
+         <button onclick="$(this).parents('form').submit();">Speichern</button>
+         </div>
+      </div>
+      
    </f:form>
+           
+           
+<!--           
+   <f:form action="create" objectName="note" class="form-horizontal">
+      
+      <div class="form-group">
+         <label for="title">Überschrift</label>
+         <f:form.textfield class="form-control" property="title" />
+      </div>
+      
+      <div class="form-group">
+         <label for="content">Notizen</label>
+         <f:form.textarea class="form-control autogrow" property="content" rows="10" />
+      </div>
+       
+      <div class="form-group"> 
+         <button onclick="$(this).parents('form').submit();">Speichern</button>
+      </div>
+      
+   </f:form>
+-->           
+           
+
+        </div>
+   </div>
 </f:section>

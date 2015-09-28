@@ -2,29 +2,43 @@
 
 <f:section name="Content">
     <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Notizen</h1>
-            </div>
-        </div>
-       Deine Notizen - Benutzer: {user.username}
+      <div class="col-md-12">
+         <div class="page-header">
+             <h3>Notizen</h3>
+         </div>
+      </div>
+      <div class="col-md-8">
+        <h4>Deine Notizen (Angemeldeter Benutzer ist {user.username})</h4>
+      </div>
+      <div class="col-md-4">
+         <span class="btn">
+            <f:link.action action="add">Notiz hinzufügen</f:link.action>
+         </span>
+      </div>
     </div>
-<f:link.action action="add">Notiz hinzufügen</f:link.action>
-
-<!-- 
-   <f:debug>{notes}</f:debug>
--->
-
+   
     <div class="row">
         <f:for each="{notes}" as="note">
-            <div class="col-md-12">
-		<p><f:format.date>{note.changedate}</f:format.date></p>
-		<div class="panel panel-default">
-                    <div class="panel-body">
-                        <p><f:format.nl2br>{note.content}</f:format.nl2br></p>
-                    </div>
+            <div class="col-md-3">
+               <f:if condition="{note.title}">
+                  <f:then>
+                     <h3><f:format.nl2br>{note.title}</f:format.nl2br></h3>
 
-                </div>
+                  </f:then>
+                  <f:else>
+                     <i>(keine Überschrift bisher)</i>
+                  </f:else>
+               </f:if>
+               <p>Letzte Änderung: <f:format.date format="d.m.Y">{note.changedate}</f:format.date></p>
+               <f:link.action action="edit">Bearbeiten</f:link.action>|
+               <f:link.action action="delete">Löschen</f:link.action>
+            </div>   
+            <div class="col-md-9">           
+               <div class="panel panel-default">
+                 <div class="panel-body">
+                     <p><f:format.nl2br>{note.content}</f:format.nl2br></p>
+                 </div>
+               </div>
             </div>
         </f:for>
     </div>

@@ -32,7 +32,13 @@ class NoteController extends AbstractController {
      */
     public function addAction() {
     }
+
     
+    public function deleteAction() {
+        $this->noteRepository->delete($note);
+        $this->redirect('index');
+    }
+
     
    /**
      * @param Note $note

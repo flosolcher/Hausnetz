@@ -19,8 +19,14 @@ class Note extends AbstractModel {
 
     /**
      * @var string
+     * @ORM\Column(type="text")
      */
     protected $content;
+
+    /**
+     * @var string
+     */
+    protected $title;
 
 
     /**
@@ -47,7 +53,26 @@ class Note extends AbstractModel {
     {
         $this->content = $content;
     }
+    
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
+    
+    /**
+     * @param string title
+     * @return void
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+     /*
      /**
      * @return \Grandhotel\Hausnetz\Domain\Model\User
      */
