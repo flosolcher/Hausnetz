@@ -8,12 +8,14 @@ namespace Grandhotel\Hausnetz\Controller;
 
 use Grandhotel\Hausnetz\Controller\Super\AbstractController;
 use TYPO3\Flow\Annotations as Flow;
+use Grandhotel\Hausnetz\Domain\Model\Note;
+
 
 class NoteController extends AbstractController {
 
     /**
      * @Flow\Inject
-     * @var \Grandhotel\Hausnetz\Domain\Repository\AnnouncementRepository
+     * @var \Grandhotel\Hausnetz\Domain\Repository\NoteRepository
      */
     protected $noteRepository;
     
@@ -37,11 +39,16 @@ class NoteController extends AbstractController {
      */
     public function createAction(Note $note) {
         $note->setActive = TRUE;
-        if (trim($note->getContent())!= '') {
-            $this->noteRepository->update($note);
-        }
+        $user = $this->authService->getCurrentUser();
+        $note->setUser($user);
+ 
+ //       if (trim($note->getContent())!= '') {
+ //           $this->noteRepository->update($note);
+ //       }
         $this->noteRepository->add($note);
         $this->redirect('index');
+  
+ 
     }    
     
 }

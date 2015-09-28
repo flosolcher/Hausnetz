@@ -3,10 +3,14 @@
 <f:section name="Content">
    <f:form action="create" objectName="note">
    <div class="input-group">
-       <f:form.textarea class="form-control autogrow" property="message" rows="10" />
+       <f:form.textarea class="form-control autogrow" property="content" rows="10" />
        <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
         btn-default">Speichern</span>
+<!--
+<f:form.submit value="Send Mail" />
+-->
+
+
    </div>
    </f:form>
-
 </f:section>

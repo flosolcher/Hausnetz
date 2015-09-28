@@ -40,9 +40,10 @@ class Note extends AbstractModel {
 
     
     /**
+     * @param string content
      * @return void
      */
-    public function setContent(Content $content = NULL)
+    public function setContent($content)
     {
         $this->content = $content;
     }

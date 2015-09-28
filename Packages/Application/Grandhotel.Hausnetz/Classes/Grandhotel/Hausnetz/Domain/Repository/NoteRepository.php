@@ -10,7 +10,7 @@ use Grandhotel\Hausnetz\Domain\Repository\Super\AbstractRepository;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Persistence\QueryInterface;
 use TYPO3\Flow\Persistence\Repository;
-use TYPO3\Flow\Log;
+//use TYPO3\Flow\Log;
 
 /**
  * @Flow\Scope("singleton")
