@@ -81,6 +81,12 @@ class Event extends AbstractModel {
     protected $wholeDay;
 
     /**
+     * @var string
+     * @ORM\Column(nullable=true)
+     */
+    protected $recurringType;
+
+    /**
      * @return string
      */
     public function getTitle()
@@ -250,4 +256,22 @@ class Event extends AbstractModel {
     {
         $this->wholeDay = $wholeDay;
     }
+
+    /**
+     * @return string
+     */
+    public function getRecurringType()
+    {
+        return $this->recurringType;
+    }
+
+    /**
+     * @param string $recurringType
+     * @return void
+     */
+    public function setRecurringType($recurringType)
+    {
+        $this->recurringType = $recurringType;
+    }
+
 }

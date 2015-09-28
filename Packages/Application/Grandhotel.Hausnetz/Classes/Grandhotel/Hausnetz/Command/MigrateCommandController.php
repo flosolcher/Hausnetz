@@ -293,6 +293,8 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
                     $createDate->setTimestamp($row['dc']);
                     $event->setCreateDate($createDate);
 
+                    $event->setRecurringType($row['rpt_type']);
+
                     if ($row['user_id'] != 0) {
                         $user = $this->userRepository->findByReferenceId($row['user_id']);
                         if ($user->count() !== 0) {

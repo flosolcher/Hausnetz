@@ -29,6 +29,8 @@ class EventRepository extends AbstractRepository {
             ($query = $this->createQuery()),
             array(
                 $query->logicalOr(
+
+                    /* Regular Events */
                     $query->logicalAnd(
                         $query->greaterThanOrEqual('startDate', $startDate),
                         $query->lessThanOrEqual('startDate', $endDate)
@@ -41,6 +43,21 @@ class EventRepository extends AbstractRepository {
                         $query->greaterThanOrEqual('startDate', $startDate),
                         $query->lessThanOrEqual('endDate', $endDate),
                         $query->logicalNot($query->equals('endDate', NULL))
+                    ),
+
+                    /* Recurring Events */
+                    $query->logicalAnd(
+                        $query->greaterThanOrEqual('recurringStartDate', $startDate),
+                        $query->lessThanOrEqual('recurringStartDate', $endDate)
+                    ),
+                    $query->logicalAnd(
+                        $query->greaterThanOrEqual('recurringEndDate', $startDate),
+                        $query->lessThanOrEqual('recurringEndDate', $endDate)
+                    ),
+                    $query->logicalAnd(
+                        $query->greaterThanOrEqual('recurringStartDate', $startDate),
+                        $query->lessThanOrEqual('recurringEndDate', $endDate),
+                        $query->logicalNot($query->equals('recurringEndDate', NULL))
                     )
                 )
             )

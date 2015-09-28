@@ -38,26 +38,80 @@ class EventController extends AbstractController {
         $eventArray = array();
         /** @var  $event \Grandhotel\Hausnetz\Domain\Model\Event  */
         foreach ($events as $event) {
-            $item = array();
-            $item['title'] = $event->getTitle();
+            /* regular events */
+            if (
+                ($event->getStartDate() >= $startDate && $event->getStartDate() < $endDate) ||
+                ($event->getEndDate() >= $endDate && $event->getEndDate() < $endDate) ||
+                ($event->getStartDate() <= $startDate && $event->getEndDate() >= $endDate)
+            ) {
+                $item = array();
+                $item['title'] = $event->getTitle();
 
-            if ($event->getWholeDay()) {
-                $item['start'] = $event->getStartDate()->format('Y-m-d');
-                if ($event->getEndDate() != NULL && $event->getEndDate() != $event->getStartDate()) {
-                    $item['end'] =  $event->getEndDate()->format('Y-m-d');
+                if ($event->getWholeDay()) {
+                    $item['start'] = $event->getStartDate()->format('Y-m-d');
+                    if ($event->getEndDate() != NULL && $event->getEndDate() != $event->getStartDate()) {
+                        $item['end'] = $event->getEndDate()->format('Y-m-d');
+                    }
+                    $item['allDay'] = TRUE;
+                } else {
+                    $item['start'] = $event->getStartDate()->format('Y-m-d') . 'T' . $event->getStartDate()->format('H:i:s');
+                    if ($event->getEndDate() != NULL && $event->getEndDate() != $event->getStartDate()) {
+                        $item['end'] = $event->getEndDate()->format('Y-m-d') . 'T' . $event->getEndDate()->format('H:i:s');
+                    }
+                    $item['allDay'] = FALSE;
                 }
-                $item['allDay'] = TRUE;
-            } else {
-                $item['start'] = $event->getStartDate()->format('Y-m-d') . 'T' . $event->getStartDate()->format('H:i:s');
-                if ($event->getEndDate() != NULL && $event->getEndDate() != $event->getStartDate()) {
-                    $item['end'] =  $event->getEndDate()->format('Y-m-d') . 'T' . $event->getEndDate()->format('H:i:s');
+                if ($event->getContainer() && $event->getContainer()->getColor()) {
+                    $item['color'] = '#' . $event->getContainer()->getColor();
                 }
-                $item['allDay'] = FALSE;
+                $eventArray[] = $item;
             }
-            if ($event->getContainer() && $event->getContainer()->getColor()) {
-                $item['color'] = '#' . $event->getContainer()->getColor();
+            /* recurring */
+            $intervalString = NULL;
+            switch ($event->getRecurringType()) {
+                case '2weekly':
+                        $intervalString = 'P2W';
+                    break;
+                case 'weekly':
+                    $intervalString = 'P1W';
+                    break;
+                case 'daily':
+                    $intervalString = 'P1D';
+                    break;
             }
-            $eventArray[] = $item;
+            if ($intervalString) {
+                $interval = new \DateInterval($intervalString);
+                $period = new \DatePeriod($event->getStartDate(), $interval, $endDate);
+                /** @var \DateTime $dt */
+                foreach ($period as $dt) {
+                    if ($dt != $event->getStartDate()) {
+                        $item = array();
+                        $item['title'] = $event->getTitle();
+
+                        if ($event->getWholeDay()) {
+                            $item['start'] = $dt->format('Y-m-d');
+                            if ($event->getEndDate() != NULL && $event->getEndDate() != $event->getStartDate()) {
+                                $diff   = $event->getStartDate()->diff($event->getEndDate());
+                                $newEnd = $dt->add($diff);
+                                $item['end'] = $newEnd->format('Y-m-d');
+                            }
+                            $item['allDay'] = TRUE;
+                        } else {
+                            $item['start'] = $dt->format('Y-m-d') . 'T' . $dt->format('H:i:s');
+                            if ($event->getEndDate() != NULL && $event->getEndDate() != $event->getStartDate()) {
+                                $diff   = $event->getStartDate()->diff($event->getEndDate());
+                                $newEnd = $dt->add($diff);
+                                $item['end'] = $newEnd->format('Y-m-d') . 'T' . $newEnd->format('H:i:s');
+                            }
+                            $item['allDay'] = FALSE;
+                        }
+                        if ($event->getContainer() && $event->getContainer()->getColor()) {
+                            $item['color'] = '#' . $event->getContainer()->getColor();
+                        }
+                        $eventArray[] = $item;
+                    }
+                }
+
+            }
         }
         echo json_encode($eventArray);
         exit;
