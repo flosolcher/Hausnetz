@@ -1,0 +1,44 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Neuigkeiten</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Eintrag bearbeiten
+                </div>
+                <div class="panel-body">
+                    <f:form action="update" object="{announcement}" objectName="announcement">
+                        <div class="row">
+                            <f:if condition="{announcement.announcement}">
+                                <f:then></f:then>
+                                <f:else>
+                                    <div class="col-md-4">
+                                        <f:form.select property="container" options="{containers}" optionLabelField="title" prependOptionLabel="Ganzes Haus" class="form-control" />
+                                    </div>
+                                </f:else>
+                            </f:if>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+
+                                    <f:form.textarea class="form-control autogrow" property="message" rows="1" />
+                                        <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
+                                         btn-default">Eintrag speichern</span>
+                                </div>
+                            </div>
+                        </div>
+                    </f:form>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:section>
+

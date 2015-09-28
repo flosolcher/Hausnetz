@@ -81,7 +81,16 @@
                             </small>
                     </div>
                     <div class="panel-body">
-                        <p><f:format.nl2br>{announcement.message}</f:format.nl2br></p>
+                        <p>
+                            <f:format.nl2br>{announcement.message}</f:format.nl2br>
+                            <f:if condition="{currentUser} == {announcement.createUser}">
+                                <small class="pull-right">
+                                    <f:link.action action="edit" arguments="{announcement: '{announcement}'}">
+                                        <i class="fa fa-pencil"></i> Bearbeiten
+                                    </f:link.action>
+                                </small>
+                            </f:if>
+                        </p>
                     </div>
 
                     <f:if condition="{announcement.announcements}">
@@ -97,6 +106,13 @@
                                     </small>
                                     <br />
                                     <f:format.nl2br>{subAnnouncement.message}</f:format.nl2br>
+                                    <f:if condition="{currentUser} == {subAnnouncement.createUser}">
+                                        <small class="pull-right">
+                                            <f:link.action action="edit" arguments="{announcement: '{subAnnouncement}'}">
+                                                <i class="fa fa-pencil"></i> Bearbeiten
+                                            </f:link.action>
+                                        </small>
+                                    </f:if>
                                 </p>
                             </div>
                         </f:for>

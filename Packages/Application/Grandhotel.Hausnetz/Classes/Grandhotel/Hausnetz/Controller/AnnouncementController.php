@@ -51,4 +51,25 @@ class AnnouncementController extends AbstractController {
         }
         $this->redirect('index');
     }
+
+    /**
+     * @param Announcement $announcement
+     */
+    public function editAction(Announcement $announcement) {
+        if ($announcement->getCreateUser() != $this->authService->getCurrentUser()) {
+            $this->redirect('index');
+        }
+        $this->view->assign('announcement', $announcement);
+    }
+
+    /**
+     * @param Announcement $announcement
+     */
+    public function updateAction(Announcement $announcement) {
+        if ($announcement->getCreateUser() != $this->authService->getCurrentUser()) {
+            $this->redirect('index');
+        }
+        $this->announcementRepository->update($announcement);
+        $this->redirect('index');
+    }
 }

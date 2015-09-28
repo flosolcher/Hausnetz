@@ -7,6 +7,7 @@ namespace Grandhotel\Hausnetz\Controller\Super;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Mvc\View\ViewInterface;
 
 abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
@@ -38,6 +39,13 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
         } else {
             // Handle other access checks
         }
+
+
         parent::initializeAction();
+
+    }
+
+    public function initializeView(ViewInterface $view) {
+        $view->assign('currentUser', $this->authService->getCurrentUser());
     }
 }
