@@ -31,8 +31,14 @@ class NoteController extends AbstractController {
     /**
      */
     public function addAction() {
+      $this->view->assign('action', 'create');
     }
 
+    public function editAction() {
+      $note = $this->noteRepository->getFirst();
+      $this->view->assign('note', $note);
+      $this->view->assign('action', 'update');
+    }
     
     public function deleteAction() {
         $this->noteRepository->delete($note);
