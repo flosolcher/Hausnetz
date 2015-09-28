@@ -20,6 +20,7 @@ class NoteController extends AbstractController {
     protected $noteRepository;
     
     /**
+     * @return void
      */
     public function indexAction() {
       $user = $this->authService->getCurrentUser();
@@ -29,39 +30,48 @@ class NoteController extends AbstractController {
     }
     
     /**
+     * @return void
      */
     public function newAction() {
       $this->view->assign('action', 'create');
     }
 
-    
+    /*
+     * @param \Grandhotel\Hausnetz\Domain\Model\Note $note
+     * @return void
+     */
     public function editAction(Note $note) {
       $this->view->assign('note', $note);
       $this->view->assign('action', 'update');
     }
 
-    
+    /*
+     * @param \Grandhotel\Hausnetz\Domain\Model\Note $note
+     * @return void 
+     */
     public function deleteAction(Note $note) {
         $this->noteRepository->delete($note);
         $this->redirect('index');
     }
 
     
-   /**
-     * @param Note $note
-     */
+    /**
+    * @param Note $note
+    * return void
+    */
     public function createAction(Note $note) {
         $note->setActive = TRUE;
         $user = $this->authService->getCurrentUser();
         $note->setUser($user);
- 
- //       if (trim($note->getContent())!= '') {
- //           $this->noteRepository->update($note);
- //       }
         $this->noteRepository->add($note);
         $this->redirect('index');
-  
- 
     }    
-    
+    /**
+    * @param Note $note
+    * return void
+    */
+    public function updateAction(Note $note) {
+        $this->noteRepository->update($note);
+        $this->redirect('index');
+    }
 }
