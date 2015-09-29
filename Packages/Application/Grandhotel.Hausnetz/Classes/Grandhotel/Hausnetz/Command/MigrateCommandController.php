@@ -6,6 +6,7 @@ use Grandhotel\Hausnetz\Domain\Model\Container;
 use Grandhotel\Hausnetz\Domain\Model\Event;
 use Grandhotel\Hausnetz\Domain\Model\Group;
 use Grandhotel\Hausnetz\Domain\Model\User;
+use Grandhotel\Hausnetz\Domain\Model\Note;
 use TYPO3\Flow\Annotations as Flow;
 
 class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
@@ -19,6 +20,11 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
      * @var \Grandhotel\Hausnetz\Domain\Repository\UserRepository
      */
     protected $userRepository;
+    /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\NoteRepository
+     */
+    protected $noteRepository;
     /**
      * @Flow\Inject
      * @var \Grandhotel\Hausnetz\Domain\Repository\ContainerRepository
@@ -92,7 +98,29 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->persistenceManager->persistAll();
     }
 
-    protected function migrateContainers() {
+    
+    protected function migrateUserNotes() {
+        $sql = 'SELECT id, notepad FROM users ORDER BY id';
+        $result = $this->getConnection()->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['id'];
+            //echo "migrateUserNotes $id \n";
+            $user = $this->userRepository->findByReferenceId($id);
+            if ($user->count() != 0) {
+                $user = $user->getFirst();
+                $note = new Note();
+                $note->setContent($row['notepad']);
+                $note->setTitle('');
+                $note->setUser($user);
+                $this->noteRepository->add($note);
+                //$user->setNotes();
+            }
+        }
+        $this->persistenceManager->persistAll();
+    }
+
+    
+    protected function migrateContainer() {
         $sql = 'SELECT * FROM containers ORDER BY id';
         $result = $this->getConnection()->query($sql);
         while ($row = $result->fetch_assoc()) {
@@ -324,18 +352,27 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
     }
 
     public function databaseCommand() {
+       /*
         $this->migrateUsers();
         $this->migrateGroups();
         $this->migrateGroupUsers();
         $this->migrateContainers();
         //$this->migrateAnnouncements();
         $this->migrateEvents();
+         */
+        echo "migrating users \n";
+        $this->migrateUser();
+        echo "migrating users notes \n";
+        $this->migrateUserNotes();
+        echo "migrating groups \n";
+        $this->migrateGroup();
+        echo "migrating user groups \n";
+        $this->migrateGroupUser();
+        echo "migrating container \n";
+        $this->migrateContainer();
+        echo "migrating announcement \n";
+        $this->migrateAnnouncement();
 
     }
-
-
-
-
-
 
 }

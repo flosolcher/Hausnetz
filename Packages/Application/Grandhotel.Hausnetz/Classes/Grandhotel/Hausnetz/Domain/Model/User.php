@@ -69,6 +69,29 @@ class User extends AbstractModel {
     protected $groups;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection<\Grandhotel\Hausnetz\Domain\Model\Note>
+     * @ORM\OneToMany(mappedBy="user",cascade={"persist"})
+     */
+    protected $notes;
+
+    /**
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @param string $email
+     * @return void
+     */
+    public function setNotes($notes = array())
+    {
+        $this->notes = $notes;
+    }
+
+    /**
      * @return string
      */
     public function getEmail()
