@@ -1,6 +1,7 @@
 <f:layout name="Default" />
 
 <f:section name="Content">
+   <!--
     <div class="row">
       <div class="col-md-12">
          <div class="page-header">
@@ -11,20 +12,26 @@
       </div>
       <div class="col-md-4">
          <span class="btn">
-            <f:link.action action="new">Notiz hinzufügen</f:link.action>
+            <f:link.action action="new">Eintrag hinzufügen</f:link.action>
          </span>
       </div>
     </div>
    
-    <div class="row">
-        <f:for each="{items}" as="item">
-            <div class="col-md-3">
-               <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>|
-               <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
-            </div>   
-            <div class="col-md-9">
-               {item.fam_name}
-            </div>
-        </f:for>
-    </div>
+  <table>
+  <f:for each="{items}" as="item">
+     <tr>
+        <td>
+        <td>
+         {item.firstname}
+        </td>
+         <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>|
+        </td>
+        <td>
+         <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
+        </td>
+     </tr>
+  </f:for>
+  </table>
+-->
+
 </f:section>

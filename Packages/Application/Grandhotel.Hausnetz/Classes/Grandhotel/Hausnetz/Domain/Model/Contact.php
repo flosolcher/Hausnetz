@@ -7,6 +7,8 @@ namespace Grandhotel\Hausnetz\Domain\Model;
  *                                                                        */
 
 use Grandhotel\Hausnetz\Domain\Model\Super\AbstractModel;
+//use Grandhotel\Hausnetz\Domain\Model\Address;
+//use CommerceGuys\Addressing\Model\Address;
 use TYPO3\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,96 +21,24 @@ class Contact extends AbstractModel {
     /**
      * @var string
      */
-    protected $chr_name;
+    protected $firstname;
 
     /**
      * @var string
      */
-    protected $fam_name;
+    protected $lastname;
 
     /**
      * @var string
+     * 
      */
-    protected $company;
+    private $address;
 
     /**
-     * @var string
+     * //@var \Grandhotel\Hausnetz\Domain\Model\User
+     * //@ORM\OneToOne(cascade={"persist"})
      */
-    protected $str1;
-
-    /**
-     * @var string
-     */
-    protected $str2;
-
-    /**
-     * @var string
-     */
-    protected $zip;
-
-    /**
-     * @var string
-     */
-    protected $city;
-
-    /**
-     * @var string
-     */
-    protected $phone;
-
-    /**
-     * @var string
-     */
-    protected $fax;
-
-    /**
-     * @var string
-     */
-    protected $cellphone;
-
-    /**
-     * @var string
-     */
-    protected $email;
-
-    /**
-     * @var string
-     */
-    protected $website;
-
-    /**
-     * @var string
-     */
-    protected $facebook;
-
-    /**
-     * @var string
-     */
-    protected $twitter;
-
-    /**
-     * @var string
-     * @ORM\Column(type="text")
-     */
-    protected $memo;
-
-    /**
-     * @var integer
-     */
-    protected $lastuser;
-
-    /**
-     * @var integer
-     */
-    protected $vis;
-
-
-
-    /**
-     * @var \Grandhotel\Hausnetz\Domain\Model\User
-     * @ORM\ManyToOne(cascade={"persist"})
-     */
-    protected $user;
+    //protected $user;
 
     /**
      * @var \Grandhotel\Hausnetz\Domain\Model\Container
@@ -116,24 +46,65 @@ class Contact extends AbstractModel {
      */
     protected $container;
     
+    /**
+     * @var int
+     * @ORM\Column(nullable=true)
+     */
+    protected $referenceId;
     
     /**
      * @return string
      */
-    public function getChr_name()
+    public function getFirstname()
     {
-        return $this->chr_name;
+        return $this->firstname;
     }
     
     /**
+     * @param string $firstname
      */
-    public function setChr_name($chr_name)
+    public function setFirstname($firstname)
     {
-        $this->chr_name = $chr_name
+        $this->firstname = $firstname;
     }
 
-     /*
+    /**
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+    
+    /**
+     * @param string $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    
+     
+    /**
+     * @return Address $adress
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
      /**
+     * @param Address $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address; 
+    }
+
+    
+     
+    /**
      * @return \Grandhotel\Hausnetz\Domain\Model\User
      */
     public function getUser()
@@ -142,12 +113,45 @@ class Contact extends AbstractModel {
     }
 
      /**
-     * @param \Grandhotel\Hausnetz\Domain\Model\User
-     * @return void
+     * @param \Grandhotel\Hausnetz\Domain\Model\User $user
      */
     public function setUser($user)
     {
         $this->user = $user; 
+    }
+
+    /**
+     * @return \Grandhotel\Hausnetz\Domain\Model\Container $container
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+     /**
+     * @param \Grandhotel\Hausnetz\Domain\Model\Container $container
+     */
+    public function setContainer($container)
+    {
+        $this->container = $container; 
+    }
+
+    
+    /**
+     * @return int
+     */
+    public function getReferenceId()
+    {
+        return $this->referenceId;
+    }
+
+    /**
+     * @param int $referenceId
+     * @return void
+     */
+    public function setReferenceId($referenceId)
+    {
+        $this->referenceId = $referenceId;
     }
 
     

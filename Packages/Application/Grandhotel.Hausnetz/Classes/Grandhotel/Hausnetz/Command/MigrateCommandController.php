@@ -3,6 +3,7 @@ namespace Grandhotel\Hausnetz\Command;
 
 use Grandhotel\Hausnetz\Domain\Model\Announcement;
 use Grandhotel\Hausnetz\Domain\Model\Container;
+use Grandhotel\Hausnetz\Domain\Model\Contact;
 use Grandhotel\Hausnetz\Domain\Model\Event;
 use Grandhotel\Hausnetz\Domain\Model\Group;
 use Grandhotel\Hausnetz\Domain\Model\User;
@@ -25,6 +26,11 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
      * @var \Grandhotel\Hausnetz\Domain\Repository\NoteRepository
      */
     protected $noteRepository;
+    /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\ContactRepository
+     */
+    protected $contactRepository;
     /**
      * @Flow\Inject
      * @var \Grandhotel\Hausnetz\Domain\Repository\ContainerRepository
@@ -114,6 +120,35 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
                 $note->setUser($user);
                 $this->noteRepository->add($note);
                 //$user->setNotes();
+            }
+        }
+        $this->persistenceManager->persistAll();
+    }
+
+    
+    protected function migrateContacts() {
+        $sql = 'SELECT * FROM adrbook ORDER BY id';
+        $result = $this->getConnection()->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['id'];
+            echo "migrating $id \n";
+            $contact = $this->contactRepository->findByReferenceId($id);
+            if ($contact->count() === 0) {
+                $contact = new contact();
+                $create = TRUE;
+            } else {
+                $create = FALSE;
+                $contact = $contact->getFirst();
+            }
+            $contact->setActive((bool) $row['vis']);
+            $contact->setFirstname($row['chr_name']);
+            $contact->setLastname($row['fam_name']);
+            $contact->setAddress('');
+            $contact->setReferenceId($id);
+            if ($create) {
+                $this->contactRepository->add($contact);
+            } else {
+                $this->contactRepository->update($contact);
             }
         }
         $this->persistenceManager->persistAll();
@@ -361,17 +396,19 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->migrateEvents();
          */
         echo "migrating users \n";
-        $this->migrateUser();
+        $this->migrateUsers();
         echo "migrating users notes \n";
         $this->migrateUserNotes();
         echo "migrating groups \n";
-        $this->migrateGroup();
+        $this->migrateGroups();
         echo "migrating user groups \n";
-        $this->migrateGroupUser();
+        $this->migrateGroupUsers();
         echo "migrating container \n";
         $this->migrateContainer();
+        echo "migrating contacts \n";
+        $this->migrateContacts();
         echo "migrating announcement \n";
-        $this->migrateAnnouncement();
+        $this->migrateAnnouncements();
 
     }
 

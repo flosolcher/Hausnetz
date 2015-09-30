@@ -22,10 +22,10 @@ class ContactController extends AbstractController {
     /**
      */
     public function indexAction() {
-      $user = $this->authService->getCurrentUser();
-//      $contacts = $this->contactRepository->findByCreateUser($user);
-      $this->view->assign('user', $user);
-      $this->view->assign('contacts', $user->getContacts());
+        
+      $this->view->assign('ctrl', 'Contact');
+//      $this->view->assign('items', array());
+      //$this->view->assign('items', $this->contactRepository->listItems());
     }
     
     /**
