@@ -18,21 +18,58 @@ use Doctrine\ORM\Mapping as ORM;
 class Contact extends AbstractModel {
 
 
-    /**
-     * @var string
-     */
-    protected $firstname;
 
-    /**
-     * @var string
-     */
-    protected $lastname;
+    /** @var string */
+    protected $NameNamePrefix;
+    /** @var string */
+    protected $NameFirstName;
+    /** @var string */
+    protected $NameMiddleName;
+    /** @var string */
+    protected $NameLastName;
+   /** @var string */
+    protected $NameOtherName;
 
-    /**
-     * @var string
-     * 
-     */
-    private $address;
+    /** @var string */
+    protected $OrganisationName;
+    /** @var string */
+    protected $OrganisationType;
+
+    /** @var string */
+    protected $ContactCellphone;
+    /** @var string */
+    protected $ContactFax;
+    /** @var string */
+    protected $ContactTelephone;
+    
+    /** @var string */
+    protected $ContactEmail;
+    /** @var string */
+    protected $ContactFacebook;
+    /** @var string */
+    protected $ContactTwitter;
+    /** @var string */
+    protected $ContactWebsite;
+
+    /** @var string */
+    protected $AddressLocality;
+    /** @var string */
+    protected $AddressCountry;
+    /** @var string */
+    protected $AddressFreeTextAddress;
+    /** @var string */
+    protected $AddressAdministrativeArea;
+    /** @var string */
+    protected $AddressThoroughfare;
+    /** @var string */
+    protected $AddressPremises;
+    /** @var string */
+    protected $AddressPostCode;
+    /** @var string */
+    protected $AddressLocationByCoordinates;
+
+    /** @var string */
+    protected $Comment;
 
     /**
      * //@var \Grandhotel\Hausnetz\Domain\Model\User
@@ -55,53 +92,351 @@ class Contact extends AbstractModel {
     /**
      * @return string
      */
-    public function getFirstname()
+    public function getNameFirstName()
     {
-        return $this->firstname;
+        return $this->NameFirstName;
     }
     
     /**
-     * @param string $firstname
+     * @param string $NameFirstName
      */
-    public function setFirstname($firstname)
+    public function setNameFirstName($NameFirstName)
     {
-        $this->firstname = $firstname;
+        $this->NameFirstName = $NameFirstName;
+    }
+
+    
+    /**
+     * @return string
+     */
+    public function getNameOtherName()
+    {
+        return $this->NameOtherName;
+    }
+    
+    /**
+     * @param string $NameOtherName
+     */
+    public function setNameOtherName($NameOtherName)
+    {
+        $this->NameOtherName = $NameOtherName;
     }
 
     /**
      * @return string
      */
-    public function getLastname()
+    public function getNameNamePrefix()
     {
-        return $this->lastname;
+        return $this->NameNamePrefix;
     }
     
     /**
-     * @param string $lastname
+     * @param string $NameNamePrefix
      */
-    public function setLastname($lastname)
+    public function setNameNamePrefix($NameNamePrefix)
     {
-        $this->lastname = $lastname;
+        $this->NameNamePrefix = $NameNamePrefix;
     }
 
-    
-     
     /**
-     * @return Address $adress
+     * @return string
      */
-    public function getAddress()
+    public function getNameMiddleName()
     {
-        return $this->address;
+        return $this->NameMiddleName;
+    }
+    
+    /**
+     * @param string $NameMiddleName
+     */
+    public function setNameMiddleName($NameMiddleName)
+    {
+        $this->NameMiddleName = $NameMiddleName;
+    }
+   
+    /**
+     * @return string
+     */
+    public function getContactCellphone()
+    {
+        return $this->ContactCellphone;
+    }
+    
+    /**
+     * @param string $ContactCellphone
+     */
+    public function setContactCellphone($ContactCellphone)
+    {
+        $this->ContactCellphone = $ContactCellphone;
+    }
+   
+    /**
+     * @return string
+     */
+    public function getContactFax()
+    {
+        return $this->ContactFax;
+    }
+    
+    /**
+     * @param string $ContactFax
+     */
+    public function setContactFax($ContactFax)
+    {
+        $this->ContactFax = $ContactFax;
+    }
+   
+    /**
+     * @return string
+     */
+    public function getContactEmail()
+    {
+        return $this->ContactEmail;
+    }
+    
+    /**
+     * @param string $ContactEmail
+     */
+    public function setContactEmail($ContactEmail)
+    {
+        $this->ContactEmail = $ContactEmail;
+    }
+   
+    /**
+     * @return string
+     */
+    public function getContactFacebook()
+    {
+        return $this->ContactFacebook;
+    }
+    
+    /**
+     * @param string $ContactFacebook
+     */
+    public function setContactFacebook($ContactFacebook)
+    {
+        $this->ContactFacebook = $ContactFacebook;
+    }
+   
+    /**
+     * @return string
+     */
+    public function getContactTwitter()
+    {
+        return $this->ContactTwitter;
+    }
+    
+    /**
+     * @param string $ContactTwitter
+     */
+    public function setContactTwitter($ContactTwitter)
+    {
+        $this->ContactTwitter = $ContactTwitter;
+    }
+   
+    /**
+     * @return string
+     */
+    public function getContactWebsite()
+    {
+        return $this->ContactWebsite;
+    }
+    
+    /**
+     * @param string $ContactWebsite
+     */
+    public function setContactWebsite($ContactWebsite)
+    {
+        $this->ContactWebsite = $ContactWebsite;
+    }
+   
+    /**
+     * @return string
+     */
+    public function getContactTelephone()
+    {
+        return $this->ContactTelephone;
+    }
+    
+    /**
+     * @param string $ContactTelephone
+     */
+    public function setContactTelephone($ContactTelephone)
+    {
+        $this->ContactTelephone = $ContactTelephone;
+    }
+   
+         
+    /**
+     * @return string $AddressAdministrativeArea
+     */
+    public function getAddressAdministrativeArea()
+    {
+        return $this->AddressAdministrativeArea;
     }
 
      /**
-     * @param Address $address
+     * @param string $AddressAdministrativeArea
      */
-    public function setAddress($address)
+    public function setAddressAdministrativeArea($AddressAdministrativeArea)
     {
-        $this->address = $address; 
+        $this->AddressAdministrativeArea = $AddressAdministrativeArea;
     }
 
+     
+    /**
+     * @return string $AddressCountry
+     */
+    public function getAddressCountry()
+    {
+        return $this->AddressCountry;
+    }
+
+     /**
+     * @param string $AddressCountry
+     */
+    public function setAddressCountry($AddressCountry)
+    {
+        $this->AddresCountry = $AddressCountry;
+    }
+
+ 
+    /**
+     * @return string AddressLocality
+     */
+    public function getAddressLocality()
+    {
+        return $this->AddressLocality;
+    }
+
+     /**
+     * @param string $AddressLocality
+     */
+    public function setAddressLocality($AddressLocality)
+    {
+        $this->AddresLocality = $AddressLocality;
+    }
+
+ 
+    
+    /**
+     * @return string $AddressThoroughfare
+     */
+    public function getAddressThoroughfare()
+    {
+        return $this->AddressThoroughfare;
+    }
+
+     /**
+     * @param string $AddressThoroughfare
+     */
+    public function setAddressThoroughfare($AddressThoroughfare)
+    {
+        $this->AddresThoroughfare = $AddressThoroughfare;
+    }
+
+    
+    /**
+     * @return string $AddressPostCode
+     */
+    public function getAddressPostCode()
+    {
+        return $this->AddressPostCode;
+    }
+
+     /**
+     * @param string $AddressPostCode
+     */
+    public function setAddressPostCode($AddressPostCode)
+    {
+        $this->AddresPostCode = $AddressPostCode;
+    }
+
+ 
+    
+    /**
+     * @return string $AddressPremises
+     */
+    public function getAddressPremises()
+    {
+        return $this->AddressPremises;
+    }
+
+     /**
+     * @param string $AddressPremises
+     */
+    public function setAddressPremises($AddressPremises)
+    {
+        $this->AddresPremises = $AddressPremises;
+    }
+
+    /**
+     * @return string $AddressLocationByCoordinates
+     */
+    public function getAddressLocationByCoordinates()
+    {
+        return $this->AddressLocationByCoordinates;
+    }
+
+     /**
+     * @param string $AddressLocationByCoordinates
+     */
+    public function setAddressLocationByCoordinates($AddressLocationByCoordinates)
+    {
+        $this->AddresLocationByCoordinates = $AddressLocationByCoordinates;
+    }
+
+    
+    /**
+     * @return string $OrganisationName
+     */
+    public function getOrganisationName()
+    {
+        return $this->OrganisationName;
+    }
+
+     /**
+     * @param string $OrganisationName
+     */
+    public function setOrganisationName($OrganisationName)
+    {
+        $this->OrganisationName = $OrganisationName;
+    }
+
+    /**
+     * @return string $OrganisationType
+     */
+    public function getOrganisationType()
+    {
+        return $this->OrganisationType;
+    }
+
+     /**
+     * @param string $OrganisationType
+     */
+    public function setOrganisationType($OrganisationType)
+    {
+        $this->OrganisationType = $OrganisationType;
+    }
+
+    /**
+     * @return string $Comment
+     */
+    public function getComment()
+    {
+        return $this->Comment;
+    }
+
+     /**
+     * @param string $Comment
+     */
+    public function setComment($Comment)
+    {
+        $this->Comment = $Comment;
+    }
+
+     
+    
     
      
     /**

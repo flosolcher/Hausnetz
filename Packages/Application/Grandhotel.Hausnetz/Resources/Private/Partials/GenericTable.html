@@ -1,0 +1,18 @@
+
+<table>
+<f:for each="{items}" as="item">
+  <tr>
+   <f:for each="{fields}" as="field">
+      <td>
+         {item.{field}}
+      </td>
+   </f:for>
+   <td>
+      <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>|
+   </td>
+   <td>
+      <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
+   </td>
+  </tr>
+</f:for>
+</table>

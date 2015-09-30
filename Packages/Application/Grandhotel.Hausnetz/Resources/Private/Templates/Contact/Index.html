@@ -17,21 +17,8 @@
       </div>
     </div>
    
-  <table>
-  <f:for each="{items}" as="item">
-     <tr>
-        <td>
-        <td>
-         {item.firstname}
-        </td>
-         <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>|
-        </td>
-        <td>
-         <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
-        </td>
-     </tr>
-  </f:for>
-  </table>
 -->
+
+<f:render partial="GenericTable.html" />
 
 </f:section>

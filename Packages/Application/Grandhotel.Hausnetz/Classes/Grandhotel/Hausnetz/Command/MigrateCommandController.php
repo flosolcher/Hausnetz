@@ -141,9 +141,9 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
                 $contact = $contact->getFirst();
             }
             $contact->setActive((bool) $row['vis']);
-            $contact->setFirstname($row['chr_name']);
-            $contact->setLastname($row['fam_name']);
-            $contact->setAddress('');
+            $contact->setNameFirstName($row['chr_name']);
+            $contact->setNameLastName($row['fam_name']);
+            //$contact->setAddress('');
             $contact->setReferenceId($id);
             if ($create) {
                 $this->contactRepository->add($contact);
