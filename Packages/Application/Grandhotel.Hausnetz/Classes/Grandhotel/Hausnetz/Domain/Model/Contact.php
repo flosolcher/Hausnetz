@@ -1,9 +1,11 @@
 <?php
 namespace Grandhotel\Hausnetz\Domain\Model;
 
-/*                                                                        *
- * This script belongs to the TYPO3 Flow package "Monacofriends.SDL".       *
- *                                                                        *
+/*                                                                        
+ * This script belongs to the TYPO3 Flow package Grandhotel.Hausnetz      
+ * A Contact is a natural person or an organisation
+ * a contact might correspond to a user
+ * a contact can have one container assigned                                                                         *
  *                                                                        */
 
 use Grandhotel\Hausnetz\Domain\Model\Super\AbstractModel;

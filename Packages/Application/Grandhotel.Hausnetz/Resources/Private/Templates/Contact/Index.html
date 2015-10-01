@@ -11,20 +11,12 @@
       </div>
       <div class="col-md-4">
          <span class="btn">
-            <f:link.action action="new">Notiz hinzufügen</f:link.action>
+            <f:link.action action="new">Kontakt hinzufügen</f:link.action>
          </span>
       </div>
     </div>
+{num}   
+   <f:debug>{num}</f:debug>   
+   <f:render partial="GenericTable" arguments="{fields: '{fields}', items: '{items}'}" />
    
-    <div class="row">
-        <f:for each="{items}" as="item">
-            <div class="col-md-3">
-               <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>|
-               <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
-            </div>   
-            <div class="col-md-9">
-               {item.fam_name}
-            </div>
-        </f:for>
-    </div>
 </f:section>
