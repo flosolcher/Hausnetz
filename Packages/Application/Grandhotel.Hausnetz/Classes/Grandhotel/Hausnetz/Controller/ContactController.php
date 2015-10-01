@@ -9,6 +9,7 @@ namespace Grandhotel\Hausnetz\Controller;
 use Grandhotel\Hausnetz\Controller\Super\AbstractController;
 use TYPO3\Flow\Annotations as Flow;
 use Grandhotel\Hausnetz\Domain\Model\Contact as Contact;
+//use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 
 class ContactController extends AbstractController {
@@ -24,12 +25,27 @@ class ContactController extends AbstractController {
     public function indexAction() {
       //$user = $this->authService->getCurrentUser();
       //$this->view->assign('user', $user);
-      $items = $this->contactRepository->listItems($showInactive = TRUE);
-      
+      //$items = $this->contactRepository->listItems($showInactive = TRUE);
+      $items = $this->contactRepository->listItems('lastname',\TYPO3\Flow\Persistence\QueryInterface::ORDER_ASCENDING, NULL, array(), TRUE);
       $this->view->assign('items', $items);
       
       $count = $items->count();
       $this->view->assign('num', $count);
+      //$this->view->assign('this', $items->getFirst()->getFieldMapping());
+      $this->view->assign('actions', array('edit', 'update'));
+      $fields = array();
+      $fields[] = array(
+          'name'     => 'Nachname',
+          'property' => 'lastname',
+          'type'     => 'string');
+      $fields[] = array(
+          'name'     => 'Vorname',
+          'property' => 'firstname',
+          'type'     => 'string');
+      
+      
+      
+      $this->view->assign('fields', $fields);
     }
     
     /**

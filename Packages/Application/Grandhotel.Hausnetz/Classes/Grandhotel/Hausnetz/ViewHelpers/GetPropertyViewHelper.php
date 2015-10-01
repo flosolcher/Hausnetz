@@ -1,4 +1,5 @@
 <?php
+
 namespace Grandhotel\Hausnetz\ViewHelpers;
 
 use TYPO3\Flow\Annotations as Flow;
@@ -6,6 +7,8 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * @Flow\Scope("prototype")
  */
+
+
 class GetPropertyViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 
     /**
@@ -15,6 +18,7 @@ class GetPropertyViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHel
      */
     public function render($object, $field = '') {
         $getter = 'get' . ucfirst($field);
+        //$getter = 'getFirstname';
         return $object->$getter();
     }
 

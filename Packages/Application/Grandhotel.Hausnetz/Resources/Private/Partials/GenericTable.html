@@ -1,18 +1,36 @@
 {namespace gh=Grandhotel\Hausnetz\ViewHelpers}
 
     <div class="row">
-       <table>
+       <table border="1">
+          <tr>
+             <th>Aktion</th>
+             <th>Aktion2</th>
+             
+           <f:for each="{fields}" as="field">
+              <th>
+                 {field.name}
+              </th>
+           </f:for>
+          </tr>
           
         <f:for each="{items}" as="item">
            <tr>
+              <td>
+                  <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>
+               </td>
+              <td>
+                  <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
+               </td>
               <!--
-               <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>|
-               <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
               -->
-           <f:for each="{gh:getProperty(object: '{item}', field: '{field.property}')}" as="val"> 
-               {val}
-           </f:for>
-            </tr>
+              <f:for each="{fields}" as="field">
+                 <td>
+                     {gh:getProperty(object: '{item}', field: '{field.property}' )}
+                 </td>
+              </f:for>
+           </tr>
+           
         </f:for>
+          
        </table>
     </div>
