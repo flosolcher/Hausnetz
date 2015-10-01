@@ -23,9 +23,8 @@ class ContactController extends AbstractController {
      */
     public function indexAction() {
       $user = $this->authService->getCurrentUser();
-//      $contacts = $this->contactRepository->findByCreateUser($user);
       $this->view->assign('user', $user);
-      $this->view->assign('contacts', $user->getContacts());
+      $this->view->assign('contacts', $this->contactRepository->listItems());
     }
     
     /**

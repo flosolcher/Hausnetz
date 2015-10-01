@@ -39,14 +39,4 @@ class ContactRepository extends AbstractRepository {
     }
 
 
-    /**
-     * @return TYPO3\Flow\Persistence\QueryResultInterface
-     */
-    public function listContacts(){
-        return $this->listItems(
-            'content',
-            QueryInterface::ORDER_ASCENDING
-        );
-    }
-
 }
