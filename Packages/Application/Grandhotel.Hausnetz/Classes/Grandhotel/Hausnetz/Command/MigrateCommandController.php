@@ -361,17 +361,19 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->migrateEvents();
          */
         echo "migrating users \n";
-        $this->migrateUser();
+        $this->migrateUsers();
         echo "migrating users notes \n";
         $this->migrateUserNotes();
         echo "migrating groups \n";
-        $this->migrateGroup();
+        $this->migrateGroups();
         echo "migrating user groups \n";
-        $this->migrateGroupUser();
+        $this->migrateGroupUsers();
         echo "migrating container \n";
         $this->migrateContainer();
-        echo "migrating announcement \n";
-        $this->migrateAnnouncement();
+        //echo "migrating announcement \n";
+        //$this->migrateAnnouncements();
+        echo "migrating events \n";
+        $this->migrateEvents();
 
     }
 
