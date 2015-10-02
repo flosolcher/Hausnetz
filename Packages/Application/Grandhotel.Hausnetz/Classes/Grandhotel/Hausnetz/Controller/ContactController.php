@@ -23,13 +23,26 @@ class ContactController extends AbstractController {
     /**
      */
     public function indexAction() {
-      //$items = $this->contactRepository->listItems($showInactive = TRUE);
-      $items = $this->contactRepository->listItems('lastname', \TYPO3\Flow\Persistence\QueryInterface::ORDER_ASCENDING, NULL, array(), TRUE);
-      $this->view->assign('items', $items);
+      $items = $this->contactRepository->listItems('lastname', \TYPO3\Flow\Persistence\QueryInterface::ORDER_ASCENDING, NULL, array(), TRUE); //, $limit = 20, $offset = 0);
       
+      $this->view->assign('items', $items);
       $this->view->assign('actions', array('edit', 'update'));
       
-      $this->view->assign('fields', $this->contactRepository->getFields());
+      $fields2show = array(
+        'firstname','lastname','phone','cellphone','email','city','facebook'  
+      );
+      
+      $fields = array();
+      
+      $fields_src = $this->contactRepository->getFields();
+      
+      foreach ($fields_src as $f) {
+         if (in_array($f['property'], $fields2show)) { 
+            $fields[] = $f;
+         } 
+      }
+      
+      $this->view->assign('fields', $fields);
     }
     
     /**
@@ -41,8 +54,8 @@ class ContactController extends AbstractController {
     /**
      * @param Contact $contact
      */
-    public function editAction(Contact $contact) {
-      $this->view->assign('contact', $contact);
+    public function editAction(Contact $item) {
+      $this->view->assign('item', $item);
       $this->view->assign('action', 'update');
     }
 

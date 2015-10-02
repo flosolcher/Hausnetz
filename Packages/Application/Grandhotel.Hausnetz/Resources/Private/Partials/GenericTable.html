@@ -1,36 +1,72 @@
 {namespace gh=Grandhotel\Hausnetz\ViewHelpers}
 
-    <div class="row">
-       <table border="1">
-          <tr>
-             <th>Aktion</th>
-             <th>Aktion2</th>
-             
-           <f:for each="{fields}" as="field">
-              <th>
-                 {field.name}
-              </th>
-           </f:for>
-          </tr>
-          
-        <f:for each="{items}" as="item">
-           <tr>
-              <td>
-                  <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>
-               </td>
-              <td>
-                  <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
-               </td>
-              <!--
-              -->
-              <f:for each="{fields}" as="field">
-                 <td>
-                     {gh:getProperty(object: '{item}', field: '{field.property}' )}
-                 </td>
-              </f:for>
-           </tr>
-           
+<!-- generic data table; 
+   DOES: format date,link,mailto;  striped rows
+   TODO: sortable, assign variable to value for reusing
+-->
+
+<div class="row">
+ <table class="table table-striped table-bordered">
+    <tr>
+        <f:for each="{fields}" as="field">
+           <th>
+              {field.name}
+           </th>
         </f:for>
-          
-       </table>
-    </div>
+       <th>Bearb.</th>
+       <th>Löschen</th>
+    </tr>
+
+  <f:for each="{items}" as="item">
+    <f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass"><tr class="{zebraClass}"></f:cycle>
+        <f:for each="{fields}" as="field">
+           <td>
+           <f:if condition="{gh:getProperty(object: '{item}', field: '{field.property}' )}">
+
+              <f:if condition="{field.format} == 'link.email'">
+                 <f:link.email email="{gh:getProperty(object: '{item}', field: '{field.property}' )}">
+                    <f:format.crop maxCharacters="{field.crop}">{gh:getProperty(object: '{item}', field: '{field.property}')}</f:format.crop>
+                 </f:link.email>
+              </f:if>
+
+              <f:if condition="{field.format} == 'date'">
+                    <f:format.date>
+                       {gh:getProperty(object: '{item}', field: '{field.property}' )}
+                    </f:format.date>
+              </f:if>
+
+              <f:if condition="{field.format} == 'link.action'">
+  <f:link.external uri="'{gh:getProperty(object: '{item}', field: '{field.property}')}'">Web
+  </f:link.external>
+              </f:if>
+
+              <f:if condition="{field.format} == 'default'">
+                 <f:if condition="{field.crop}">
+                    <f:then>
+                       <f:format.crop maxCharacters="{field.crop}">{gh:getProperty(object: '{item}', field: '{field.property}')}</f:format.crop>
+                    </f:then>
+                    <f:else>
+                          {gh:getProperty(object: '{item}', field: '{field.property}' )}
+                    </f:else>
+                 </f:if>
+              </f:if>
+
+           </f:if>
+           </td>
+        </f:for>
+
+        <td>
+            <f:link.action action="edit" arguments="{action:edit, 'item':item}">edit</f:link.action>
+         </td>
+        <td>
+        <f:comment>
+           
+            <f:link.action action="delete" arguments="{item:item, action:delete}">X</f:link.action>
+        </f:comment>
+         </td>
+     </tr>
+
+  </f:for>
+
+ </table>
+</div>

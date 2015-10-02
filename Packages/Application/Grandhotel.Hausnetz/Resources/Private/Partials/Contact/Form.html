@@ -1,0 +1,27 @@
+<f:form enctype="multipart/form-data" action="{action}" objectName="item" object="{item}" class="form-horizontal">
+   <div class="form-group">
+      <label class="col-sm-2 control-label" for="firstname">Vorname</label>
+      <div class="col-sm-10">
+         <p class="form-control-static">
+         <f:form.textfield class="form-control" property="firstname">{item.firstname}</f:form.textfield>
+         </p>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <label class="col-sm-2 control-label" for="lastname">Nachname</label>
+      <div class="col-sm-10">
+         <p class="form-control-static">
+         <f:form.textfield class="form-control" property="lastname">{item.lastname}</f:form.textfield>
+         </p>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-10">
+      <button onclick="$(this).parents('form').submit();">Speichern</button>
+      </div>
+   </div>
+</f:form>

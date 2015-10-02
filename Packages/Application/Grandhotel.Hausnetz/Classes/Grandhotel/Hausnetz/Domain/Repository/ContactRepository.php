@@ -41,22 +41,82 @@ class ContactRepository extends AbstractRepository {
         }
     }
 
-
     public function getFields() {
-      //return $this->fields;
+       // default values, TODO: in settings
+      $defaults = array(
+          'type'  => 'string',
+          'crop'  => '20',
+          'format'=> 'default',
+          );
       
-      $fields = array();
-      $fields[] = array(
+      // TODO move to yaml format
+      $fields = array(
+         array(
           'name'     => 'Nachname',
-          'property' => 'lastname',
-          'type'     => 'string');
-      $fields[] = array(
+          'property' => 'lastname'),
+         array(
           'name'     => 'Vorname',
           'property' => 'firstname',
-          'type'     => 'string');
+             ),
+         array(
+          'name'     => 'Telefon',
+          'property' => 'phone',
+             ),
+         array(
+          'name'     => 'Mobil',
+          'property' => 'cellphone',
+          'crop'     => false,
+             ),
+         array(
+          'name'     => 'Strasse',
+          'property' => 'str1',
+          'type'     => 'string'
+             ),
+         array(
+          'name'     => 'PLZ',
+          'property' => 'zip',
+          'type'     => 'string'
+             ),
+         array(
+          'name'     => 'City',
+          'property' => 'city',
+          'type'     => 'string'
+             ),
+         array(
+          'name'     => 'Email',
+          'property' => 'email',
+          'type'     => 'string',
+          'format'   => 'link.email'
+             ),
+         array(
+          'name'     => 'Website',
+          'property' => 'website',
+          'format'   => 'link.action'
+             ),
+         array(
+          'name'     => 'Fax',
+          'property' => 'fax',
+             ),
+          array(
+              'name' => 'Facebook',
+              'property'=>'facebook'
+          ),
+          array(
+              'property' => 'comment', 
+              'name'   => 'Bemerkung',
+          )
+      );
+      
+      // set default values where no default given above
+      $keys = array('type', 'format', 'crop');
+      foreach($fields as $dk => $items) {
+         foreach ($keys as $key) {
+            if (! array_key_exists($key, $items)) {
+               $fields[$dk][$key] = $defaults[$key];
+            }
+         }
+      }
       
       return $fields;
-       
-      
     }
 }
