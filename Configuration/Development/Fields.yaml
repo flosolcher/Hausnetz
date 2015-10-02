@@ -1,0 +1,13 @@
+
+Grandhotel:
+ Hausnetz:
+  Fields:
+    Contact:
+      lastname:
+        name: Nachname
+        property: lastname
+        type: string
+      firstname:
+        name: Vorname
+        property: firstname
+        type: string

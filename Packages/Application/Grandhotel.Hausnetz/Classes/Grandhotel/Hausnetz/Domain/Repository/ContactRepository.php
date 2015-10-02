@@ -10,23 +10,26 @@ use Grandhotel\Hausnetz\Domain\Repository\Super\AbstractRepository;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Persistence\QueryInterface;
 use TYPO3\Flow\Persistence\Repository;
-//use TYPO3\Flow\Log;
 
 /**
  * @Flow\Scope("singleton")
+ * 
  */
 class ContactRepository extends AbstractRepository {
 
-
     /**
-     *
+     * @var array
+     * // @Flow\InjectConfiguration(setting="fields")
+     */
+    //protected $fields;
+    
+    /**
      * @param $user
      * @return \Grandhotel\Hausnetz\Domain\Model\Contakt
      */
-    public function findByCreateUser($user) {
+    public function findByUser($user) {
         $query = $this->createQuery();
         $constraints = array();
-//        $constraints[] = $query->equals('user', $user);
         $constraints[] = $query->equals('active', 1);
         $result = $query->matching($query->logicalAnd($constraints))
             ->execute();
@@ -39,4 +42,21 @@ class ContactRepository extends AbstractRepository {
     }
 
 
+    public function getFields() {
+      //return $this->fields;
+      
+      $fields = array();
+      $fields[] = array(
+          'name'     => 'Nachname',
+          'property' => 'lastname',
+          'type'     => 'string');
+      $fields[] = array(
+          'name'     => 'Vorname',
+          'property' => 'firstname',
+          'type'     => 'string');
+      
+      return $fields;
+       
+      
+    }
 }
