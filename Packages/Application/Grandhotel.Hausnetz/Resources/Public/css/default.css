@@ -46,3 +46,6 @@ body.default {
 .panel > hr {
     margin: 0px;
 }
+
+.odd { background: #ccc; }
+.even { background: #cfcfcf; }

@@ -239,6 +239,21 @@ class User extends AbstractModel {
     }
 
     /**
+     * @return \Grandhotel\Hausnetz\Domain\Model\Contact
+     */
+    public function getContact() {
+        return $this->contact;
+    }
+
+    /**
+     * @param Grandhotel\Hausnetz\Domain\Model\Contact $contact
+     */
+    public function setContact(\Doctrine\Common\Collections\Collection $contact) {
+        $this->contact = $contact;
+    }
+
+
+    /**
      * @param Group $group
      */
     public function addUser(Group $group) {
