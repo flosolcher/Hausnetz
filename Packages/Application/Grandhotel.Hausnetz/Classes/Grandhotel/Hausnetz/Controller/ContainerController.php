@@ -45,23 +45,29 @@ class ContainerController extends AbstractController {
     /**
      */
     public function newAction() {
+      $fields = $this->containerRepository->getFields();
+      $this->view->assign('fields', $fields);
       $this->view->assign('action', 'create');
     }
 
     /**
-     * @param Container $container
+     * @param Container $item
      */
-    public function editAction(Container $container) {
-      $this->view->assign('container', $container);
+    public function editAction(Container $item) {
+      $fields = $this->containerRepository->getFields();
+      $this->view->assign('fields', $fields);
+      $this->view->assign('item', $item);
       $this->view->assign('action', 'update');
     }
 
     /**
-     * @param Container $container
+     * @param Container $item
      */
-    public function deleteAction(Container $container) {
-        $title = $container->getTitle();
-        $this->containerRepository->remove($container);
+    public function deleteAction(Container $item) {
+        // TODO "deactivate" instead of deletion, last but not least because
+        // container are assigned to many other entity objects
+        $title = $item->getTitle();
+        $this->containerRepository->remove($item);
         $this->persistenceManager->persistAll();
         $this->addFlashMessage("Der Container $title wurde gelöscht.");
         $this->redirect('index');
@@ -69,23 +75,22 @@ class ContainerController extends AbstractController {
 
     
     /**
-    * @param Container $container
+    * @param Container $item
     */
-    public function createAction(Container $container) {
-        $title = $container->getTitle();
-        $container->setActive = TRUE;
-        $user = $this->authService->getCurrentUser();
-        $container->setUser($user);
-        $this->containerRepository->add($container);
+    public function createAction(Container $item) {
+        $title = $item->getTitle();
+        $item->setActive = TRUE;
+        $this->containerRepository->add($item);
         $this->addFlashMessage("Der neue Container $title wurde gespeichert.");
         $this->redirect('index');
     }    
+    
     /**
-    * @param Container $container
+    * @param Container $item
     */
-    public function updateAction(Note $container) {
-        $title = $container->getTitle();
-        $this->containerRepository->update($container);
+    public function updateAction(Container $item) {
+        $title = $item->getTitle();
+        $this->containerRepository->update($item);
         $this->addFlashMessage("Die Änderungen an Container $title wurden gespeichert.");
         $this->redirect('index');
     }
