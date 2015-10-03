@@ -9,6 +9,7 @@ namespace Grandhotel\Hausnetz\Controller;
 use Grandhotel\Hausnetz\Controller\Super\AbstractController;
 use Grandhotel\Hausnetz\Domain\Model\Announcement;
 use Grandhotel\Hausnetz\Domain\Model\Container;
+use Grandhotel\Hausnetz\Domain\Model\Event;
 use TYPO3\Flow\Annotations as Flow;
 
 class EventController extends AbstractController {
@@ -18,7 +19,11 @@ class EventController extends AbstractController {
      * @var \Grandhotel\Hausnetz\Domain\Repository\EventRepository
      */
     protected $eventRepository;
-
+    /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\ContainerRepository
+     */
+    protected $containerRepository;
 
     public function indexAction(\DateTime $date = NULL) {
         if ($date === NULL) $date = new \DateTime();
@@ -115,6 +120,34 @@ class EventController extends AbstractController {
         }
         echo json_encode($eventArray);
         exit;
+    }
+
+    public function newAction() {
+        $containers = $this->containerRepository->listItems('title');
+        $this->view->assign('containers', $containers);
+
+    }
+
+
+    public function initializeCreateAction() {
+        $this->arguments['event']
+            ->getPropertyMappingConfiguration()
+            ->forProperty('startDate')
+            ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\DateTimeConverter', \TYPO3\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y H:i');
+
+        $this->arguments['event']
+            ->getPropertyMappingConfiguration()
+            ->forProperty('endDate')
+            ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\DateTimeConverter', \TYPO3\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd-m-Y H:i');
+
+    }
+
+    /**
+     * @param Event $event
+     */
+    public function createAction(Event $event) {
+        $this->eventRepository->add($event);
+        $this->redirect('index');
     }
 
 }

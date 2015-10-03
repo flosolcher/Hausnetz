@@ -8,6 +8,9 @@ body.default {
 * {
     font-family: 'PT Sans', sans-serif !important;
 }
+.fa {
+    font-family: 'FontAwesome' !important;
+}
 
 .logo-container {
     background-color: #FFF;

@@ -47,5 +47,7 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 
     public function initializeView(ViewInterface $view) {
         $view->assign('currentUser', $this->authService->getCurrentUser());
+        $view->assign('currentController', $this->request->getControllerName());
+        $view->assign('currentAction', $this->request->getControllerActionName());
     }
 }

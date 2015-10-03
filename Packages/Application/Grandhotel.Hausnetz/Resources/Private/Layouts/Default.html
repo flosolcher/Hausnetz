@@ -8,7 +8,7 @@
 
         <div id="wrapper">
             <!-- Sidebar -->
-            <f:render partial="Navbar" />
+            <f:render partial="Navbar" arguments="{currentUser: currentUser, currentController: currentController, currentAction: currentAction}" />
 
             <!-- Page content -->
             <div class="container">

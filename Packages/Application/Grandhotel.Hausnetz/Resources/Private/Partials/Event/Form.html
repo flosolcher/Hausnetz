@@ -1,0 +1,91 @@
+<f:form action="{action}" class="form-horizontal" objectName="{objectName}">
+        <div class="form-group">
+            <label class="col-md-2 control-label">Titel</label>
+            <div class="col-md-10">
+                <f:form.textfield class="form-control" property="title" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="start-date-input" class="col-md-2 control-label">Beginn</label>
+            <div class="col-md-10">
+                <div class="input-group date form-datetime" data-link-field="start-date-input">
+                    <input class="form-control display-field" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <f:form.textfield property="startDate" class="hide"  id="start-date-input" />
+        </div>
+        <div class="form-group">
+            <label for="end-date-input" class="col-md-2 control-label">Ende</label>
+            <div class="col-md-10">
+                <div class="input-group date form-datetime" data-link-field="end-date-input">
+                    <input class="form-control display-field" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <f:form.textfield property="endDate" class="hide" id="end-date-input" />
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Beschreibung</label>
+            <div class="col-md-10">
+                <f:form.textarea class="form-control" property="description" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Ort</label>
+            <div class="col-md-10">
+                <f:form.textfield class="form-control" property="location" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Container</label>
+            <div class="col-md-10">
+                <f:form.select property="container" options="{containers}" optionLabelField="title" prependOptionLabel="Ganzes Haus" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
+                        <f:form.checkbox property="wholeDay" value="1" /> Ganzer Tag
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-default">Speichern</button>
+            </div>
+        </div>
+ 
+</f:form>
+<script type="text/javascript">
+    $(function() {
+
+        $('.form-datetime').each(function() {
+            var linkFieldId = $(this).attr('data-link-field');
+            $(this).find('.display-field').val($('#' + linkFieldId).val());
+            $(this).attr('data-date', $('#' + linkFieldId).val());
+        });
+
+        $('.form-datetime').datetimepicker({
+            //language:  'fr',
+            fontAwesome: 1,
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 0,
+            format: 'dd.mm.yyyy hh:ii',
+            linkFormat: 'dd.mm.yyyy hh:ii'
+        });
+
+    });
+</script>

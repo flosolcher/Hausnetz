@@ -14,9 +14,9 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><f:link.action action="index" controller="announcement">Neuigkeiten</f:link.action></li>
-                <li><f:link.action action="index" controller="event">Kalender</f:link.action></li>
-                <li><f:link.action action="index" controller="note">Notizen</f:link.action></li>
+                <li class="{f:if(condition: '{0:currentController} == {0: \'Announcement\'}', then: 'active', else: '')}"><f:link.action action="index" controller="announcement">Neuigkeiten</f:link.action></li>
+                <li class="{f:if(condition: '{0:currentController} == {0: \'Event\'}', then: 'active', else: '')}"><f:link.action action="index" controller="event">Kalender</f:link.action></li>
+                <li class="{f:if(condition: '{0:currentController} == {0: \'Note\'}', then: 'active', else: '')}"><f:link.action action="index" controller="note">Notizen</f:link.action></li>
             </ul>
         <div>
     </div>
