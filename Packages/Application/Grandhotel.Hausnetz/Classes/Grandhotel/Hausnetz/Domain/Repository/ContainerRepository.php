@@ -33,6 +33,7 @@ class ContainerRepository extends AbstractRepository {
          array(
           'name'     => 'Farbe',
           'property' => 'color',
+          'format'   => 'color',
              ),
          array(
           'name'     => 'Beschreibung',
