@@ -75,6 +75,12 @@ class Event extends AbstractModel {
     protected $location;
 
     /**
+     * @var bool
+     * @ORM\Column(nullable=true)
+     */
+    protected $public_audience;
+
+    /**
      * @var boolean
      * @ORM\Column(nullable=true)
      */
@@ -237,6 +243,23 @@ class Event extends AbstractModel {
     public function setLocation($location)
     {
         $this->location = $location;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPublic_audience()
+    {
+        return $this->public_audience;
+    }
+
+    /**
+     * @param bool $public_audience
+     * @return void
+     */
+    public function setPublic_audience($public_audience)
+    {
+        $this->public_audience = $public_audience;
     }
 
 

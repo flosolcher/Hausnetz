@@ -5,6 +5,8 @@
    TODO: sortable, assign variable to value for reusing
 -->
 
+
+
 <div class="row">
     <table class="table table-striped table-bordered">
         <tr>
@@ -18,28 +20,40 @@
         </tr>
 
         <f:for each="{items}" as="item">
-            <f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass"></f:cycle>
+            <f:cycle values="{0:'odd', 1:'even'}" as="zebraClass"></f:cycle>
+
             <tr class="{zebraClass}">
                 <f:for each="{fields}" as="field">
                     <td>
-                        <f:if condition="{gh:getProperty(object: '{item}', field: '{field.property}' )}">
-
+                        <f:if condition="{gh:getProperty(object:'{item}', field:'{field.property}')}">
+ 
                             <f:if condition="{field.format} == 'link.email'">
                                 <f:link.email email="{gh:getProperty(object: '{item}', field: '{field.property}' )}">
-                                    <f:format.crop maxCharacters="{field.crop}">{gh:getProperty(object: '{item}', field:
-                                        '{field.property}')}
+                                    <f:format.crop maxCharacters="{field.crop}">
+                                       {gh:getProperty(object: '{item}', field:'{field.property}' )}
                                     </f:format.crop>
                                 </f:link.email>
                             </f:if>
 
+                            <f:if condition="{field.format} == 'bool'">
+                               <f:if condition="{gh:getProperty(object:'{item}', field:'{field.property}')} == 'true'">
+                                  <f:then>Public</f:then>
+                                  <f:else>Privat</f:else>
+                               </f:if>
+                            </f:if>
+
                             <f:if condition="{field.format} == 'date'">
-                                <f:format.date>
-                                    {gh:getProperty(object: '{item}', field: '{field.property}' )}
-                                </f:format.date>
+                                <f:format.date format="d.m.Y">{gh:getProperty(object:'{item}', field:'{field.property}' )}</f:format.date>
+                            </f:if>
+
+                            <f:if condition="{field.format} == 'datetime'">
+                                <f:format.date format="d.m.Y - h:m">{gh:getProperty(object:'{item}', field:'{field.property}' )}</f:format.date>
+                          <f:comment>
+                           </f:comment>
                             </f:if>
 
                             <f:if condition="{field.format} == 'link.action'">
-                                <f:link.external uri="'{gh:getProperty(object: '{item}', field: '{field.property}')}'">
+                                <f:link.external uri="'{gh:getProperty(object:'{item}', field: '{field.property}')}'">
                                     Web
                                 </f:link.external>
                             </f:if>
@@ -47,12 +61,10 @@
                             <f:if condition="{field.format} == 'default'">
                                 <f:if condition="{field.crop}">
                                     <f:then>
-                                        <f:format.crop maxCharacters="{field.crop}">{gh:getProperty(object: '{item}',
-                                            field: '{field.property}')}
-                                        </f:format.crop>
+                                        <f:format.crop maxCharacters="{field.crop}">{gh:getProperty(object:'{item}', field:'{field.property}')}</f:format.crop>
                                     </f:then>
                                     <f:else>
-                                        {gh:getProperty(object: '{item}', field: '{field.property}' )}
+                                        {gh:getProperty(object:'{item}', field:'{field.property}' )}
                                     </f:else>
                                 </f:if>
                             </f:if>
@@ -67,7 +79,8 @@
                      </f:link.action>
                 </td>
                 <td>
-                    <f:link.action action="delete" arguments="{item:item, action:delete}">                        <i class="fa fa-trash"></i>
+                    <f:link.action action="delete" arguments="{item:item, action:delete}">
+                       <i class="fa fa-trash"></i>
                      </f:link.action>
                 </td>
             </tr>

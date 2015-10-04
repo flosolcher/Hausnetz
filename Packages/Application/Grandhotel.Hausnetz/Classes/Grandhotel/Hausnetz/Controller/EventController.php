@@ -25,12 +25,48 @@ class EventController extends AbstractController {
      */
     protected $containerRepository;
 
+    
     public function indexAction(\DateTime $date = NULL) {
         if ($date === NULL) $date = new \DateTime();
         $this->view->assign('date', $date);
 
     }
 
+    public function publicAction(\DateTime $date = NULL) {
+        $startDate  = new \DateTime('first day of this month');
+        $endDate    = new \DateTime('last day of this month');
+        $events = $this->eventRepository->listPublicTimeRangeEvents($startDate, $endDate);
+        
+        $this->view->assign('startDate', $startDate);
+        $this->view->assign('endDate', $endDate);
+        $this->view->assign('events', $events);
+        $this->view->assign('fields', $this->eventRepository->getFields());
+    }
+
+    /**
+     * @param Event $item
+     */
+    public function editAction(Event $item) {
+      $fields = $this->eventRepository->getFields();
+      
+      $this->view->assign('fields', $fields);
+
+      $this->view->assign('item', $item);
+      $this->view->assign('action', 'update');
+    }
+
+    /**
+     * @param Event $item
+     */
+    public function deleteAction(Event $item) {
+        $title = $item->getTitle();
+        $this->eventRepository->remove($item);
+        $this->persistenceManager->persistAll();
+        $this->addFlashMessage("Das Event <i>'$title'</i> wurde gelöscht.");
+        $this->redirect('index');
+    }
+
+    
     /**
      * @param string $start
      * @param string $end

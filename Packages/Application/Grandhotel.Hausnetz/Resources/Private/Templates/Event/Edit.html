@@ -1,0 +1,20 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h3>Event bearbeiten</h3>
+            </div>
+        </div>
+    </div>
+   
+   <div class="row">
+        <div class="col-md-12">
+              
+             <f:render partial="GenericForm" arguments="{action:'edit', item:'{item}', objectName:'item', fields:'{fields}'}" />
+           <f:comment>
+           </f:comment>
+        </div>
+   </div>
+</f:section>

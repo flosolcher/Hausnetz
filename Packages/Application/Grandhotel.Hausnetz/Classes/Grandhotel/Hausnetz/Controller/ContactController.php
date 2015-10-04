@@ -52,7 +52,7 @@ class ContactController extends AbstractController {
     }
 
     /**
-     * @param Contact $contact
+     * @param Contact $item
      */
     public function editAction(Contact $item) {
       $fields = $this->contactRepository->getFields();
@@ -64,11 +64,11 @@ class ContactController extends AbstractController {
     }
 
     /**
-     * @param Contact $contact
+     * @param Contact $item
      */
-    public function deleteAction(Contact $contact) {
-        $title = $contact->getTitle();
-        $this->contactRepository->remove($contact);
+    public function deleteAction(Contact $item) {
+        $title = $item->getTitle();
+        $this->contactRepository->remove($item);
         $this->persistenceManager->persistAll();
         $this->addFlashMessage("Der Kontakt $title wurde gelöscht.");
         $this->redirect('index');
@@ -88,11 +88,11 @@ class ContactController extends AbstractController {
         $this->redirect('index');
     }    
     /**
-    * @param Contact $contact
+    * @param Contact $item
     */
-    public function updateAction(Contact $contact) {
-        $title = $contact->getTitle();
-        $this->contactRepository->update($contact);
+    public function updateAction(Contact $item) {
+        $title = $item->getTitle();
+        $this->contactRepository->update($item);
         $this->addFlashMessage("Die Änderungen an Kontakt $title wurden gespeichert.");
         $this->redirect('index');
     }

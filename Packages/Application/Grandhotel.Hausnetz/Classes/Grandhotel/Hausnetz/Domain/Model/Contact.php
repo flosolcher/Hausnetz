@@ -30,7 +30,7 @@ class Contact extends AbstractModel {
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $birthdate;
 

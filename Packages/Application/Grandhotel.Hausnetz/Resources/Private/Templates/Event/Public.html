@@ -1,0 +1,33 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Veranstaltungen</h1>
+                  Die Veranstaltungen von 
+                  <f:format.date format="d.m.Y">{startDate}</f:format.date> bis
+                  <f:format.date format="d.m.Y">{endDate}</f:format.date>.
+                  &nbsp;|&nbsp; <f:link.action action="New">Neues Event</f:link.action>
+            </div>
+        </div>
+    </div>
+   
+      
+   
+   <f:render partial="GenericTable" arguments="{actions:'{actions}', items:'{events}', fields:'{fields}' }" />
+ 
+   <f:comment>
+    <div class="row">
+        <div class="col-md-12">
+
+           <f:for each="{events}" as="event">
+              {event.title}
+           </f:for>   
+
+        </div>
+    </div>
+   </f:comment>
+
+</f:section>

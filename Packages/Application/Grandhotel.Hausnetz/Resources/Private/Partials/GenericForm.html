@@ -15,14 +15,24 @@
          <div class="col-sm-10">
                
                 <f:if condition="{field.format} == 'date'">
+                   <div class="input-group date form-date" data-link-field="{field.property}-input">
+                    <input class="form-control display-field" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                   </div>
+                  <f:form.textfield property="{field.property}" class="hide" id="{field.property}-input">{gh:getProperty(object:'{item}', field:'{field.property}')}</f:form.textfield>
+                </f:if>
+
+               <f:if condition="{field.format} == 'datetime'">
                    <div class="input-group date form-datetime" data-link-field="{field.property}-input">
                     <input class="form-control display-field" size="16" type="text" value="" readonly>
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     <span class="input-group-addon"><i class="fa fa-times"></i></span>
                    </div>
-                  <f:form.textfield property="{field.property}" class="hide" id="{field.property}-input" />
+                  <f:form.textfield property="{field.property}" class="hide" id="{field.property}-input">{gh:getProperty(object:'{item}', field:'{field.property}')}</f:form.textfield>
+            <f:comment>
+            </f:comment>
                 </f:if>
-            
+
                <f:if condition="{field.format} == 'color'">
                   <f:form.textfield class="colorpicker" property="{field.property}">
                      {gh:getProperty(object:'{item}', field:'{field.property}')}
@@ -34,6 +44,16 @@
                      {gh:getProperty(object:'{item}', field:'{field.property}')}
                   </f:form.textfield>
                 </f:if>
+
+               <f:if condition="{field.format} == 'text'">
+                  <f:form.textarea class="form-control" property="{field.property}">
+                     {gh:getProperty(object:'{item}', field:'{field.property}')}
+                  </f:form.textarea>
+                </f:if>
+
+               <f:if condition="{field.format} == 'bool'">
+                  <f:form.checkbox class="form-control" property="{field.property}" value="{gh:getProperty(object:'{item}', field:'{field.property}')}"></f:form.checkbox>
+               </f:if>
 
          </div>
       </div>
@@ -61,7 +81,7 @@
             $(this).attr('data-date', $('#' + linkFieldId).val());
         });
 
-        $('.form-datetime').datetimepicker({
+        $('.form-date').datetimepicker({
             //language:  'fr',
             fontAwesome: 1,
             weekStart: 1,
@@ -74,7 +94,21 @@
             format: 'dd.mm.yyyy',
             linkFormat: 'dd.mm.yyyy'
         });
-        
+
+        $('.form-datetime').datetimepicker({
+            //language:  'fr',
+            fontAwesome: 1,
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 0,
+            format: 'dd.mm.yyyy - hh:mm',
+            linkFormat: 'dd.mm.yyyy - hh:mm' 
+        });
+      
         $('.colorpicker').colorpicker();
 
     });

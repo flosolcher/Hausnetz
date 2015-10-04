@@ -335,6 +335,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
                     $event->setTitle($row['title']);
                     $event->setDescription($row['descr']);
                     $event->setLocation($row['location']);
+                    $event->setPublicAudience( ($row['public_audience']=='no') ? false : true );
                     $event->setWholeDay((bool)$row['whole_day']);
                     $event->setReferenceId($id);
                     $format = 'Y-m-d H:i:s';

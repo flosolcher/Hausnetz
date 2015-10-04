@@ -127,4 +127,26 @@ abstract class AbstractRepository extends Repository {
         $result = $query->matching($query->logicalAnd($constraints))->execute();
         return $result;
     }
+    
+    public function completeFields($fields) {
+        // default values, TODO: in settings
+        $defaults = array(
+          'type'  => 'string',
+          'crop'  => '20',
+          'format'=> 'default',
+          );
+      
+
+        // set default values where no default given above
+        $keys = array('type', 'format', 'crop');
+        foreach($fields as $dk => $items) {
+            foreach ($keys as $key) {
+                if (! array_key_exists($key, $items)) {
+                    $fields[$dk][$key] = $defaults[$key];
+                }
+            }
+        }
+
+        return $fields;
+    }
 }
