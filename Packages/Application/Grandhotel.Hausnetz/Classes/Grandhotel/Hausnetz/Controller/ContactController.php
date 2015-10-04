@@ -29,7 +29,7 @@ class ContactController extends AbstractController {
       $this->view->assign('actions', array('edit', 'update'));
       
       $fields2show = array(
-        'firstname','lastname','phone','cellphone','email','city','facebook'  
+        'firstname','lastname','phone','cellphone','email','city','facebook','birthdate'
       );
       
       $fields = array();
@@ -55,6 +55,10 @@ class ContactController extends AbstractController {
      * @param Contact $contact
      */
     public function editAction(Contact $item) {
+      $fields = $this->contactRepository->getFields();
+      
+      $this->view->assign('fields', $fields);
+
       $this->view->assign('item', $item);
       $this->view->assign('action', 'update');
     }

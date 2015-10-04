@@ -53,10 +53,16 @@ class ContactRepository extends AbstractRepository {
       $fields = array(
          array(
           'name'     => 'Nachname',
-          'property' => 'lastname'),
+          'property' => 'lastname'
+             ),
          array(
           'name'     => 'Vorname',
           'property' => 'firstname',
+             ),
+         array(
+          'name'     => 'Geburtstag',
+          'property' => 'birthdate',
+          'format'   => 'date'   
              ),
          array(
           'name'     => 'Telefon',

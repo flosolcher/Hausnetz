@@ -29,6 +29,12 @@ class Contact extends AbstractModel {
     protected $lastname;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $birthdate;
+
+    /**
      * @var string
      */
     protected $company;
@@ -138,6 +144,22 @@ class Contact extends AbstractModel {
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
+    }
+    
+    /**
+     * @param \DateTime $birthdate
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
     }
 
     /**
