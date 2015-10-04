@@ -62,10 +62,13 @@
                 </f:for>
 
                 <td>
-                    <f:link.action action="edit" arguments="{action:edit, 'item':item}">edit</f:link.action>
+                    <f:link.action action="edit" arguments="{action:edit, 'item':item}">
+                       <i class="fa fa-pencil"></i>
+                     </f:link.action>
                 </td>
                 <td>
-                    <f:link.action action="delete" arguments="{item:item, action:delete}">X</f:link.action>
+                    <f:link.action action="delete" arguments="{item:item, action:delete}">                        <i class="fa fa-trash"></i>
+                     </f:link.action>
                 </td>
             </tr>
 
