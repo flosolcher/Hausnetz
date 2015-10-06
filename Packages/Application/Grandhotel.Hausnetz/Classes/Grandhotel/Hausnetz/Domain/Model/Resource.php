@@ -15,7 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Resource extends AbstractModel {
 
-
     /**
      * @var string
      */
@@ -26,6 +25,19 @@ class Resource extends AbstractModel {
      * @ORM\Column(type="text")
      */
     protected $description;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text")
+     */
+    protected $comment;
+    
+    /**
+     * @var \Unit
+     * @ORM\ManyToOne(cascade={"persist"})
+    */
+    protected $unit;
+
 
    
     /**
@@ -45,7 +57,25 @@ class Resource extends AbstractModel {
     {
         $this->description = $description;
     }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
     
+    /**
+     * @param string description
+     * @return void
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
     /**
      * @return string
      */
@@ -53,7 +83,6 @@ class Resource extends AbstractModel {
     {
         return $this->title;
     }
-
     
     /**
      * @param string title
@@ -62,6 +91,24 @@ class Resource extends AbstractModel {
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return \Unit $unit
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+
+     
+    /**
+     * @param \Unit $unit
+     * @return void
+     */
+    public function setUnit($unit)
+    {
+        $this->unit = $unit;
     }
 
 }

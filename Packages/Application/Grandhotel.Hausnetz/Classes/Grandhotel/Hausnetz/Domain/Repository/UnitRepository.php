@@ -13,7 +13,7 @@ use TYPO3\Flow\Persistence\Repository;
 /**
  * @Flow\Scope("singleton")
  */
-class ResourceRepository extends AbstractRepository {
+class UnitRepository extends AbstractRepository {
 
     
     public function getFields() {
@@ -23,13 +23,10 @@ class ResourceRepository extends AbstractRepository {
                 'name'      => 'Bezeichnung',
                 'property'  =>  'title',
             ),
+ 
             array(
-                'name'      => 'Einheit',
-                'property'  => 'unit'
-            ),
-            array(
-                'name'      =>  'Bemerkung',
-                'property'  =>  'comment'
+                'name'      =>  'Beschreibung',
+                'property'  =>  'description'
             )
         );
         
@@ -39,9 +36,9 @@ class ResourceRepository extends AbstractRepository {
         /**
      * @return TYPO3\Flow\Persistence\QueryResultInterface
      */
-    public function listResources(){
+    public function listUnits(){
         return $this->listItems(
-            'content',
+            'title',
             QueryInterface::ORDER_ASCENDING
         );
     }

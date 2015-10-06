@@ -35,23 +35,26 @@ class ResourceController extends AbstractController {
     /**
      */
     public function newAction() {
+      $fields_src = $this->resourceRepository->getFields();
+      
+      $this->view->assign('fields', $fields_src);
       $this->view->assign('action', 'create');
     }
 
     /**
-     * @param Resource $resource
+     * @param Resource $item
      */
-    public function editAction(Resource $resource) {
-      $this->view->assign('resource', $resource);
+    public function editAction(Resource $item) {
+      $this->view->assign('item', $resource);
       $this->view->assign('action', 'update');
     }
 
     /**
-     * @param Resource $resource
+     * @param Resource $item
      */
-    public function deleteAction(Resource $resource) {
-        $title = $resource->getTitle();
-        $this->resourceRepository->remove($resource);
+    public function deleteAction(Resource $item) {
+        $title = $item->getTitle();
+        $this->resourceRepository->remove($item);
         $this->persistenceManager->persistAll();
         $this->addFlashMessage("Die Notiz $title wurde gelöscht.");
         $this->redirect('index');
@@ -59,23 +62,23 @@ class ResourceController extends AbstractController {
 
     
     /**
-    * @param Resource $resource
+    * @param Resource $item
     */
-    public function createAction(Resource $resource) {
-        $title = $resource->getTitle();
-        $resource->setActive = TRUE;
-        $user = $this->authService->getCurrentUser();
-        $resource->setUser($user);
-        $this->resourceRepository->add($resource);
+    public function createAction(Resource $item) {
+        $title = $item->getTitle();
+        $item->setActive = TRUE;
+        $this->resourceRepository->add($item);
         $this->addFlashMessage("Die neue Resource $title wurde gespeichert.");
         $this->redirect('index');
     }    
+    
+    
     /**
-    * @param Resource $resource
+    * @param Resource $item
     */
-    public function updateAction(Resource $resource) {
-        $title = $resource->getTitle();
-        $this->resourceRepository->update($resource);
+    public function updateAction(Resource $item) {
+        $title = $item->getTitle();
+        $this->resourceRepository->update($item);
         $this->addFlashMessage("Die Änderungen an Resource $title wurden gespeichert.");
         $this->redirect('index');
     }
