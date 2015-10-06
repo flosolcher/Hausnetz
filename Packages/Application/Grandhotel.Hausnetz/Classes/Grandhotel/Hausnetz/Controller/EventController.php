@@ -51,6 +51,9 @@ class EventController extends AbstractController {
             ) {
                 $item = array();
                 $item['title'] = $event->getTitle();
+                $item['description'] = nl2br($event->getDescription());
+                $item['isRecurring'] = FALSE;
+                $item['uuid'] = $this->persistenceManager->getIdentifierByObject($event);
 
                 if ($event->getWholeDay()) {
                     $item['start'] = $event->getStartDate()->format('Y-m-d');
@@ -68,6 +71,21 @@ class EventController extends AbstractController {
                 if ($event->getContainer() && $event->getContainer()->getColor()) {
                     $item['color'] = '#' . $event->getContainer()->getColor();
                 }
+
+                $uriBuilder = $this->controllerContext->getUriBuilder();
+                $uriBuilder->reset()
+                    ->setSection('')
+                    ->setFormat('')
+                    ->setCreateAbsoluteUri(TRUE)
+                    ->setAddQueryString(FALSE)
+                    ->setArgumentsToBeExcludedFromQueryString(array());
+                try {
+                    $uri = $uriBuilder->uriFor('edit', array('event' => $event, 'recurring' => FALSE), 'Event', NULL, '');
+                } catch (\Exception $e) {
+                    $uri = '';
+                }
+                $item['url'] = $uri;
+
                 $eventArray[] = $item;
             }
             /* recurring */
@@ -91,7 +109,9 @@ class EventController extends AbstractController {
                     if ($dt != $event->getStartDate()) {
                         $item = array();
                         $item['title'] = $event->getTitle();
-
+                        $item['description'] = nl2br($event->getDescription());
+                        $item['isRecurring'] = TRUE;
+                        $item['uuid'] = $this->persistenceManager->getIdentifierByObject($event);
                         if ($event->getWholeDay()) {
                             $item['start'] = $dt->format('Y-m-d');
                             if ($event->getEndDate() != NULL && $event->getEndDate() != $event->getStartDate()) {
@@ -112,6 +132,21 @@ class EventController extends AbstractController {
                         if ($event->getContainer() && $event->getContainer()->getColor()) {
                             $item['color'] = '#' . $event->getContainer()->getColor();
                         }
+
+                        $uriBuilder = $this->controllerContext->getUriBuilder();
+                        $uriBuilder->reset()
+                            ->setSection('')
+                            ->setFormat('')
+                            ->setCreateAbsoluteUri(TRUE)
+                            ->setAddQueryString(FALSE)
+                            ->setArgumentsToBeExcludedFromQueryString(array());
+                        try {
+                            $uri = $uriBuilder->uriFor('edit', array('event' => $event, 'recurring' => TRUE), 'Event', NULL, '');
+                        } catch (\Exception $e) {
+                            $uri = '';
+                        }
+                        $item['url'] = $uri;
+
                         $eventArray[] = $item;
                     }
                 }
@@ -124,6 +159,7 @@ class EventController extends AbstractController {
 
     public function newAction() {
         $containers = $this->containerRepository->listItems('title');
+        $this->view->assign('recurringTypes', array('2weekly' => 'Alle 2 Wochen', 'weekly' => 'wöchentlich', 'daily' => 'täglich'));
         $this->view->assign('containers', $containers);
 
     }
@@ -138,6 +174,16 @@ class EventController extends AbstractController {
         $this->arguments['event']
             ->getPropertyMappingConfiguration()
             ->forProperty('endDate')
+            ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\DateTimeConverter', \TYPO3\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y H:i');
+
+        $this->arguments['event']
+            ->getPropertyMappingConfiguration()
+            ->forProperty('recurringStartDate')
+            ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\DateTimeConverter', \TYPO3\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y H:i');
+
+        $this->arguments['event']
+            ->getPropertyMappingConfiguration()
+            ->forProperty('recurringEndDate')
             ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\DateTimeConverter', \TYPO3\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd-m-Y H:i');
 
     }
@@ -147,6 +193,50 @@ class EventController extends AbstractController {
      */
     public function createAction(Event $event) {
         $this->eventRepository->add($event);
+        $this->redirect('index');
+    }
+
+    /**
+     * @param Event $event
+     * @param bool $recurring
+     */
+    public function editAction(Event $event, $recurring = FALSE) {
+        $containers = $this->containerRepository->listItems('title');
+        $this->view->assign('recurringTypes', array('2weekly' => 'Alle 2 Wochen', 'weekly' => 'wöchentlich', 'daily' => 'täglich'));
+        $this->view->assign('containers', $containers);
+        $this->view->assign('event', $event);
+
+    }
+
+    public function initializeUpdateAction() {
+        $this->arguments['event']
+            ->getPropertyMappingConfiguration()
+            ->forProperty('startDate')
+            ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\DateTimeConverter', \TYPO3\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y H:i');
+
+        $this->arguments['event']
+            ->getPropertyMappingConfiguration()
+            ->forProperty('endDate')
+            ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\DateTimeConverter', \TYPO3\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y H:i');
+
+        $this->arguments['event']
+            ->getPropertyMappingConfiguration()
+            ->forProperty('recurringStartDate')
+            ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\DateTimeConverter', \TYPO3\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y H:i');
+
+        $this->arguments['event']
+            ->getPropertyMappingConfiguration()
+            ->forProperty('recurringEndDate')
+            ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\DateTimeConverter', \TYPO3\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd-m-Y H:i');
+
+
+    }
+
+    /**
+     * @param Event $event
+     */
+    public function updateAction(Event $event) {
+        $this->eventRepository->update($event);
         $this->redirect('index');
     }
 

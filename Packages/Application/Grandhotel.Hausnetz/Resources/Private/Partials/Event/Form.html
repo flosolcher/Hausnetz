@@ -1,4 +1,4 @@
-<f:form action="{action}" class="form-horizontal" objectName="{objectName}">
+<f:form action="{action}" class="form-horizontal" object="{object}" objectName="{objectName}">
         <div class="form-group">
             <label class="col-md-2 control-label">Titel</label>
             <div class="col-md-10">
@@ -14,7 +14,15 @@
                     <span class="input-group-addon"><i class="fa fa-times"></i></span>
                 </div>
             </div>
-            <f:form.textfield property="startDate" class="hide"  id="start-date-input" />
+            <f:if condition="{object}">
+                <f:then>
+                    <f:form.textfield property="startDate" class="hide" value="{f:format.date(date: '{object.startDate}', format: 'd.m.Y H:i')}" id="start-date-input" />
+                </f:then>
+                <f:else>
+                    <f:form.textfield property="startDate" class="hide"  id="start-date-input" />
+                </f:else>
+            </f:if>
+
         </div>
         <div class="form-group">
             <label for="end-date-input" class="col-md-2 control-label">Ende</label>
@@ -25,7 +33,15 @@
                     <span class="input-group-addon"><i class="fa fa-times"></i></span>
                 </div>
             </div>
-            <f:form.textfield property="endDate" class="hide" id="end-date-input" />
+
+            <f:if condition="{object}">
+                <f:then>
+                    <f:form.textfield property="endDate" class="hide" value="{f:format.date(date: '{object.endDate}', format: 'd.m.Y H:i')}" id="end-date-input" />
+                </f:then>
+                <f:else>
+                    <f:form.textfield property="endDate" class="hide"  id="end-date-input" />
+                </f:else>
+            </f:if>
         </div>
 
         <div class="form-group">
@@ -57,14 +73,70 @@
             </div>
         </div>
 
+
+
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-default">Speichern</button>
+            <label class="col-md-2 control-label">Art der Wiederholung</label>
+            <div class="col-md-10">
+                <f:form.select property="recurringType" options="{recurringTypes}" prependOptionLabel="Keine Wiederholung" class="form-control recurring-type" />
             </div>
         </div>
- 
+    <div class="recurring-fields hidden">
+        <div class="form-group">
+            <label for="start-date-input" class="col-md-2 control-label">Wiederholen von</label>
+            <div class="col-md-10">
+                <div class="input-group date form-datetime" data-link-field="recurring-start-date-input">
+                    <input class="form-control display-field" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <f:if condition="{object}">
+                <f:then>
+                    <f:form.textfield property="recurringStartDate" class="hide" value="{f:format.date(date: '{object.recurringStartDate}', format: 'd.m.Y H:i')}" id="recurring-start-date-input" />
+                </f:then>
+                <f:else>
+                    <f:form.textfield property="recurringStartDate" class="hide"  id="recurring-start-date-input" />
+                </f:else>
+            </f:if>
+        </div>
+        <div class="form-group">
+            <label for="end-date-input" class="col-md-2 control-label">Wiederholen bis</label>
+            <div class="col-md-10">
+                <div class="input-group date form-datetime" data-link-field="recurring-end-date-input">
+                    <input class="form-control display-field" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <f:if condition="{object}">
+                <f:then>
+                    <f:form.textfield property="recurringEndDate" class="hide" value="{f:format.date(date: '{object.recurringEndDate}', format: 'd.m.Y H:i')}" id="recurring-end-date-input" />
+                </f:then>
+                <f:else>
+                    <f:form.textfield property="recurringEndDate" class="hide"  id="recurring-end-date-input" />
+                </f:else>
+            </f:if>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Speichern</button>
+        </div>
+    </div>
+
 </f:form>
 <script type="text/javascript">
+
+    var recurringChange = function() {
+        if ($('.recurring-type').val()) {
+            $('.recurring-fields').removeClass('hidden');
+        } else {
+            $('.recurring-fields').addClass('hidden');
+        }
+    }
+
     $(function() {
 
         $('.form-datetime').each(function() {
@@ -86,6 +158,12 @@
             format: 'dd.mm.yyyy hh:ii',
             linkFormat: 'dd.mm.yyyy hh:ii'
         });
+
+        $('.recurring-type').on('change', function() {
+            recurringChange();
+        });
+
+        recurringChange();
 
     });
 </script>
