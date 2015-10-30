@@ -26,4 +26,14 @@ class UserController extends AbstractController {
         }
     }
 
+    /**
+     * @param string $language
+     */
+    public function switchLanguageAction($language = '') {
+        if (in_array($language, array('de', 'en'))) {
+            $this->authService->setLocale($language);
+        }
+        $this->redirect('index', 'Announcement');
+    }
+
 }

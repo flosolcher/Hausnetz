@@ -32,6 +32,11 @@ class AuthService {
     /**
      * @var string
      */
+    protected $locale = 'de';
+
+    /**
+     * @var string
+     */
     protected $returnUrl = '';
 
     /**
@@ -89,6 +94,20 @@ class AuthService {
      */
     public function isLoggedIn() {
         return $this->loggedIn;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setLocale($locale = '') {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale() {
+        return $this->locale;
     }
 
     /**

@@ -20,6 +20,12 @@
                 <li class="{f:if(condition: '{0:currentController} == {0: \'Contact\'}', then: 'active', else: '')}"><f:link.action action="index" controller="contact">Adressbuch</f:link.action></li>
                 <li class="{f:if(condition: '{0:currentController} == {0: \'Container\'}', then: 'active', else: '')}"><f:link.action action="index" controller="container">Container</f:link.action></li>
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><f:link.action action="switchLanguage" controller="user" arguments="{language: 'de'}">de</f:link.action></li>
+                <li><f:link.action action="switchLanguage" controller="user" arguments="{language: 'en'}">en</f:link.action></li>
+
+            </ul>
         <div>
     </div>
 </nav>

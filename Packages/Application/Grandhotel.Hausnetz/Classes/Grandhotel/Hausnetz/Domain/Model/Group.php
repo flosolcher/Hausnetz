@@ -51,6 +51,10 @@ class Group extends AbstractModel
     protected $users;
 
 
+    public function __construct() {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 
     /**
      * @return string

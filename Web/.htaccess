@@ -23,7 +23,7 @@
 	# You will have to change the path in the following option if you
 	# experience problems while your installation is located in a subdirectory
 	# of the website root.
-	RewriteBase /
+	RewriteBase /hausnetz
 
 	# Stop rewrite processing no matter if a package resource, robots.txt etc. exists or not
 	RewriteRule ^(_Resources/Packages/|robots\.txt|favicon\.ico) - [L]
@@ -35,7 +35,11 @@
 	RewriteRule .* - [L]
 
 	# Perform rewriting of persistent private resources
-	RewriteRule ^(_Resources/Persistent/[a-zA-Z0-9]+/(.+/)?[a-f0-9]{40})/.+(\..+) $1$3 [L]
+	RewriteRule ^_Resources/Static/(.*)/([^/]+).css$  _Resources/Static/$1/style.php/$2.scss  [L,QSA]
+
+	RewriteEngine On
+	RewriteRule ^([a-zA-Z0-9]+)\.css$ style.php/$1.scss [L,QSA]
+
 
 	# Perform rewriting of persistent resource files
 	RewriteRule ^(_Resources/Persistent/.{40})/.+(\..+) $1$2 [L]

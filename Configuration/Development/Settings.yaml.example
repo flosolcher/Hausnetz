@@ -1,5 +1,7 @@
 TYPO3:
   Flow:
+    i18n:
+      defaultLocale: 'de'
     persistence:
       backendOptions:
         driver: 'pdo_mysql'

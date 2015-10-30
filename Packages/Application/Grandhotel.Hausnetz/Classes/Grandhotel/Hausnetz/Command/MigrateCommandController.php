@@ -167,7 +167,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
     }
 
     
-    protected function migrateContainer() {
+    protected function migrateContainers() {
         $sql = 'SELECT * FROM containers ORDER BY id';
         $result = $this->getConnection()->query($sql);
         while ($row = $result->fetch_assoc()) {
@@ -399,13 +399,13 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
     }
 
     public function databaseCommand() {
-       /*
+
         $this->migrateUsers();
         $this->migrateGroups();
         $this->migrateGroupUsers();
         $this->migrateContainers();
         //$this->migrateAnnouncements();
-        $this->migrateEvents();
+        /*$this->migrateEvents();
          */
        
        /*
@@ -423,8 +423,8 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         */
         //echo "migrating announcement \n";
         //$this->migrateAnnouncements();
-        echo "migrating events \n";
-        $this->migrateEvents();
+        /*echo "migrating events \n";
+        $this->migrateEvents();*/
         echo "migrating contacts \n";
         $this->migrateContacts();
 

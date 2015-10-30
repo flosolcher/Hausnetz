@@ -7,10 +7,16 @@ namespace Grandhotel\Hausnetz\Controller\Super;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\I18n\Locale;
 use TYPO3\Flow\Mvc\View\ViewInterface;
 
 abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
+    /**
+     * @var \TYPO3\Flow\I18n\Service
+     * @Flow\Inject
+     */
+    protected $il8nService;
 
     /**
      * @var \Grandhotel\Hausnetz\Service\AuthService
@@ -37,7 +43,13 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
                 $this->redirect('login', 'User');
             }
         } else {
-            // Handle other access checks
+            $userLocale =  new Locale($this->authService->getLocale());
+            $currentLocale = $this->il8nService->getConfiguration()->getCurrentLocale();
+
+            if ($userLocale != $currentLocale) {
+
+                $this->il8nService->getConfiguration()->setCurrentLocale($userLocale);
+            }
         }
 
 
