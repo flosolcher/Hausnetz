@@ -12,12 +12,12 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    Filter:
+                    {f:translate(id: 'container.filter')}
                     <div class="btn-group">
                         <button type="button" class="btn btn-default">
                             <f:if condition="{container}">
                                 <f:then>{container.title}</f:then>
-                                <f:else>Ganzes Haus</f:else>
+                                <f:else>{f:translate(id: 'container.entire_house')}</f:else>
                             </f:if>
                         </button>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -25,7 +25,7 @@
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><f:link.action action="index">Ganzes Haus</f:link.action></li>
+                            <li><f:link.action action="index">{f:translate(id: 'container.entire_house')}</f:link.action></li>
                             <li role="separator" class="divider"></li>
                             <f:for each="{containers}" as="_container">
                                 <li><f:link.action action="index" arguments="{container: '{_container}'}">{_container.title}</f:link.action></li>
@@ -36,18 +36,18 @@
                 </div>
                 <hr />
                 <div class="panel-body">
-                    <h3>Neuer Eintrag</h3>
+                    <h3>{f:translate(id: 'entity.new_entry')}</h3>
                     <f:form action="create" objectName="announcement">
                         <div class="row">
                         <div class="col-md-4">
-                            <f:form.select property="container" options="{containers}" optionLabelField="title" prependOptionLabel="Ganzes Haus" class="form-control" />
+                            <f:form.select property="container" options="{containers}" optionLabelField="title" prependOptionLabel="{f:translate(id: 'container.entire_house')}" class="form-control" />
                         </div>
                         <div class="col-md-8">
                             <div class="input-group">
 
                                     <f:form.textarea class="form-control autogrow" property="message" rows="1" />
                                         <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
-                                         btn-default">Neuer Eintrag</span>
+                                         btn-default">{f:translate(id: 'entity.new_entry')}</span>
                             </div>
                         </div>
                         </div>
@@ -68,7 +68,7 @@
                                         {announcement.container.title}
                                     </f:then>
                                     <f:else>
-                                        Ganzes Haus
+                                      {f:translate(id: 'container.entire_house')}
                                     </f:else>
                                 </f:if>
                             </span>

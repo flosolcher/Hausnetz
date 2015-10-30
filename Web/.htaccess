@@ -23,7 +23,8 @@
 	# You will have to change the path in the following option if you
 	# experience problems while your installation is located in a subdirectory
 	# of the website root.
-	RewriteBase /hausnetz
+	#RewriteBase /hausnetz
+	RewriteBase /
 
 	# Stop rewrite processing no matter if a package resource, robots.txt etc. exists or not
 	RewriteRule ^(_Resources/Packages/|robots\.txt|favicon\.ico) - [L]

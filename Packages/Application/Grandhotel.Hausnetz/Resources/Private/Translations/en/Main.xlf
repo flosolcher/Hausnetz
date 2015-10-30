@@ -1,15 +1,17 @@
-<?xml version="1.0"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file original="" source-language="de" target-language="en" datatype="plaintext">
         <body>
             <trans-unit id="page.main.title">
-                <source>Hausnetz</source>
-                <target>Hausnetz EN</target>
-            </trans-unit>
-            <trans-unit id="announcement.title">
-                <source>Neuigkeiten</source>
-                <target>News</target>
-            </trans-unit>
+                <source>Hausnetz</source> <target state="needs-translation">Hausnetz EN</target> </trans-unit>
+            <trans-unit id="announcement.title" approved="yes">
+                <source>Neuigkeiten</source> <target state="translated">News</target> </trans-unit>
+            <trans-unit id="container.filter">
+                <source>Filtern nach Container</source> <target state="needs-review-translation">Filter for container</target> </trans-unit>
+            <trans-unit id="container.entire_house" approved="yes">
+                <source>Ganzes Haus</source> <target state="translated">Entire House</target> </trans-unit>
+            <trans-unit id="entity.new_entry" approved="yes">
+                <source>Neuer Eintrag</source> <target state="translated">Add Entry</target> </trans-unit>
         </body>
     </file>
 </xliff>
