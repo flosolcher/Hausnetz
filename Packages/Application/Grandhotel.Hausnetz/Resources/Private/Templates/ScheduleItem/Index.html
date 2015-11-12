@@ -1,0 +1,45 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <div class="row">
+      <div class="col-md-12">
+         <div class="page-header">
+             <h3>ScheduleItem</h3>
+         </div>
+      </div>
+      <div class="col-md-8">
+        <h4>Die Items</h4>
+      </div>
+      <div class="col-md-4">
+         <span class="btn">
+            <f:link.action action="new">Item hinzufügen</f:link.action>
+         </span>
+      </div>
+    </div>
+   
+    <div class="row">
+        <f:for each="{items}" as="item">
+            <div class="col-md-3">
+               <f:if condition="{item.title}">
+                  <f:then>
+                     <h3><f:format.nl2br>{item.content}</f:format.nl2br></h3>
+
+                  </f:then>
+                  <f:else>
+                     <i>(keine Überschrift bisher)</i>
+                  </f:else>
+               </f:if>
+               <p>Letzte Änderung: <f:format.date format="d.m.Y">{item.changedate}</f:format.date></p>
+               <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>|
+               <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
+            </div>   
+            <div class="col-md-9">           
+               <div class="panel panel-default">
+                 <div class="panel-body">
+                     <p><f:format.nl2br>{item.content}</f:format.nl2br></p>
+                 </div>
+               </div>
+            </div>
+        </f:for>
+    </div>
+</f:section>
