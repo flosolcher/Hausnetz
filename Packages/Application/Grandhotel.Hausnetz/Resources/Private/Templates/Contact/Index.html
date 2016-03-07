@@ -1,6 +1,19 @@
+{namespace gh=Grandhotel\Hausnetz\ViewHelpers}
+
 <f:layout name="Default" />
 
+
 <f:section name="Content">
+<f:comment>
+Index
+<span>
+   <f:format.raw>
+      {gh:indexlinks(from:'A', to:'Z')}
+   </f:format.raw>
+</span>
+
+</f:comment>
+
     <div class="row">
       <div class="col-md-12">
          <div class="page-header">
