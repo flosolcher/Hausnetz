@@ -8,6 +8,16 @@
             <trans-unit id="announcement.title">
                 <source>Neuigkeiten</source>
             </trans-unit>
+            <trans-unit id="announcement.title">
+                <source>Filtern nach Container</source>
+            </trans-unit>
+            <trans-unit id="container.entire_house" approved="yes">
+                <source>Ganzes Haus</source>
+            </trans-unit>
+            <trans-unit id="entity.new_entry" approved="yes">
+                <source>Neuer Eintrag</source> 
+            </trans-unit>
+            
         </body>
     </file>
 </xliff>

@@ -86,7 +86,7 @@
                             <f:if condition="{currentUser} == {announcement.createUser}">
                                 <small class="pull-right">
                                     <f:link.action action="edit" arguments="{announcement: '{announcement}'}">
-                                        <i class="fa fa-pencil"></i> Bearbeiten
+                                        <i class="fa fa-pencil"></i> {f:translate(id: 'entity.edit')}
                                     </f:link.action>
                                 </small>
                             </f:if>
@@ -109,7 +109,7 @@
                                     <f:if condition="{currentUser} == {subAnnouncement.createUser}">
                                         <small class="pull-right">
                                             <f:link.action action="edit" arguments="{announcement: '{subAnnouncement}'}">
-                                                <i class="fa fa-pencil"></i> Bearbeiten
+                                                <i class="fa fa-pencil"></i> {f:translate(id: 'entity.edit')}
                                             </f:link.action>
                                         </small>
                                     </f:if>
