@@ -5,17 +5,33 @@
             <trans-unit id="page.main.title">
                 <source>Hausnetz</source>
             </trans-unit>
+
             <trans-unit id="announcement.title">
                 <source>Neuigkeiten</source>
             </trans-unit>
-            <trans-unit id="announcement.title">
-                <source>Filtern nach Container</source>
+            <trans-unit id="announcement.reply">
+                <source>Antworten</source>
             </trans-unit>
+
+            <trans-unit id="calendar.title">
+                <source>Kalender</source>
+            </trans-unit>
+            <trans-unit id="calendar.title">
+                <source>Kalender</source>
+            </trans-unit>
+
             <trans-unit id="container.entire_house" approved="yes">
                 <source>Ganzes Haus</source>
             </trans-unit>
+            <trans-unit id="container.filter_by">
+                <source>Filtern nach Container</source>
+            </trans-unit>
+
             <trans-unit id="entity.new_entry" approved="yes">
                 <source>Neuer Eintrag</source> 
+            </trans-unit>
+            <trans-unit id="entity.edit">
+                <source>Bearbeiten</source> 
             </trans-unit>
             
         </body>
