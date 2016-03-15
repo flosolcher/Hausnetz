@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {f:translate(id: 'container.filter')}
+                    {f:translate(id: 'container.filter_by')}
                     <div class="btn-group">
                         <button type="button" class="btn btn-default">
                             <f:if condition="{container}">
@@ -125,7 +125,7 @@
                             <f:form.hidden property="announcement" value="{announcement}" />
                             <f:form.textarea class="form-control autogrow" property="message" rows="1" />
                             <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
-                             btn-default">Antworten</span>
+                             btn-default">{f:translate(id: 'announcement.reply')}</span>
                         </div>
                         </f:form>
                     </div>
