@@ -22,11 +22,13 @@ class ScheduleTemplateController extends AbstractController {
     /**
      */
     public function indexAction() {
-      $user = $this->authService->getCurrentUser();
-      $items = $this->scheduleTemplateRepository->listItems();
+      //$items = $this->scheduleTemplateRepository->listItems();
+      $items = $this->scheduleTemplateRepository->listActive();
+      //$item = $this->scheduleTemplateRepository->getFirst();
       $fields = $this->scheduleTemplateRepository->getFields();
       $this->view->assign('fields', $fields);
       $this->view->assign('items', $items);
+      //$this->view->assign('item', $item);
     }
     
     /**

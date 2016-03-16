@@ -4,14 +4,21 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h3>Item bearbeiten</h3>
+                <h3>{f:translate(id: 'scheduleitem.edit')}</h3>
             </div>
         </div>
     </div>
+   <div class="row">
+        <div class="col-md-12">
+            <f:form.select options="{property:'scheduleTemplate'}">
+                
+            </f:form.select>
+        </div>
+   </div>
    
    <div class="row">
         <div class="col-md-12">
-          <f:render partial="GenericForm" arguments="{action:'edit', item:'{item}', objectName:'item', fields:'{fields}' }" />
+          <f:render partial="GenericForm" arguments="{action:'update', item:'{item}', objectName:'item', fields:'{fields}', model:'scheduleitem' }" />
         </div>
    </div>
 </f:section>

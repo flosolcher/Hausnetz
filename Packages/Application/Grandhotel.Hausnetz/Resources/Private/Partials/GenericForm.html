@@ -11,7 +11,7 @@
    <f:for each="{fields}" as="field">
       
       <div class="form-group">
-         <label class="col-sm-2 control-label" for="{field.property}">{field.name}</label>
+         <label class="col-sm-2 control-label" for="{field.property}">{f:translate(id: '{model}.{field.property}')}</label>
          <div class="col-sm-10">
                
                 <f:if condition="{field.format} == 'date'">

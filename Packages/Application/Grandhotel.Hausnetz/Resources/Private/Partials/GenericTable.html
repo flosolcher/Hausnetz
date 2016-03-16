@@ -9,12 +9,12 @@
     <table class="table table-striped table-bordered">
         <tr>
             <f:for each="{fields}" as="field">
-                <th>
-                    {field.name}
+                <th> 
+                    {f:translate(id: '{model}.{field.property}')}
                 </th>
             </f:for>
-            <th>Bearb.</th>
-            <th>Löschen</th>
+            <th>{f:translate(id: 'entity.edit')}</th>
+            <th>{f:translate(id: 'entity.delete')}</th>
         </tr>
 
         <f:for each="{items}" as="item">

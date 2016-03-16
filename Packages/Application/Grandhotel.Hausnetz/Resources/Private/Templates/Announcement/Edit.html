@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1>Neuigkeiten</h1>
+                <h1>{f:translate(id: 'announcement.title')}</h1>
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Eintrag bearbeiten
+                    {f:translate(id: 'entity.edit')}
                 </div>
                 <div class="panel-body">
                     <f:form action="update" object="{announcement}" objectName="announcement">
@@ -21,7 +21,7 @@
                                 <f:then></f:then>
                                 <f:else>
                                     <div class="col-md-4">
-                                        <f:form.select property="container" options="{containers}" optionLabelField="title" prependOptionLabel="Ganzes Haus" class="form-control" />
+                                        <f:form.select property="container" options="{containers}" optionLabelField="title" prependOptionLabel="{f:translate(id: 'container.entire_house')}" class="form-control" />
                                     </div>
                                 </f:else>
                             </f:if>
@@ -31,7 +31,7 @@
 
                                     <f:form.textarea class="form-control autogrow" property="message" rows="1" />
                                         <span onclick="$(this).parents('form').submit();" class="input-group-addon btn
-                                         btn-default">Eintrag speichern</span>
+                                         btn-default">{f:translate(id: 'entity.save_entry')}</span>
                                 </div>
                             </div>
                         </div>
