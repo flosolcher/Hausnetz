@@ -81,38 +81,6 @@
                 <source>Bezeichnung</source>
             </trans-unit>
 
-            <trans-unit id="scheduleitem.pagetitle">
-                <source>Schichtplan</source>
-            </trans-unit>
-            <trans-unit id="scheduleitem.edit">
-                <source>Schicht item bearbeiten</source>
-            </trans-unit>
-            <trans-unit id="scheduleitem.add">
-                <source>Schicht item hinzufügen</source>
-            </trans-unit>
-            <trans-unit id="scheduleitem.no_title">
-                <source>(keine Überschrift bisher)</source>
-            </trans-unit>
-            <trans-unit id="scheduleitem.items">
-                <source>Die Schicht-Items</source>
-            </trans-unit>
-            <trans-unit id="scheduleitem.title">
-                <source>Schicht-Bezeichnung</source>
-            </trans-unit>
-            <trans-unit id="scheduleitem.content">
-                <source>Schicht-Item Beschreibung</source>
-            </trans-unit>
-            <trans-unit id="scheduleitem.day">
-                <source>Wochentag</source>
-            </trans-unit>
-            <trans-unit id="scheduleitem.begin">
-                <source>Schichtbeginn</source>
-            </trans-unit>
-            <trans-unit id="scheduleitem.end">
-                <source>Schichtende</source>
-            </trans-unit>
-            
-            
                                                                         
             <trans-unit id="event.title">
                 <source>Kalender</source>
@@ -150,6 +118,38 @@
                 <source>Notizen</source>
             </trans-unit>            
 
+            <trans-unit id="scheduleitem.pagetitle">
+                <source>Schichtplan</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.edit">
+                <source>Schicht item bearbeiten</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.add">
+                <source>Schicht item hinzufügen</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.no_title">
+                <source>(keine Überschrift bisher)</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.items">
+                <source>Die Schicht-Items</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.title">
+                <source>Schicht-Bezeichnung</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.content">
+                <source>Schicht-Item Beschreibung</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.day">
+                <source>Wochentag</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.begin">
+                <source>Schichtbeginn</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.end">
+                <source>Schichtende</source>
+            </trans-unit>
+            
+            
 
             <trans-unit id="user.loggedinuser">
                 <source>Eingeloggt als</source>
