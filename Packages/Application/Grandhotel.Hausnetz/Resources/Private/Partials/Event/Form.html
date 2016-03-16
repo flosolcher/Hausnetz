@@ -1,12 +1,12 @@
 <f:form action="{action}" class="form-horizontal" object="{object}" objectName="{objectName}">
         <div class="form-group">
-            <label class="col-md-2 control-label">Titel</label>
+            <label class="col-md-2 control-label">{f:translate(id: 'event.')}</label>
             <div class="col-md-10">
                 <f:form.textfield class="form-control" property="title" />
             </div>
         </div>
         <div class="form-group">
-            <label for="start-date-input" class="col-md-2 control-label">Beginn</label>
+            <label for="start-date-input" class="col-md-2 control-label">{f:translate(id: 'event.startdate')}</label>
             <div class="col-md-10">
                 <div class="input-group date form-datetime" data-link-field="start-date-input">
                     <input class="form-control display-field" size="16" type="text" value="" readonly>
@@ -25,7 +25,7 @@
 
         </div>
         <div class="form-group">
-            <label for="end-date-input" class="col-md-2 control-label">Ende</label>
+            <label for="end-date-input" class="col-md-2 control-label">{f:translate(id: 'event.enddate')}</label>
             <div class="col-md-10">
                 <div class="input-group date form-datetime" data-link-field="end-date-input">
                     <input class="form-control display-field" size="16" type="text" value="" readonly>
@@ -45,20 +45,20 @@
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 control-label">Beschreibung</label>
+            <label class="col-md-2 control-label">{f:translate(id: 'g.description')}</label>
             <div class="col-md-10">
                 <f:form.textarea class="form-control" property="description" />
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 control-label">Ort</label>
+            <label class="col-md-2 control-label">{f:translate(id: 'g.location')}</label>
             <div class="col-md-10">
                 <f:form.textfield class="form-control" property="location" />
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-2 control-label">Container</label>
+            <label class="col-md-2 control-label">{f:translate(id: 'g.container')}</label>
             <div class="col-md-10">
                 <f:form.select property="container" options="{containers}" optionLabelField="title" prependOptionLabel="Ganzes Haus" class="form-control" />
             </div>
@@ -66,24 +66,23 @@
         <div class="form-group">
             <div class="col-md-10 col-md-offset-2">
                 <div class="checkbox">
-                    <label>
-                        <f:form.checkbox property="wholeDay" value="1" /> Ganzer Tag
-                    </label>
+                  <label>
+                     <f:form.checkbox property="wholeDay" value="1" /> {f:translate(id: 'event.wholeday')}
+                  </label>
                 </div>
             </div>
         </div>
 
 
-
         <div class="form-group">
-            <label class="col-md-2 control-label">Art der Wiederholung</label>
+            <label class="col-md-2 control-label">{f:translate(id: 'event.recurringtype')}</label>
             <div class="col-md-10">
                 <f:form.select property="recurringType" options="{recurringTypes}" prependOptionLabel="Keine Wiederholung" class="form-control recurring-type" />
             </div>
         </div>
     <div class="recurring-fields hidden">
         <div class="form-group">
-            <label for="start-date-input" class="col-md-2 control-label">Wiederholen von</label>
+            <label for="start-date-input" class="col-md-2 control-label">{f:translate(id: 'event.recurringstartdate')}</label>
             <div class="col-md-10">
                 <div class="input-group date form-datetime" data-link-field="recurring-start-date-input">
                     <input class="form-control display-field" size="16" type="text" value="" readonly>
@@ -101,7 +100,7 @@
             </f:if>
         </div>
         <div class="form-group">
-            <label for="end-date-input" class="col-md-2 control-label">Wiederholen bis</label>
+            <label for="end-date-input" class="col-md-2 control-label">{f:translate(id: 'event.recurringenddate')}</label>
             <div class="col-md-10">
                 <div class="input-group date form-datetime" data-link-field="recurring-end-date-input">
                     <input class="form-control display-field" size="16" type="text" value="" readonly>
@@ -122,7 +121,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Speichern</button>
+            <button type="submit" class="btn btn-default">{f:translate(id: 'g.save')}</button>
         </div>
     </div>
 

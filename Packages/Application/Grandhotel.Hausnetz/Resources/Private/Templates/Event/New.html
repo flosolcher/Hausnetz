@@ -6,13 +6,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h3>Neues Event anlegen</h3>
+                <h3>{f:translate(id: 'event.add')}</h3>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <f:render partial="Event/Form.html" arguments="{action: 'create', object: NULL, objectName: 'event', containers: containers, recurringTypes: recurringTypes}" />
+           <f:comment>
+              
+            <f:render partial="Event/Form.html" arguments="{action: 'create', object: NULL, objectName: 'event', containers: containers, recurringTypes: recurringTypes, model:'event'}" />
+           </f:comment>
         </div>
     </div>
 </f:section>
