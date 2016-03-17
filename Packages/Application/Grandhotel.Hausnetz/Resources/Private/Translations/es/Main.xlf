@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file original="" source-language="de" target-language="es" datatype="plaintext">
+        <body>
+           
+            <trans-unit id="g.title">
+                <source>Titel</source>
+                <target>Título</target>
+            </trans-unit>
+            <trans-unit id="g.description">
+                <source>Beschreibung</source>
+                <target>Descripción</target>
+            </trans-unit>
+            <trans-unit id="g.container">
+                <source>Container</source>
+                <target>Contenedor</target>
+            </trans-unit>
+            <trans-unit id="g.location">
+                <source>Ort</source>
+                <target>Lugar</target>
+            </trans-unit>
+            
+            <trans-unit id="g.save">
+                <source>Speichern</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="g.x">
+                <source>X</source>
+                <target>X</target>
+            </trans-unit>
+            
+                       
+                                             
+            <trans-unit id="page.main.title">
+                <source>Hausnetz</source> 
+                <target>Red de casa</target>
+            </trans-unit>
+            
+            
+            <trans-unit id="announcement.title" approved="yes">
+                <source>Neuigkeiten</source> 
+                <target>Novedades</target> 
+            </trans-unit>
+            <trans-unit id="announcement.reply">
+                <source>Antworten</source> 
+                <target>Respuestas</target> 
+            </trans-unit>
+
+            
+            <trans-unit id="contact.title">
+                <source>Adressbuch</source> 
+                <target>Directorio</target> 
+            </trans-unit>
+            <trans-unit id="contact.edit">
+                <source>Kontakt bearbeiten</source> 
+                <target>Editar contacto</target> 
+            </trans-unit>
+            <trans-unit id="contact.add">
+                <source>Neuen Kontakt anlegen</source> 
+                <target>Crear nuevo contacto</target> 
+            </trans-unit>
+            
+            
+            <trans-unit id="container.title">
+                <source>Container</source> 
+                <target>Contenedors</target> 
+            </trans-unit>
+            <trans-unit id="container.filter_by">
+                <source>Filtern nach Container</source> 
+                <target>Filtrar por contenedor</target> 
+            </trans-unit>
+            <trans-unit id="container.entire_house" approved="yes">
+                <source>Ganzes Haus</source> 
+                <target>Entero casa</target> 
+            </trans-unit>
+            <trans-unit id="container.edit">
+                <source>Container bearbeiten</source> 
+                <target>Editar contenedor</target> 
+            </trans-unit>
+            <trans-unit id="container.add">
+                <source>Container hinzufügen</source> 
+                <target>Crear contenedor</target> 
+            </trans-unit>
+
+
+            <trans-unit id="container.color">
+                <source>Farbe</source> 
+                <target>Color</target> 
+            </trans-unit>
+            <trans-unit id="container.description">
+                <source>Beschreibung</source> 
+                <target>Descripción</target> 
+            </trans-unit>
+            <trans-unit id="container.title">
+                <source>Bezeichnung</source> 
+                <target>Denominación</target> 
+            </trans-unit>
+
+
+            <trans-unit id="event.title">
+                <source>Kalender</source> 
+                <target>Calendario</target> 
+            </trans-unit>
+            <trans-unit id="event.add">
+                <source>Event hinzufügen</source> 
+                <target>Crear evento</target> 
+            </trans-unit>
+            <trans-unit id="event.edit">
+                <source>Event bearbeiten</source> 
+                <target>Editar evento</target> 
+            </trans-unit>
+            <trans-unit id="event.startdate">
+                <source>Beginn</source> 
+                <target>Inizio</target> 
+            </trans-unit>
+            <trans-unit id="event.enddate">
+                <source>Ende</source> 
+                <target>Final</target> 
+            </trans-unit>
+            <trans-unit id="event.recurringtype">
+                <source>Wiederholungstyp</source> 
+                <target>Tipo de repetecíon</target> 
+            </trans-unit>
+            <trans-unit id="event.recurringstartdate">
+                <source>Wiederholung ab</source> 
+                <target>Repepticon inizio</target> 
+            </trans-unit>
+            <trans-unit id="event.recurringenddate">
+                <source>Wiederholung bis</source> 
+                <target>Repetición data de final</target> 
+            </trans-unit>
+            <trans-unit id="event.wholeday">
+                <source>Ganzer Tag</source>
+                <target>Entera dia</target>
+            </trans-unit>
+            
+            
+            <trans-unit id="note.title">
+                <source>Titel der Notiz</source>
+                <target>Titulo de nota</target>
+            </trans-unit>
+            <trans-unit id="note.your_notes">
+                <source>Deine Notizen</source>
+                <target>Tes notas</target>
+            </trans-unit>
+            <trans-unit id="note.add">
+                <source>Notiz hinzufügen</source>
+                <target>Crear nuevo nota</target>
+            </trans-unit>
+            <trans-unit id="note.edit">
+                <source>Notiz bearbeiten</source>
+                <target>Edit </target>
+            </trans-unit>
+            <trans-unit id="note.content">
+                <source>Notizen</source>
+                <target></target>
+            </trans-unit>
+            
+                                    
+            <trans-unit id="scheduleitem.pagetitle">
+                <source>Schichtplan</source>
+                <target>Plano de turnos</target>
+            </trans-unit>            
+            <trans-unit id="scheduleitem.add">
+                <source>Schicht Item hinzufügen</source>
+                <target>Crear item de turnos</target>
+            </trans-unit>            
+            <trans-unit id="scheduleitem.edit">
+                <source>Schicht Item bearbeiten</source>
+                <target>Editar item de turnos</target>
+            </trans-unit>
+            <trans-unit id="scheduleitem.no_title">
+                <source>(keine Überschrift bisher)</source>
+                <target>(no tituló hasta ahora)</target>
+            </trans-unit>            
+            <trans-unit id="scheduleitem.items">
+                <source>Die Schicht-Items</source>
+                <target>Los items de turnos</target>
+            </trans-unit>            
+
+            <trans-unit id="scheduleitem.title">
+                <source>Schicht-Bezeichnung</source>
+                <target>Denominacion de turnos</target>
+            </trans-unit>            
+            <trans-unit id="scheduleitem.content">
+                <source>Schicht-Item Beschreibung</source>
+                <target>Descripcion del item</target>
+            </trans-unit>            
+            <trans-unit id="scheduleitem.day">
+                <source>Wochentag</source>
+                <target>Dia de la semana</target>
+            </trans-unit>            
+            <trans-unit id="scheduleitem.begin">
+                <source>Schichtbeginn</source>
+                <target>Inicio del turnos</target>
+            </trans-unit>            
+            <trans-unit id="scheduleitem.end">
+                <source>Schichtende</source>
+                <target>Final del turnos</target>
+            </trans-unit>
+
+                        
+            <trans-unit id="user.loggedinuser">
+                <source>Eingeloggt als</source>
+                <target>Iniciar de sesión </target>
+            </trans-unit>
+
+                        
+                        
+            <trans-unit id="entity.new_entry" approved="yes">
+                <source>Neuer Eintrag</source> 
+                <target>Crear nuevo entrada</target> 
+            </trans-unit>
+            <trans-unit id="entity.edit">
+                <source>Bearbeiten</source> 
+                <target>Editar entrada</target> 
+            </trans-unit>
+            <trans-unit id="entity.delete">
+                <source>Löschen</source> 
+                <target>Eliminar</target> 
+            </trans-unit>
+            <trans-unit id="entity.close">
+                <source>Schließen</source> 
+                <target>Cerrar</target> 
+            </trans-unit>
+            <trans-unit id="entity.save_entry">
+                <source>Eintrag speichern</source> 
+                <target>Guardar entrada</target> 
+            </trans-unit>
+            
+        </body>
+    </file>
+</xliff>
