@@ -92,6 +92,7 @@ class ScheduleItemRepository extends AbstractRepository {
           'type'     => 'int',
              ),
       );
+
       
       // set default values where no default given above
       $keys = array('type', 'format', 'crop');
