@@ -5,7 +5,10 @@
 
 <link rel="stylesheet" href="{f:uri.resource(path:'libraries/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}">
 <script src="{f:uri.resource(path:'libraries/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}"></script>
-   
+
+<link rel="stylesheet" href="{f:uri.resource(path:'libraries/bootstrap-timepicker/css/timepicker.css')}">
+<script src="{f:uri.resource(path:'libraries/bootstrap-timepicker/js/bootstrap-timepicker.js')}"></script>
+
 <f:form enctype="multipart/form-data" action="{action}" objectName="item" object="{item}" class="form-horizontal">
 
    <f:for each="{fields}" as="field">
@@ -13,7 +16,19 @@
       <div class="form-group">
          <label class="col-sm-2 control-label" for="{field.property}">{field.name}</label>
          <div class="col-sm-10">
-               
+
+             <f:if condition="{field.format} == 'time'">
+                 <div class="input-group bootstrap-timepicker">
+                     <input class="form-control input-small timepicker" id="{field.property}-time" />
+                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                     <f:form.textfield property="{field.property}" class="hide" id="{field.property}-input" />
+                 </div>
+             </f:if>
+
+             <f:if condition="{field.format} == 'select'">
+                <f:form.select name="{field.property}" class="form-control" options="{field.options}" />
+             </f:if>
+
                 <f:if condition="{field.format} == 'date'">
                    <div class="input-group date form-datetime" data-link-field="{field.property}-input">
                     <input class="form-control display-field" size="16" type="text" value="" readonly>
@@ -91,6 +106,24 @@
         });
         
         $('.colorpicker').colorpicker();
+
+        $('.timepicker').timepicker({
+            icons: {
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down',
+
+            },
+            showMeridian: false,
+            showInputs: true
+        }).on('changeTime.timepicker', function(e) {
+            var that = $(e.currentTarget);
+            var input = that.parent().find('input.hide');
+            input.val(e.time.minutes + (60 * e.time.hours));
+
+
+        });
+
+
 
     });
 </script>

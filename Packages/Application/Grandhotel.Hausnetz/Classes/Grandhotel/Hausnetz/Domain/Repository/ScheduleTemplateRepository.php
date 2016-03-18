@@ -63,16 +63,28 @@ class ScheduleTemplateRepository extends AbstractRepository {
           'name'     => 'Tag',
           'property' => 'day',
           'type'     => 'int',
-             ),
+          'format'   => 'select',
+          'options'  => array(
+              0 => 'Montag',
+              1 => 'Dienstag',
+              2 => 'Mittwoch',
+              3 => 'Donnerstag',
+              4 => 'Freitag',
+              5 => 'Samstag',
+              6 => 'Sonntag',
+          )
+         ),
          array(
           'name'     => 'Anfang',
           'property' => 'begin',
           'type'     => 'int',
+          'format'   => 'time',
              ),
          array(
           'name'     => 'Ende',
           'property' => 'end',
           'type'     => 'int',
+          'format'   => 'time',
              ),
       );
       
