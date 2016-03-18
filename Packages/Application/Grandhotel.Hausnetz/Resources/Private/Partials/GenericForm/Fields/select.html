@@ -1,0 +1,9 @@
+{namespace gh=Grandhotel\Hausnetz\ViewHelpers}
+<f:if condition="{field.relation}">
+    <f:then>
+        <f:form.select name="{field.property}" class="form-control" optionLabelField="{field.relation.display}" options="{gh:closure(subject: '{field.relation.items}')}"/>
+    </f:then>
+    <f:else>
+        <f:form.select name="{field.property}" class="form-control" options="{field.options}" />
+    </f:else>
+</f:if>

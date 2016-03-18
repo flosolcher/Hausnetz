@@ -70,7 +70,7 @@ class ScheduleItemRepository extends AbstractRepository {
                   'type'            => 'n-1',
                   'display'         => 'fullName',
               ),
-              'format' => 'relation'
+              'format' => 'select'
           ),
          array(
           'name'     => 'Inhalt',
