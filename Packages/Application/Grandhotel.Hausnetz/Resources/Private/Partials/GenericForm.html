@@ -17,6 +17,9 @@
          <label class="col-sm-2 control-label" for="{field.property}">{field.name}</label>
          <div class="col-sm-10">
 
+             <f:if condition="{field.format} == 'relation'">
+                 <f:form.select name="{field.property}" class="form-control" optionLabelField="{field.relation.display}" options="{gh:closure(subject: '{field.relation.items}')}"/>
+             </f:if>
              <f:if condition="{field.format} == 'time'">
                  <div class="input-group bootstrap-timepicker">
                      <input class="form-control input-small timepicker" id="{field.property}-time" />
@@ -110,7 +113,7 @@
         $('.timepicker').timepicker({
             icons: {
                 up: 'fa fa-chevron-up',
-                down: 'fa fa-chevron-down',
+                down: 'fa fa-chevron-down'
 
             },
             showMeridian: false,

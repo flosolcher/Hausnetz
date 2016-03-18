@@ -17,6 +17,11 @@ use TYPO3\Flow\Persistence\Repository;
  */
 class ScheduleItemRepository extends AbstractRepository {
 
+    /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\UserRepository
+     */
+    protected $userRepository;
 
     /**
      *
@@ -54,6 +59,19 @@ class ScheduleItemRepository extends AbstractRepository {
           'name'     => 'Name',
           'property' => 'title'
              ),
+          array(
+             'name' => 'User',
+              'property' => 'user',
+              'type' => 'object',
+              'relation' => array(
+                  'items' => function() {
+                      return $this->userRepository->listItems('lastName', 'ASC');
+                   },
+                  'type'            => 'n-1',
+                  'display'         => 'fullName',
+              ),
+              'format' => 'relation'
+          ),
          array(
           'name'     => 'Inhalt',
           'property' => 'content'
