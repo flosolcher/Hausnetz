@@ -16,11 +16,11 @@
             <ul class="nav navbar-nav">
                 <li class="{f:if(condition: '{0:currentController} == {0: \'Announcement\'}', then: 'active', else: '')}"><f:link.action action="index" controller="announcement">{f:translate(id: 'announcement.title')}</f:link.action></li>
                 <li class="{f:if(condition: '{0:currentController} == {0: \'Event\'}', then: 'active', else: '')}"><f:link.action action="index" controller="event">{f:translate(id: 'event.title')}</f:link.action></li>
-                <li class="{f:if(condition: '{0:currentController} == {0: \'Note\'}', then: 'active', else: '')}"><f:link.action action="index" controller="note">{f:translate(id: 'note.title')}</f:link.action></li>
+                <li class="{f:if(condition: '{0:currentController} == {0: \'Note\'}', then: 'active', else: '')}"><f:link.action action="index" controller="note">{f:translate(id: 'note.pagetitle')}</f:link.action></li>
                 <li class="{f:if(condition: '{0:currentController} == {0: \'Contact\'}', then: 'active', else: '')}"><f:link.action action="index" controller="contact">{f:translate(id: 'contact.title')}</f:link.action></li>
-                <li class="{f:if(condition: '{0:currentController} == {0: \'Container\'}', then: 'active', else: '')}"><f:link.action action="index" controller="container">{f:translate(id: 'container.title')}</f:link.action></li>
-                <li class="{f:if(condition: '{0:currentController} == {0: \'ScheduleItem\'}', then: 'active', else: '')}"><f:link.action action="index" controller="scheduleItem">{f:translate(id: 'scheduleitem.title')}</f:link.action></li>
-                <li class="{f:if(condition: '{0:currentController} == {0: \'ScheduleTemplate\'}', then: 'active', else: '')}"><f:link.action action="index" controller="scheduleTemplate">{f:translate(id: 'scheduletemplate.title')}</f:link.action></li>
+                <li class="{f:if(condition: '{0:currentController} == {0: \'Container\'}', then: 'active', else: '')}"><f:link.action action="index" controller="container">{f:translate(id: 'container.pagetitle')}</f:link.action></li>
+                <li class="{f:if(condition: '{0:currentController} == {0: \'ScheduleItem\'}', then: 'active', else: '')}"><f:link.action action="index" controller="scheduleItem">{f:translate(id: 'scheduleitem.pagetitle')}</f:link.action></li>
+                <li class="{f:if(condition: '{0:currentController} == {0: \'ScheduleTemplate\'}', then: 'active', else: '')}"><f:link.action action="index" controller="scheduleTemplate">{f:translate(id: 'scheduletemplate.pagetitle')}</f:link.action></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

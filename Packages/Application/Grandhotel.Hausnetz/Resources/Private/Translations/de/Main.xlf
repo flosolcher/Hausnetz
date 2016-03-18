@@ -49,12 +49,9 @@
             <trans-unit id="calendar.title">
                 <source>Kalender</source>
             </trans-unit>
-            <trans-unit id="calendar.title">
-                <source>Kalender</source>
-            </trans-unit>
 
 
-            <trans-unit id="container.title">
+            <trans-unit id="container.pagetitle">
                 <source>Container</source>
             </trans-unit>
             <trans-unit id="container.entire_house" approved="yes">
@@ -111,6 +108,9 @@
             </trans-unit>            
             
             
+            <trans-unit id="note.pagetitle">
+                <source>Notizen</source>
+            </trans-unit>
             <trans-unit id="note.title">
                 <source>Überschrift</source>
             </trans-unit>
@@ -149,6 +149,9 @@
                 <source>Schichtende</source>
             </trans-unit>
             
+            <trans-unit id="scheduletemplate.pagetitle">
+                <source>Schichtplan</source>
+            </trans-unit>
             
 
             <trans-unit id="user.loggedinuser">

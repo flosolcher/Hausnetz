@@ -61,7 +61,8 @@
             </trans-unit>
             
             
-            <trans-unit id="container.title">
+            
+            <trans-unit id="container.pagetitle">
                 <source>Container</source> 
                 <target>Container</target> 
             </trans-unit>
@@ -93,7 +94,7 @@
             </trans-unit>
             <trans-unit id="container.title">
                 <source>Bezeichnung</source> 
-                <target>Container title</target> 
+                <target>Container name</target> 
             </trans-unit>
 
 
@@ -135,6 +136,10 @@
             </trans-unit>
             
             
+            <trans-unit id="note.pagetitle">
+                <source>Notizen</source>
+                <target>Notes</target>
+            </trans-unit>
             <trans-unit id="note.title">
                 <source>Titel der Notiz</source>
                 <target>Title of note</target>
