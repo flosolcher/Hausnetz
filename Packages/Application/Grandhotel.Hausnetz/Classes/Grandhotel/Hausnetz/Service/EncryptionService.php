@@ -1,5 +1,5 @@
 <?php
-namespace Monacofriends\Framework\Service;
+namespace Grandhotel\Hausnetz\Service;
 
 
 use TYPO3\Flow\Annotations as Flow;
@@ -11,12 +11,12 @@ class EncryptionService {
     /**
      * @var string
      */
-    protected $salt     = 'NO"!324r5snsdjkfnjiasn124saofdhowes()&(%)!"§&%))';
+    protected $salt     = 'NO"!324r5snsdjkfnjiasn124saofdhowes()&(%)!"ï¿½&%))';
 
     /**
      * @var string
      */
-    protected $password = 'BNizghsid8/"%&§)(!T$$!($=)';
+    protected $password = 'BNizghsid8/"%&ï¿½)(!T$$!($=)';
 
     /**
      * @param string $salt

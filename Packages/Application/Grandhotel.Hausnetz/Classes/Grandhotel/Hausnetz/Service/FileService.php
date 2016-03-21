@@ -76,8 +76,8 @@ class FileService {
      * @return array
      */
     public function getFiles($directory = '') {
-        $directory = str_replace('/home/admin/gdrive/Kunden', '', $directory);
-        $path = '/home/admin/gdrive/Kunden/' . $directory;
+        $directory = str_replace('/var/www/vhosts/Hausnetz/Data/Persistent/Resources/Files', '', $directory);
+        $path = '/var/www/vhosts/Hausnetz/Data/Persistent/Resources/Files' . $directory;
 
 
         $directories = array();

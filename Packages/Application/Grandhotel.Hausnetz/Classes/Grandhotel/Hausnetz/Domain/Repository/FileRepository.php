@@ -16,11 +16,7 @@ use TYPO3\Flow\Persistence\Repository;
  */
 class FileRepository extends AbstractRepository {
 
-   /**
-     * @var \Grandhotel\Hausnetz\Service\FileService
-     * @Flow\Inject
-     */
-    protected $fileService;
+
     
     public function getTest() {
        return "test";
