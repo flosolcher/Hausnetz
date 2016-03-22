@@ -29,9 +29,13 @@ class FileController extends AbstractController {
     public function indexAction() {
       $user = $this->authService->getCurrentUser();
       $items = $this->fileService->getFiles()['files'];
+      
+      $ci = count($items);
+      
       $test = $this->fileRepository->getTest();
       $this->view->assign('user', $user->getUserName());
       $this->view->assign('items', $items);
+      $this->view->assign('ci', $ci);
     }
     
     /**
@@ -40,4 +44,10 @@ class FileController extends AbstractController {
       $this->view->assign('action', 'create');
     }
 
+    public function getACtion() {
+       
+       
+    }
+    
+    
 }

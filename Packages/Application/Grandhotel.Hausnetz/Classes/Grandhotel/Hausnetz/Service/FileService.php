@@ -76,8 +76,8 @@ class FileService {
      * @return array
      */
     public function getFiles($directory = '') {
-        $directory = str_replace('/var/www/vhosts/Hausnetz/Data/Persistent/Resources/Files', '', $directory);
-        $path = '/var/www/vhosts/Hausnetz/Data/Persistent/Resources/Files' . $directory;
+        $directory = str_replace('', '', $directory);
+        $path = '/var/www/html/vhosts/Hausnetz/Data/Persistent/Resources/Files' . $directory;
 
 
         $directories = array();
@@ -131,7 +131,7 @@ class FileService {
                             'size' => filesize($filePath),
                             'extension' => $extension,
                             'encrypted' => $this->encryptionService->encrypt($filePath),
-                            'enryptedAndEncoded' => urlencode(base64_encode($this->encryptionService->encrypt($filePath))),
+                            'encryptedAndEncoded' => urlencode(base64_encode($this->encryptionService->encrypt($filePath))),
                         );
                     }
                 }
