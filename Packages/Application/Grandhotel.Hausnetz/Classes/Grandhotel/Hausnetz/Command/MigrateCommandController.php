@@ -8,7 +8,9 @@ use Grandhotel\Hausnetz\Domain\Model\Group;
 use Grandhotel\Hausnetz\Domain\Model\Contact;
 use Grandhotel\Hausnetz\Domain\Model\User;
 use Grandhotel\Hausnetz\Domain\Model\Note;
+use Grandhotel\Hausnetz\Domain\Model\File;
 use TYPO3\Flow\Annotations as Flow;
+
 
 class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
     /**
@@ -53,6 +55,12 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
      * @var \Grandhotel\Hausnetz\Domain\Repository\EventRepository
      */
     protected $eventRepository;
+
+    /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\FileRepository
+     */
+    protected $fileRepository;
 
     /**
      * @var string
@@ -284,6 +292,35 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->persistenceManager->persistAll();
     }
 
+    protected function migrateFiles()  {
+        $sql = 'SELECT * FROM filemanager_files ORDER BY id';
+        $result = $this->getConnection()->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['id'];
+            $item = $this->fileRepository->findByReferenceId($id);
+            if ($item->count() === 0) {
+                $item = new File();
+                $create = TRUE;
+            } else {
+                $create = FALSE;
+                $item = $item->getFirst();
+            }
+            $item->setActive(TRUE);
+            $item->setTitle($row['title']);
+/*
+ *             $group->set($row['']);
+ */
+            //$item->setReferenceId($id);
+            if ($create) {
+                $this->fileRepository->add($item);
+            } else {
+                $this->fileRepository->update($item);
+            }
+        }
+        $this->persistenceManager->persistAll();
+    }
+
+    
     public function migrateGroupUsers() {
         $sql = 'SELECT * FROM usergroups';
         $result = $this->getConnection()->query($sql);
@@ -404,6 +441,7 @@ class MigrateCommandController extends \TYPO3\Flow\Cli\CommandController {
         $this->migrateGroups();
         $this->migrateGroupUsers();
         $this->migrateContainers();
+        $this->migrateFiles();
         //$this->migrateAnnouncements();
         /*$this->migrateEvents();
          */

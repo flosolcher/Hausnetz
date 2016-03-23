@@ -216,5 +216,30 @@ class FileService {
             return $fileName;
         }
     }
+    
+    
+    /**
+     * @param string $file
+     */
+    public function inlineAction($file = '') {
+       
+        $file = $this->encryptionService->decrypt(base64_decode(urldecode($file)));
+        if (file_exists($file) && !is_dir($file)) {
+            $mime =mime_content_type($file);
+            header('Content-type: ' . $mime);
+            header('Content-Disposition: inline; filename=' . basename($file));
+            readfile($file);
+        }
+        exit;
+    }
+    
+    
+    public function downloadAction($file = '') {
+       
+      header('Content-Transfer-Encoding: binary');
+      header('Content-Description: File Transfer');
+      header('Content-Type: application/octet-stream');
+      header('Content-Disposition: attachment; filename=' . basename($file));
+    }
 
 }
