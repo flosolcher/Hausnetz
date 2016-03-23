@@ -45,6 +45,13 @@ class NoteController extends AbstractController {
     /**
      * @param Note $note
      */
+    public function showAction(Note $note) {
+      $this->view->assign('note', $note);
+    }
+
+    /**
+     * @param Note $note
+     */
     public function deleteAction(Note $note) {
         $title = $note->getTitle();
         $this->noteRepository->remove($note);
