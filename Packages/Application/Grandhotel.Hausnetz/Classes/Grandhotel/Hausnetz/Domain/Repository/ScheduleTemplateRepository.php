@@ -65,13 +65,13 @@ class ScheduleTemplateRepository extends AbstractRepository {
           'type'     => 'int',
           'format'   => 'select',
           'options'  => array(
-              0 => 'Montag',
-              1 => 'Dienstag',
-              2 => 'Mittwoch',
-              3 => 'Donnerstag',
-              4 => 'Freitag',
-              5 => 'Samstag',
-              6 => 'Sonntag',
+              1 => 'Montag',
+              2 => 'Dienstag',
+              3 => 'Mittwoch',
+              4 => 'Donnerstag',
+              5 => 'Freitag',
+              6 => 'Samstag',
+              7 => 'Sonntag',
           )
          ),
          array(
