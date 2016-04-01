@@ -22,7 +22,12 @@
             <div class="col-md-3">
                <f:if condition="{note.title}">
                   <f:then>
-                     <h3><f:format.nl2br>{note.title}</f:format.nl2br></h3>
+                           <h3>
+                           <f:link.action action="show" arguments="{note: note}">
+                              <f:format.nl2br>{note.title}</f:format.nl2br>
+                           </f:link.action>
+                           </h3>
+                        
 
                   </f:then>
                   <f:else>
