@@ -86,7 +86,6 @@ class ScheduleController extends AbstractController {
             $currentDate->modify('+1 day');
 
 
-
         }
 
         echo json_encode($schedule);
