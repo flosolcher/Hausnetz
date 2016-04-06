@@ -15,49 +15,6 @@
 
       <f:render partial="GenericForm/Field" arguments="{field: field, item: item}" />
 
-      <div class="form-group">
-         <label class="col-sm-2 control-label" for="{field.property}">{f:translate(id: '{model}.{field.property}')}</label>
-         <div class="col-sm-10">
-               
-                <f:if condition="{field.format} == 'date'">
-                   <div class="input-group date form-datetime" data-link-field="{field.property}-input">
-                    <input class="form-control display-field" size="16" type="text" value="" readonly>
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <span class="input-group-addon"><i class="fa fa-times"></i></span>
-                   </div>
-                  <f:form.textfield property="{field.property}" class="hide" id="{field.property}-input" />
-                </f:if>
-            
-                <f:if condition="{field.format} == 'datetime'">
-                   <div class="input-group date form-datetime" data-link-field="{field.property}-input">
-                    <input class="form-control display-field" size="16" type="text" value="" readonly>
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <span class="input-group-addon"><i class="fa fa-times"></i></span>
-                   </div>
-                  <f:form.textfield property="{field.property}" class="hide" id="{field.property}-input" />
-                </f:if>
-            
-               <f:if condition="{field.format} == 'color'">
-                  <f:form.textfield class="colorpicker" property="{field.property}">
-                     {gh:getProperty(object:'{item}', field:'{field.property}')}
-                  </f:form.textfield>
-               </f:if>
-
-                <f:if condition="{field.format} == 'textarea'">
-                  <f:form.textarea class="form-control" property="{field.property}">
-                     {gh:getProperty(object:'{item}', field:'{field.property}')}
-                  </f:form.textarea>
-                </f:if>
-
-                <f:if condition="{field.format} == 'default'">
-                  <f:form.textfield class="form-control" property="{field.property}">
-                     {gh:getProperty(object:'{item}', field:'{field.property}')}
-                  </f:form.textfield>
-                </f:if>
-
-         </div>
-      </div>
-
    </f:for>
 
    <div class="form-group">

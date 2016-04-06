@@ -19,6 +19,10 @@
                 <source>Ort</source>
                 <target>Location</target>
             </trans-unit>
+            <trans-unit id="g.lastchange">
+                <source>Letzte Änderung</source>
+                <target>Last changes</target>
+            </trans-unit>
             
             <trans-unit id="g.save">
                 <source>Speichern</source>
@@ -60,6 +64,39 @@
                 <target>Add contact</target> 
             </trans-unit>
             
+
+            <trans-unit id="contact.lastname">
+                <source>Nachname</source> 
+                <target>Last name</target> 
+            </trans-unit>
+            <trans-unit id="contact.firstname">
+                <source>Vorname</source> 
+                <target>First name</target> 
+            </trans-unit>
+            <trans-unit id="contact.birthdate">
+                <source>Geburtsdatum</source> 
+                <target>Birthdate</target> 
+            </trans-unit>
+            <trans-unit id="contact.phone">
+                <source>Telefon</source> 
+                <target>Phone</target> 
+            </trans-unit>
+            <trans-unit id="contact.cellphone">
+                <source>Handy</source> 
+                <target>Cellphone</target> 
+            </trans-unit>
+            <trans-unit id="contact.city">
+                <source>Stadt</source> 
+                <target>City</target> 
+            </trans-unit>
+            <trans-unit id="contact.email">
+                <source>Email</source> 
+                <target>Email</target> 
+            </trans-unit>
+            <trans-unit id="contact.facebook">
+                <source>Facebook</source> 
+                <target>Facebook</target> 
+            </trans-unit>
             
             
             <trans-unit id="container.pagetitle">
@@ -187,6 +224,10 @@
                 <source>Schicht-Bezeichnung</source>
                 <target>Shift name</target>
             </trans-unit>            
+            <trans-unit id="scheduleitem.user">
+                <source>Eingetragene Person</source>
+                <target>Entered person</target>
+            </trans-unit>            
             <trans-unit id="scheduleitem.content">
                 <source>Schicht-Item Beschreibung</source>
                 <target>Shift item description</target>
@@ -198,13 +239,22 @@
             <trans-unit id="scheduleitem.begin">
                 <source>Schichtbeginn</source>
                 <target>Shift start time</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="scheduleitem.end">
                 <source>Schichtende</source>
                 <target>Shift end time</target>
             </trans-unit>
 
-                        
+            <trans-unit id="scheduletemplate.pagetitle">
+                <source>Schichtplan-Vorlagen</source>
+                <target>Shift plan templates</target>
+            </trans-unit>
+            <trans-unit id="scheduletemplate.add">
+                <source>Schichtplan hinzufügen</source>
+                <target>Add shift plan template</target>
+            </trans-unit>
+
+                                                
             <trans-unit id="user.loggedinuser">
                 <source>Eingeloggt als</source>
                 <target>Logged in as </target>

@@ -18,6 +18,9 @@
             <trans-unit id="g.location">
                 <source>Ort</source>
             </trans-unit>
+            <trans-unit id="g.lastchange">
+                <source>Letzte Änderung</source>
+            </trans-unit>
             
             <trans-unit id="g.save">
                 <source>Speichern</source>
@@ -43,6 +46,31 @@
             </trans-unit>
             <trans-unit id="contact.add">
                 <source>Kontakt hinzufügen</source>
+            </trans-unit>
+
+            <trans-unit id="contact.lastname">
+                <source>Nachname</source>
+            </trans-unit>
+            <trans-unit id="contact.firstname">
+                <source>Vorname</source>
+            </trans-unit>
+            <trans-unit id="contact.birthdate">
+                <source>Geburtsdatum</source>
+            </trans-unit>
+            <trans-unit id="contact.phone">
+                <source>Telefon</source>
+            </trans-unit>
+            <trans-unit id="contact.cellphone">
+                <source>Handy</source>
+            </trans-unit>
+            <trans-unit id="contact.city">
+                <source>Stadt</source>
+            </trans-unit>
+            <trans-unit id="contact.email">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="contact.facebook">
+                <source>Facebook</source>
             </trans-unit>
 
 
@@ -116,7 +144,8 @@
             </trans-unit>
             <trans-unit id="note.content">
                 <source>Notizen</source>
-            </trans-unit>            
+            </trans-unit>
+            
 
             <trans-unit id="scheduleitem.pagetitle">
                 <source>Schichtplan</source>
@@ -133,8 +162,12 @@
             <trans-unit id="scheduleitem.items">
                 <source>Die Schicht-Items</source>
             </trans-unit>
+
             <trans-unit id="scheduleitem.title">
                 <source>Schicht-Bezeichnung</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.user">
+                <source>Eingetragene Person</source>
             </trans-unit>
             <trans-unit id="scheduleitem.content">
                 <source>Schicht-Item Beschreibung</source>
@@ -149,8 +182,13 @@
                 <source>Schichtende</source>
             </trans-unit>
             
+            
+            
             <trans-unit id="scheduletemplate.pagetitle">
                 <source>Schichtplan</source>
+            </trans-unit>
+            <trans-unit id="scheduletemplate.add">
+                <source>Schichtplan hinzufügen</source>
             </trans-unit>
             
 

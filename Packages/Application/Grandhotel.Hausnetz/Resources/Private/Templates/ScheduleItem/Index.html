@@ -28,12 +28,12 @@
 
                   </f:then>
                   <f:else>
-                     <i>{f:translate(id: 'scheduleitem.no_title')</i>
+                     <i>{f:translate(id: 'scheduleitem.no_title')}</i>
                   </f:else>
                </f:if>
-               <p>Letzte Änderung: <f:format.date format="d.m.Y">{item.changedate}</f:format.date></p>
-               <f:link.action action="edit" arguments="{item: item, action:edit}">Bearbeiten</f:link.action>|
-               <f:link.action action="delete" arguments="{item: item, action:delete}">Löschen</f:link.action>
+               <p>{f:translate(id: 'g.lastchange')}:<f:format.date format="d.m.Y">{item.changedate}</f:format.date></p>
+               <f:link.action action="edit" arguments="{item: item, action:edit}">{f:translate(id: 'entity.edit')}</f:link.action>|
+               <f:link.action action="delete" arguments="{item: item, action:delete}">{f:translate(id: 'entity.delete')}</f:link.action>
             </div>   
             <div class="col-md-9">           
                <div class="panel panel-default">
