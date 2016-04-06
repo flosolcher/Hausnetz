@@ -5,232 +5,227 @@
            
             <trans-unit id="g.title">
                 <source>Titel</source>
-                <target>Title</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="g.description">
                 <source>Beschreibung</source>
-                <target>Description</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="g.container">
                 <source>Container</source>
-                <target>Container</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="g.location">
                 <source>Ort</source>
-                <target>Location</target>
+                <target></target>
             </trans-unit>
             
             <trans-unit id="g.save">
                 <source>Speichern</source>
-                <target>Save</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="g.x">
                 <source>X</source>
-                <target>X</target>
+                <target></target>
             </trans-unit>
             
                        
                                              
             <trans-unit id="page.main.title">
                 <source>Hausnetz</source> 
-                <target state="needs-translation">Hausnetz EN</target>
+                <target></target>
             </trans-unit>
             
             
             <trans-unit id="announcement.title" approved="yes">
                 <source>Neuigkeiten</source> 
-                <target state="translated">News</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="announcement.reply">
                 <source>Antworten</source> 
-                <target state="translated">Reply</target> 
+                <target></target> 
             </trans-unit>
 
             
             <trans-unit id="contact.title">
                 <source>Adressbuch</source> 
-                <target>Contacts</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="contact.edit">
                 <source>Kontakt bearbeiten</source> 
-                <target>Edit contact</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="contact.add">
                 <source>Neuen Kontakt anlegen</source> 
-                <target>Add contact</target> 
+                <target></target> 
             </trans-unit>
             
             
-            
-            <trans-unit id="container.pagetitle">
+            <trans-unit id="container.title">
                 <source>Container</source> 
-                <target>Container</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="container.filter_by">
                 <source>Filtern nach Container</source> 
-                <target>Filter for container</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="container.entire_house" approved="yes">
                 <source>Ganzes Haus</source> 
-                <target state="translated">Entire House</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="container.edit">
                 <source>Container bearbeiten</source> 
-                <target>Edit container</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="container.add">
                 <source>Container hinzufügen</source> 
-                <target>Add container</target> 
+                <target></target> 
             </trans-unit>
 
 
             <trans-unit id="container.color">
                 <source>Farbe</source> 
-                <target>Colour</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="container.description">
                 <source>Beschreibung</source> 
-                <target>Description</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="container.title">
                 <source>Bezeichnung</source> 
-                <target>Container name</target> 
+                <target></target> 
             </trans-unit>
 
 
             <trans-unit id="event.title">
                 <source>Kalender</source> 
-                <target>Calendar</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="event.add">
                 <source>Event hinzufügen</source> 
-                <target>Add event</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="event.edit">
                 <source>Event bearbeiten</source> 
-                <target>Edit event</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="event.startdate">
                 <source>Beginn</source> 
-                <target>Start</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="event.enddate">
                 <source>Ende</source> 
-                <target>End</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="event.recurringtype">
                 <source>Wiederholungstyp</source> 
-                <target>Type of Recurring</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="event.recurringstartdate">
                 <source>Wiederholung ab</source> 
-                <target>Repeat from</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="event.recurringenddate">
                 <source>Wiederholung bis</source> 
-                <target>Repeat until</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="event.wholeday">
                 <source>Ganzer Tag</source>
-                <target>Whole day</target>
+                <target></target>
             </trans-unit>
             
             
-            <trans-unit id="note.pagetitle">
-                <source>Notizen</source>
-                <target>Notes</target>
-            </trans-unit>
             <trans-unit id="note.title">
                 <source>Titel der Notiz</source>
-                <target>Title of note</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="note.your_notes">
                 <source>Deine Notizen</source>
-                <target>Your notes</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="note.add">
                 <source>Notiz hinzufügen</source>
-                <target>Add note</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="note.edit">
                 <source>Notiz bearbeiten</source>
-                <target>Edit note</target>
+                <target>Edit </target>
             </trans-unit>
             <trans-unit id="note.content">
                 <source>Notizen</source>
-                <target>Note content</target>
+                <target></target>
             </trans-unit>
             
                                     
             <trans-unit id="scheduleitem.pagetitle">
                 <source>Schichtplan</source>
-                <target>Shift plan</target>
+                <target></target>
             </trans-unit>            
             <trans-unit id="scheduleitem.add">
                 <source>Schicht Item hinzufügen</source>
-                <target>Add shift item</target>
+                <target></target>
             </trans-unit>            
             <trans-unit id="scheduleitem.edit">
                 <source>Schicht Item bearbeiten</source>
-                <target>Edit shift item</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="scheduleitem.no_title">
                 <source>(keine Überschrift bisher)</source>
-                <target>(No title up to now)</target>
+                <target></target>
             </trans-unit>            
             <trans-unit id="scheduleitem.items">
                 <source>Die Schicht-Items</source>
-                <target>The shift items</target>
+                <target></target>
             </trans-unit>            
 
             <trans-unit id="scheduleitem.title">
                 <source>Schicht-Bezeichnung</source>
-                <target>Shift name</target>
+                <target></target>
             </trans-unit>            
             <trans-unit id="scheduleitem.content">
                 <source>Schicht-Item Beschreibung</source>
-                <target>Shift item description</target>
+                <target></target>
             </trans-unit>            
             <trans-unit id="scheduleitem.day">
                 <source>Wochentag</source>
-                <target>Day</target>
+                <target></target>
             </trans-unit>            
             <trans-unit id="scheduleitem.begin">
                 <source>Schichtbeginn</source>
-                <target>Shift start time</target>
+                <target></target>
             </trans-unit>            
             <trans-unit id="scheduleitem.end">
                 <source>Schichtende</source>
-                <target>Shift end time</target>
+                <target></target>
             </trans-unit>
 
                         
             <trans-unit id="user.loggedinuser">
                 <source>Eingeloggt als</source>
-                <target>Logged in as </target>
+                <target></target>
             </trans-unit>
 
                         
                         
             <trans-unit id="entity.new_entry" approved="yes">
                 <source>Neuer Eintrag</source> 
-                <target state="translated">Add Entry</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="entity.edit">
                 <source>Bearbeiten</source> 
-                <target state="translated">Edit</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="entity.delete">
                 <source>Löschen</source> 
-                <target>Delete</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="entity.close">
                 <source>Schließen</source> 
-                <target>Close</target> 
+                <target></target> 
             </trans-unit>
             <trans-unit id="entity.save_entry">
                 <source>Eintrag speichern</source> 
-                <target state="translated">Save entry</target> 
+                <target></target> 
             </trans-unit>
             
         </body>

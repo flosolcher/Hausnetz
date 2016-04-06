@@ -4,19 +4,21 @@
     <div class="row">
       <div class="col-md-12">
          <div class="page-header">
-             <h3>ScheduleItem</h3>
+             <h3>{f:translate(id: 'scheduleitem.pagetitle')}</h3>
          </div>
       </div>
       <div class="col-md-8">
-        <h4>Die Items</h4>
+        <h4>{f:translate(id: 'scheduleitem.items')}</h4>
       </div>
       <div class="col-md-4">
          <span class="btn">
-            <f:link.action action="new">Item hinzufügen</f:link.action>
+            <f:link.action action="new">{f:translate(id: 'scheduleitem.edit')}</f:link.action>
          </span>
       </div>
     </div>
    
+        <f:render partial="GenericTable" arguments="{actions: '{actions}', items: '{items}', fields: '{fields}', model:'scheduleitem' }" />
+
     <div class="row">
         <f:for each="{items}" as="item">
             <div class="col-md-3">
@@ -26,7 +28,7 @@
 
                   </f:then>
                   <f:else>
-                     <i>(keine Überschrift bisher)</i>
+                     <i>{f:translate(id: 'scheduleitem.no_title')</i>
                   </f:else>
                </f:if>
                <p>Letzte Änderung: <f:format.date format="d.m.Y">{item.changedate}</f:format.date></p>

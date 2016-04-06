@@ -12,8 +12,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1>Kalender</h1>
-                <f:link.action action="New">Neues Event</f:link.action>
+                <h1>{f:translate(id: 'event.title')}</h1>
+                <f:link.action action="New">{f:translate(id: 'event.add')}</f:link.action>
             </div>
         </div>
     </div>
@@ -35,8 +35,8 @@
                 </div>
                 <div id="modalBody" class="modal-body"></div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-                    <a id="eventUrl"><button class="btn btn-primary">Bearbeiten</button></a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{f:translate(id: 'entity.close')}</button>
+                    <a id="eventUrl"><button class="btn btn-primary">{f:translate(id: 'entity.edit')}</button></a>
                 </div>
             </div>
         </div>

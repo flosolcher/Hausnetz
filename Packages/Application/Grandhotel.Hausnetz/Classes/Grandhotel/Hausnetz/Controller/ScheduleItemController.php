@@ -22,8 +22,7 @@ class ScheduleItemController extends AbstractController {
     /**
      */
     public function indexAction() {
-      $user = $this->authService->getCurrentUser();
-      $items = $this->scheduleItemRepository->listItems();
+      $items = $this->scheduleItemRepository->listActive();
       $fields = $this->scheduleItemRepository->getFields();
       $this->view->assign('fields', $fields);
       $this->view->assign('items', $items);

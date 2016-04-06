@@ -4,14 +4,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h3>Notiz bearbeiten</h3>
+                <h3>{f:translate(id: 'note.edit')}</h3>
             </div>
         </div>
     </div>
    
    <div class="row">
         <div class="col-md-12">
-          <f:render partial="Note/Form.html" arguments="{action: 'edit', object: '{note}', objectName: 'note'}" />
+          <f:render partial="Note/Form.html" arguments="{action: 'edit', object: '{note}', objectName: 'note', model:'note'}" />
 
         </div>
    </div>

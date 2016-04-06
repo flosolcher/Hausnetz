@@ -4,15 +4,16 @@
     <div class="row">
       <div class="col-md-12">
          <div class="page-header">
-             <h3>Notizen</h3>
+             <h3>{f:translate(id: 'note.title')}</h3>
          </div>
       </div>
       <div class="col-md-8">
-        <h4>Deine Notizen (Angemeldeter Benutzer ist {user.username})</h4>
+        <h4>{f:translate(id: 'note.your_notes')}
+           {f:translate(id: 'user.loggedinuser')} {user.username} </h4>
       </div>
       <div class="col-md-4">
          <span class="btn">
-            <f:link.action action="new">Notiz hinzufügen</f:link.action>
+            <f:link.action action="new">{f:translate(id: 'note.add')}</f:link.action>
          </span>
       </div>
     </div>

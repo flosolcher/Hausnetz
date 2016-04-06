@@ -6,6 +6,27 @@
                 <source>Hausnetz</source>
             </trans-unit>
 
+            <trans-unit id="g.title">
+                <source>Titel</source>
+            </trans-unit>
+            <trans-unit id="g.description">
+                <source>Beschreibung</source>
+            </trans-unit>
+            <trans-unit id="g.container">
+                <source>Container</source>
+            </trans-unit>
+            <trans-unit id="g.location">
+                <source>Ort</source>
+            </trans-unit>
+            
+            <trans-unit id="g.save">
+                <source>Speichern</source>
+            </trans-unit>
+            <trans-unit id="g.x">
+                <source>X</source>
+            </trans-unit>
+
+
             <trans-unit id="announcement.title">
                 <source>Neuigkeiten</source>
             </trans-unit>
@@ -13,25 +34,146 @@
                 <source>Antworten</source>
             </trans-unit>
 
-            <trans-unit id="calendar.title">
-                <source>Kalender</source>
+
+            <trans-unit id="contact.title">
+                <source>Adressbuch</source>
             </trans-unit>
+            <trans-unit id="contact.edit">
+                <source>Kontakt bearbeiten</source>
+            </trans-unit>
+            <trans-unit id="contact.add">
+                <source>Kontakt hinzufügen</source>
+            </trans-unit>
+
+
             <trans-unit id="calendar.title">
                 <source>Kalender</source>
             </trans-unit>
 
+
+            <trans-unit id="container.pagetitle">
+                <source>Container</source>
+            </trans-unit>
             <trans-unit id="container.entire_house" approved="yes">
                 <source>Ganzes Haus</source>
             </trans-unit>
             <trans-unit id="container.filter_by">
                 <source>Filtern nach Container</source>
             </trans-unit>
+            <trans-unit id="container.edit">
+                <source>Container bearbeiten</source>
+            </trans-unit>
+            <trans-unit id="container.add">
+                <source>Container hinzufügen</source>
+            </trans-unit>
+
+     
+            <trans-unit id="container.color">
+                <source>Farbe</source>
+            </trans-unit>
+            <trans-unit id="container.description">
+                <source>Beschreibung</source>
+            </trans-unit>
+            <trans-unit id="container.title">
+                <source>Bezeichnung</source>
+            </trans-unit>
+
+                                                                        
+            <trans-unit id="event.title">
+                <source>Kalender</source>
+            </trans-unit>            
+            <trans-unit id="event.edit">
+                <source>Event bearbeiten</source>
+            </trans-unit>      
+            <trans-unit id="event.add">
+                <source>Event hinzufügen</source>
+            </trans-unit>            
+            <trans-unit id="event.startdate">
+                <source>Beginn</source>
+            </trans-unit>            
+            <trans-unit id="event.enddate">
+                <source>Ende</source>
+            </trans-unit>            
+            <trans-unit id="event.recurringtype">
+                <source>Wiederholungs-Intervall</source>
+            </trans-unit>            
+            <trans-unit id="event.recurringstartdate">
+                <source>Wiederhole ab</source>
+            </trans-unit>            
+            <trans-unit id="event.recurringenddate">
+                <source>Wiederhole bis</source>
+            </trans-unit>            
+            <trans-unit id="event.wholeday">
+                <source>Ganzer Tag</source>
+            </trans-unit>            
+            
+            
+            <trans-unit id="note.pagetitle">
+                <source>Notizen</source>
+            </trans-unit>
+            <trans-unit id="note.title">
+                <source>Überschrift</source>
+            </trans-unit>
+            <trans-unit id="note.content">
+                <source>Notizen</source>
+            </trans-unit>            
+
+            <trans-unit id="scheduleitem.pagetitle">
+                <source>Schichtplan</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.edit">
+                <source>Schicht item bearbeiten</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.add">
+                <source>Schicht item hinzufügen</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.no_title">
+                <source>(keine Überschrift bisher)</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.items">
+                <source>Die Schicht-Items</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.title">
+                <source>Schicht-Bezeichnung</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.content">
+                <source>Schicht-Item Beschreibung</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.day">
+                <source>Wochentag</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.begin">
+                <source>Schichtbeginn</source>
+            </trans-unit>
+            <trans-unit id="scheduleitem.end">
+                <source>Schichtende</source>
+            </trans-unit>
+            
+            <trans-unit id="scheduletemplate.pagetitle">
+                <source>Schichtplan</source>
+            </trans-unit>
+            
+
+            <trans-unit id="user.loggedinuser">
+                <source>Eingeloggt als</source>
+            </trans-unit>            
+            
+
 
             <trans-unit id="entity.new_entry" approved="yes">
                 <source>Neuer Eintrag</source> 
             </trans-unit>
             <trans-unit id="entity.edit">
                 <source>Bearbeiten</source> 
+            </trans-unit>
+            <trans-unit id="entity.close">
+                <source>Schließen</source> 
+            </trans-unit>
+            <trans-unit id="entity.delete">
+                <source>Löschen</source> 
+            </trans-unit>
+            <trans-unit id="entity.save_entry">
+                <source>Eintrag speichern</source> 
             </trans-unit>
             
         </body>
