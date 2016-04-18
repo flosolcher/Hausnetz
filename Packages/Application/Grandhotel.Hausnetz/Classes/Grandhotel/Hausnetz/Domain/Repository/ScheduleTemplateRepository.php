@@ -57,7 +57,8 @@ class ScheduleTemplateRepository extends AbstractRepository {
          array(
           'name'     => 'Inhalt',
           'property' => 'content',
-          'format'   => 'textarea'
+          'format'   => 'default',
+          'crop'     => '20',
              ),
          array(
           'name'     => 'Tag',

@@ -66,7 +66,7 @@ class ScheduleTemplateController extends AbstractController {
     */
     public function createAction(ScheduleTemplate $item) {
         $title = $item->getTitle();
-        $item->setActive = TRUE;
+        $item->setActive(TRUE);
         $this->scheduleTemplateRepository->add($item);
         $this->addFlashMessage("Das neue Template $title wurde gespeichert.");
         $this->redirect('index');

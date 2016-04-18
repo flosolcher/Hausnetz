@@ -23,6 +23,13 @@ class ScheduleItemRepository extends AbstractRepository {
      */
     protected $userRepository;
 
+   
+    /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\ScheduleTemplateRepository
+     */
+    protected $scheduleTemplateRepository;
+    
     /**
      *
      * @param $user
@@ -57,39 +64,61 @@ class ScheduleItemRepository extends AbstractRepository {
       $fields = array(
          array(
           'name'     => 'Name',
-          'property' => 'title'
+          'property' => 'title',
+          'help'     => ''
              ),
-          array(
-             'name' => 'User',
-              'property' => 'user',
-              'type' => 'object',
-              'relation' => array(
-                  'items' => function() {
-                      return $this->userRepository->listItems('lastName', 'ASC');
-                   },
-                  'type'            => 'n-1',
-                  'display'         => 'fullName',
-              ),
-              'format' => 'select'
+       array(
+          'name' => 'User',
+           'property' => 'user',
+           'type' => 'object',
+           'relation' => array(
+               'items' => function() {
+                   return $this->userRepository->listItems('lastName', 'ASC');
+                },
+               'type'            => 'n-1',
+               'display'         => 'fullName',
+           ),
+           'format' => 'select',
+           'help'   => 'Wer die Schicht belegt.'        
           ),
+/*                        
+        array(
+          'name' => 'Template',
+           'property' => 'scheduleTemplate',
+           'type' => 'object',
+           'relation' => array(
+               'items' => function() {
+                   return $this->scheduleTemplateRepository->listItems('title', 'ASC');
+                },
+               'type'            => 'n-1',
+               'display'         => 'title',
+           ),
+           'format' => 'select',
+           'help'   => 'Die Vorlage'        
+          ),
+  */                     
          array(
           'name'     => 'Inhalt',
-          'property' => 'content'
+          'property' => 'content',
+          'help'    => 'Ein aussagekräftiger Titel für die Schicht (zB. "Bar #1 vormittag")'
              ),
          array(
           'name'     => 'Tag',
           'property' => 'day',
           'type'     => 'int',
+          'help'    => 'Eine Zahl von 1-7 für den Wochentag.'
              ),
          array(
           'name'     => 'Anfang',
           'property' => 'begin',
           'type'     => 'int',
+          'help'    => 'Die Stunde als ganze Zahl von 1-24'
              ),
          array(
           'name'     => 'Ende',
           'property' => 'end',
           'type'     => 'int',
+          'help'    => 'Die Stunde als ganze Zahl von 1-24'
              ),
       );
 

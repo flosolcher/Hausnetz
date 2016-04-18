@@ -44,7 +44,11 @@
                                 </f:link.external>
                             </f:if>
 
-                            <f:if condition="{field.format} == 'default'">
+                            <f:if condition="{field.format} == 'int'">
+                              {gh:getProperty(object: '{item}', field: '{field.property}' )}
+                            </f:if>
+
+                           <f:if condition="{field.format} == 'default'">
                                 <f:if condition="{field.crop}">
                                     <f:then>
                                         <f:format.crop maxCharacters="{field.crop}">{gh:getProperty(object: '{item}',

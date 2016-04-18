@@ -6,6 +6,7 @@
                 <source>Hausnetz</source>
             </trans-unit>
 
+            <!-- global "namespace", terms needed by many templates -->
             <trans-unit id="g.title">
                 <source>Titel</source>
             </trans-unit>
@@ -30,6 +31,7 @@
             </trans-unit>
 
 
+            <!-- model fields -->
             <trans-unit id="announcement.title">
                 <source>Neuigkeiten</source>
             </trans-unit>
@@ -48,6 +50,7 @@
                 <source>Kontakt hinzufügen</source>
             </trans-unit>
 
+            <!-- model fields -->
             <trans-unit id="contact.lastname">
                 <source>Nachname</source>
             </trans-unit>
@@ -96,6 +99,7 @@
             </trans-unit>
 
      
+            <!-- model fields -->
             <trans-unit id="container.color">
                 <source>Farbe</source>
             </trans-unit>
@@ -116,6 +120,8 @@
             <trans-unit id="event.add">
                 <source>Event hinzufügen</source>
             </trans-unit>            
+
+            <!-- model fields -->
             <trans-unit id="event.startdate">
                 <source>Beginn</source>
             </trans-unit>            
@@ -139,6 +145,8 @@
             <trans-unit id="note.pagetitle">
                 <source>Notizen</source>
             </trans-unit>
+
+            <!-- model fields -->
             <trans-unit id="note.title">
                 <source>Überschrift</source>
             </trans-unit>
@@ -163,6 +171,7 @@
                 <source>Die Schicht-Items</source>
             </trans-unit>
 
+            <!-- model fields -->
             <trans-unit id="scheduleitem.title">
                 <source>Schicht-Bezeichnung</source>
             </trans-unit>
@@ -188,7 +197,24 @@
                 <source>Schichtplan</source>
             </trans-unit>
             <trans-unit id="scheduletemplate.add">
-                <source>Schichtplan hinzufügen</source>
+                <source>Vorlage für Schichtplan hinzufügen</source>
+            </trans-unit>
+            
+            <!-- model fields -->
+            <trans-unit id="scheduletemplate.title">
+                <source>Titel der Vorlage</source>
+            </trans-unit>
+            <trans-unit id="scheduletemplate.content">
+                <source>Schicht-Item Beschreibung</source>
+            </trans-unit>
+            <trans-unit id="scheduletemplate.day">
+                <source>Wochentag</source>
+            </trans-unit>
+            <trans-unit id="scheduletemplate.begin">
+                <source>Schichtbeginn</source>
+            </trans-unit>
+            <trans-unit id="scheduletemplate.end">
+                <source>Schichtende</source>
             </trans-unit>
             
 
@@ -197,7 +223,7 @@
             </trans-unit>            
             
 
-
+            <!-- terms valid for all kind of entities -->
             <trans-unit id="entity.new_entry" approved="yes">
                 <source>Neuer Eintrag</source> 
             </trans-unit>

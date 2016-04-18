@@ -18,6 +18,12 @@ class ScheduleItemController extends AbstractController {
      * @var \Grandhotel\Hausnetz\Domain\Repository\ScheduleItemRepository
      */
     protected $scheduleItemRepository;
+ 
+    /**
+     * @Flow\Inject
+     * @var \Grandhotel\Hausnetz\Domain\Repository\ScheduleTemplateRepository
+     */
+    protected $scheduleTemplateRepository;
     
     /**
      */
@@ -63,9 +69,14 @@ class ScheduleItemController extends AbstractController {
     */
     public function createAction(ScheduleItem $item) {
         $title = $item->getTitle();
-        $item->setActive = TRUE;
+        $item->setActive(TRUE);
+        // XXX set current user or let enter random user? Maybe for admin only?
         $user = $this->authService->getCurrentUser();
         $item->setUser($user);
+        $templ = $this->scheduleTemplateRepository->getFirst();
+        if ($templ) {
+           $item->setScheduleTemplate($templ);
+        }
         $this->scheduleItemRepository->add($item);
         $this->addFlashMessage("Die neue Notiz $title wurde gespeichert.");
         $this->redirect('index');
