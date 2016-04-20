@@ -109,17 +109,12 @@ class ScheduleItemRepository extends AbstractRepository {
           'help'    => 'Eine Zahl von 1-7 für den Wochentag.'
              ),
          array(
-          'name'     => 'Anfang',
-          'property' => 'begin',
-          'type'     => 'int',
-          'help'    => 'Die Stunde als ganze Zahl von 1-24'
+          'name'     => 'Datum',
+          'property' => 'date',
+          'type'     => 'datetime',
+          'help'    => 'Absolutes Datum der Schicht'
              ),
-         array(
-          'name'     => 'Ende',
-          'property' => 'end',
-          'type'     => 'int',
-          'help'    => 'Die Stunde als ganze Zahl von 1-24'
-             ),
+
       );
 
       

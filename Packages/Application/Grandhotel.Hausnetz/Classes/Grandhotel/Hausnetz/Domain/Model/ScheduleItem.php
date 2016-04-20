@@ -40,19 +40,9 @@ class ScheduleItem extends AbstractModel {
     protected $title;
 
     /**
-     * @var int
+     * @var date
      */
-    protected $day;
-
-    /**
-     * @var int
-     */
-    protected $begin;
-
-    /**
-     * @var int
-     */
-    protected $end;
+    protected $date;
 
 
     /**
