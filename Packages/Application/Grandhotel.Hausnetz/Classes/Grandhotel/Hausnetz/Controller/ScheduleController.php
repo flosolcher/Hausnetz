@@ -7,6 +7,7 @@ namespace Grandhotel\Hausnetz\Controller;
  *                                                                        */
 
 use Grandhotel\Hausnetz\Controller\Super\AbstractController;
+use Grandhotel\Hausnetz\Domain\Model\ScheduleTemplate;
 use TYPO3\Flow\Annotations as Flow;
 use Grandhotel\Hausnetz\Domain\Model\ScheduleItem as ScheduleItem;
 
@@ -50,6 +51,28 @@ class ScheduleController extends AbstractController {
     }
 
     /**
+     * @param ScheduleTemplate $scheduleTemplate
+     * @param string $date
+     */
+    public function editItemAction(ScheduleTemplate $scheduleTemplate, $date = '') {
+        //TODO date validieren
+        $scheduleItem = $this->scheduleItemRepository->getByTemplateAndDate($scheduleTemplate, $date, TRUE);
+        $this->view->assign('item', $scheduleItem);
+        $fields = $this->scheduleItemRepository->getFields();
+        $this->view->assign('fields', $fields);
+        $this->view->assign('action', 'updateItem');
+
+    }
+
+    /**
+     * @param ScheduleItem $item
+     */
+    public function updateItemAction(ScheduleItem $item) {
+        $this->scheduleItemRepository->update($item);
+        $this->redirect('index');
+    }
+
+    /**
      * @param string $start
      * @param string $end
      */
@@ -77,10 +100,36 @@ class ScheduleController extends AbstractController {
                 $item['title'] = $template->getTitle();
                 $hours =  floor($template->getBegin() / 60);
                 $minutes = $template->getBegin() % 60;
+                if (strlen($minutes) == 1) $minutes = '0' . $minutes;
                 $item['start']  = $currentDate->format('Y-m-d') . 'T' . $hours . ':' . $minutes . ':00' ;
                 $hours =  floor($template->getEnd() / 60);
                 $minutes = $template->getEnd() % 60;
+                if (strlen($minutes) == 1) $minutes = '0' . $minutes;
                 $item['end']    = $currentDate->format('Y-m-d') . 'T' . $hours . ':' . $minutes . ':00' ;
+                $item['uuid'] = $this->persistenceManager->getIdentifierByObject($template) .'-' .$currentDate->format('Y-m-d') ;
+                $scheduleItem = $this->scheduleItemRepository->getByTemplateAndDate($template,  $currentDate->format('Y-m-d'));
+                if ($scheduleItem) {
+                    $item['description'] = 'Belegt von ' . $scheduleItem->getUser()->getFullName();
+                    $item['color'] = '#00FF00';
+                } else {
+                    $item['description'] = 'Nicht belegt';
+                    $item['color'] = '#FF0000';
+                }
+                $item['allDay'] = FALSE;
+                $uriBuilder = $this->controllerContext->getUriBuilder();
+                $uriBuilder->reset()
+                    ->setSection('')
+                    ->setFormat('')
+                    ->setCreateAbsoluteUri(TRUE)
+                    ->setAddQueryString(FALSE)
+                    ->setArgumentsToBeExcludedFromQueryString(array());
+                try {
+                    $uri = $uriBuilder->uriFor('editItem', array('scheduleTemplate' => $template, 'date' => $currentDate->format('Y-m-d')), 'Schedule', NULL, '');
+                } catch (\Exception $e) {
+                    $uri = '';
+                }
+                $item['url'] = $uri;
+
                 $schedule[] = $item;
             }
             $currentDate->modify('+1 day');

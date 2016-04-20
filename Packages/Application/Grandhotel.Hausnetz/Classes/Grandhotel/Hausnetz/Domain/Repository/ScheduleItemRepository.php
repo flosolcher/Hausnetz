@@ -6,6 +6,8 @@ namespace Grandhotel\Hausnetz\Domain\Repository;
  *                                                                        *
  *                                                                        */
 
+use Grandhotel\Hausnetz\Domain\Model\ScheduleItem;
+use Grandhotel\Hausnetz\Domain\Model\ScheduleTemplate;
 use Grandhotel\Hausnetz\Domain\Repository\Super\AbstractRepository;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Persistence\QueryInterface;
@@ -51,6 +53,27 @@ class ScheduleItemRepository extends AbstractRepository {
     }
 
 
+    public function getByTemplateAndDate(ScheduleTemplate $scheduleTemplate, $date = '', $forceCreate = FALSE) {
+        $dateObject = new \DateTime($date);
+        $query = $this->createQuery();
+        $constraints = array();
+        $constraints[] = $query->equals('date', $dateObject);
+        $constraints[] = $query->equals('scheduleTemplate', $scheduleTemplate);
+        $result = $query->matching($query->logicalAnd($constraints))->execute();
+        if ($result->count() > 0) {
+            return $result->getFirst();
+        } else {
+            if ($forceCreate) {
+                $scheduleItem = new ScheduleItem();
+                $scheduleItem->setDate($dateObject);
+                $scheduleItem->setScheduleTemplate($scheduleTemplate);
+                $this->add($scheduleItem);
+                $this->persistenceManager->persistAll();
+                return $scheduleItem;
+            }
+            return null;
+        }
+    }
 
     public function getFields() {
        // default values, TODO: in settings
@@ -61,12 +84,15 @@ class ScheduleItemRepository extends AbstractRepository {
           );
       
       // TODO move to yaml format
+
       $fields = array(
+              /*
          array(
           'name'     => 'Name',
           'property' => 'title',
           'help'     => ''
              ),
+        */
        array(
           'name' => 'User',
            'property' => 'user',
@@ -80,6 +106,13 @@ class ScheduleItemRepository extends AbstractRepository {
            ),
            'format' => 'select',
            'help'   => 'Wer die Schicht belegt.'        
+          ),
+          /*
+          array(
+              'name' => 'Template',
+              'property' => 'scheduleTemplate',
+              'valueIndex' => 'scheduleTemplate',
+              'format' => 'hidden',
           ),
 /*                        
         array(
@@ -96,7 +129,8 @@ class ScheduleItemRepository extends AbstractRepository {
            'format' => 'select',
            'help'   => 'Die Vorlage'        
           ),
-  */                     
+  */
+          /*
          array(
           'name'     => 'Inhalt',
           'property' => 'content',
@@ -120,6 +154,7 @@ class ScheduleItemRepository extends AbstractRepository {
           'type'     => 'int',
           'help'    => 'Die Stunde als ganze Zahl von 1-24'
              ),
+          */
       );
 
       
