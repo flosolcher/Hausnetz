@@ -30,20 +30,30 @@ class ScheduleItem extends AbstractModel {
 
     /**
      * @var string
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $content;
 
     /**
      * @var string
+     * @ORM\Column(nullable=true)
      */
     protected $title;
 
+
     /**
-     * @var date
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $date;
 
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate() {
+        return $this->date;
+    }
 
     /**
      * @return ScheduleTemplate
@@ -163,5 +173,14 @@ class ScheduleItem extends AbstractModel {
     public function setEnd($end)
     {
         $this->end = $end;
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return void
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
     }
 }
